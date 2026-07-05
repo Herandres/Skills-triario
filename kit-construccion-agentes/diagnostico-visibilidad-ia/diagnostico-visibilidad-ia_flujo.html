@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico de Visibilidad IA · Flujo del agente</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --primary: #1A1A2E;
+    --accent:  #E94560;
+    --bg:      #F0F4F8;
+    --card:    #FFFFFF;
+    --text:    #2D3748;
+    --muted:   #718096;
+    --green:   #48BB78;
+    --yellow:  #F6AD55;
+    --blue:    #4299E1;
+    --ai:      #2B6CB0;
+    --ai-bg:   #EBF4FF;
+    --border:  #E2E8F0;
+    --output:  #6B46C1;
+    --out-bg:  #FAF5FF;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--primary);
+    color: #fff;
+    padding: 28px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .header-title { font-size: 20px; font-weight: 800; }
+  .header-sub { font-size: 12px; color: #A0AEC0; margin-top: 4px; }
+  .header-badge {
+    font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; padding: 6px 16px;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px; color: #A0AEC0;
+  }
+
+  /* CANVAS */
+  .canvas {
+    max-width: 960px;
+    margin: 40px auto;
+    padding: 0 24px 60px;
+  }
+
+  /* LEYENDA */
+  .leyenda {
+    display: flex; gap: 20px; flex-wrap: wrap;
+    margin-bottom: 36px; padding: 16px 20px;
+    background: var(--card); border-radius: 10px;
+    border: 1px solid var(--border);
+  }
+  .leyenda-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); }
+  .leyenda-dot { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+
+  /* BLOQUES GENÉRICOS */
+  .bloque {
+    border-radius: 12px;
+    padding: 18px 22px;
+    position: relative;
+  }
+  .bloque-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; margin-bottom: 6px;
+  }
+  .bloque-title { font-size: 15px; font-weight: 700; line-height: 1.3; }
+  .bloque-sub { font-size: 12px; margin-top: 5px; opacity: 0.75; }
+
+  /* TIPOS */
+  .bloque-trigger {
+    background: var(--primary); color: #fff;
+    border: 2px solid #4A5568;
+  }
+  .bloque-trigger .bloque-label { color: #A0AEC0; }
+
+  .bloque-decision {
+    background: var(--yellow);
+    border: 2px solid #D69E2E;
+    color: var(--primary);
+    clip-path: polygon(20px 0%, calc(100% - 20px) 0%, 100% 50%, calc(100% - 20px) 100%, 20px 100%, 0% 50%);
+    padding: 18px 48px;
+    text-align: center;
+  }
+
+  .bloque-paso {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    color: var(--text);
+  }
+  .bloque-paso .bloque-label { color: var(--muted); }
+  .bloque-paso .num {
+    position: absolute; right: 18px; top: 50%; transform: translateY(-50%);
+    font-size: 40px; font-weight: 900; color: var(--border); line-height: 1;
+  }
+
+  .bloque-output {
+    background: var(--out-bg);
+    border: 1.5px solid #D6BCFA;
+    color: var(--output);
+  }
+  .bloque-output .bloque-label { color: #9F7AEA; }
+
+  .bloque-mcp {
+    background: var(--ai-bg);
+    border: 1.5px solid #90CDF4;
+    color: var(--ai);
+  }
+  .bloque-mcp .bloque-label { color: #4299E1; }
+
+  /* FLECHA */
+  .arrow {
+    display: flex; justify-content: center; align-items: center;
+    height: 32px; color: var(--muted); font-size: 20px; font-weight: 300;
+    position: relative;
+  }
+  .arrow::before {
+    content: '';
+    position: absolute; top: 0; left: 50%;
+    width: 2px; height: 100%;
+    background: var(--border);
+  }
+  .arrow-icon {
+    background: var(--bg); z-index: 1;
+    padding: 0 4px; font-size: 18px; color: var(--muted);
+  }
+  .arrow-label {
+    position: absolute; left: calc(50% + 14px);
+    font-size: 11px; color: var(--muted); white-space: nowrap;
+    background: var(--bg); padding: 0 6px;
+  }
+
+  /* BIFURCACIÓN */
+  .bifurcacion {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 0;
+  }
+  .bif-col { display: flex; flex-direction: column; align-items: center; gap: 0; }
+  .bif-label {
+    font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1px; padding: 5px 14px; border-radius: 20px;
+    margin-bottom: 10px; white-space: nowrap;
+  }
+  .bif-label.green { background: #F0FFF4; color: #276749; }
+  .bif-label.blue  { background: var(--ai-bg); color: var(--ai); }
+  .bif-label.gray  { background: #EDF2F7; color: var(--muted); }
+
+  .bif-connector {
+    width: 2px; height: 24px; background: var(--border); margin: 0 auto;
+  }
+
+  /* OUTPUTS GRID */
+  .outputs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 0;
+  }
+  .output-card {
+    background: var(--out-bg);
+    border: 1.5px solid #D6BCFA;
+    border-radius: 10px;
+    padding: 14px 16px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .output-num {
+    width: 26px; height: 26px; border-radius: 50%;
+    background: var(--output); color: #fff;
+    font-size: 12px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .output-title { font-size: 13px; font-weight: 700; color: var(--output); }
+  .output-sub { font-size: 11px; color: var(--muted); margin-top: 2px; line-height: 1.4; }
+
+  /* OUTPUT 5 DESTACADO */
+  .output-star {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, #FAF5FF, #EBF4FF);
+    border: 2px solid #B794F4;
+    border-radius: 12px;
+    padding: 18px 20px;
+    display: flex;
+    gap: 14px;
+    align-items: center;
+  }
+  .output-star-num {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--output); color: #fff;
+    font-size: 16px; font-weight: 900;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .output-star-title { font-size: 15px; font-weight: 800; color: var(--output); }
+  .output-star-sub { font-size: 12px; color: var(--muted); margin-top: 3px; }
+
+  /* MCP LATERAL */
+  .mcp-lateral {
+    position: relative;
+    margin: 16px 0;
+  }
+  .mcp-box {
+    background: var(--ai-bg);
+    border: 1.5px dashed #90CDF4;
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 12px;
+    color: var(--ai);
+  }
+  .mcp-box strong { font-weight: 700; display: block; margin-bottom: 3px; }
+  .mcp-tag {
+    display: inline-block; font-size: 10px; font-weight: 700;
+    padding: 2px 8px; border-radius: 20px;
+    background: #BEE3F8; color: var(--ai);
+    margin-right: 4px; margin-top: 4px;
+  }
+
+  /* SECCIÓN LABEL */
+  .seccion {
+    font-size: 10px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--muted);
+    text-align: center; margin: 8px 0 4px;
+  }
+
+  /* DIVISOR */
+  .divider {
+    height: 1px; background: var(--border);
+    margin: 32px 0; position: relative;
+  }
+  .divider span {
+    position: absolute; left: 50%; transform: translateX(-50%);
+    top: -10px; background: var(--bg);
+    padding: 0 12px; font-size: 11px; color: var(--muted);
+    white-space: nowrap;
+  }
+
+  /* FOOTER */
+  .footer {
+    background: var(--primary); color: #718096;
+    text-align: center; padding: 18px;
+    font-size: 11px; letter-spacing: 1px; text-transform: uppercase;
+    margin-top: 40px;
+  }
+  .footer strong { color: var(--yellow); }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div>
+    <div class="header-title">Diagnóstico de Visibilidad IA</div>
+    <div class="header-sub">Flujo del agente · GDO Triario · Junio 2026</div>
+  </div>
+  <div class="header-badge">Flujo operativo</div>
+</div>
+
+<div class="canvas">
+
+  <!-- LEYENDA -->
+  <div class="leyenda">
+    <div class="leyenda-item"><div class="leyenda-dot" style="background:var(--primary);"></div> Trigger / Analista</div>
+    <div class="leyenda-item"><div class="leyenda-dot" style="background:var(--yellow);border-radius:2px;transform:rotate(45deg);"></div> Decisión</div>
+    <div class="leyenda-item"><div class="leyenda-dot" style="background:var(--border);border:1.5px solid #CBD5E0;"></div> Paso de ejecución</div>
+    <div class="leyenda-item"><div class="leyenda-dot" style="background:var(--ai-bg);border:1.5px solid #90CDF4;"></div> MCP (conector)</div>
+    <div class="leyenda-item"><div class="leyenda-dot" style="background:var(--out-bg);border:1.5px solid #D6BCFA;"></div> Output</div>
+  </div>
+
+  <!-- ① TRIGGER -->
+  <div class="bloque bloque-trigger">
+    <div class="bloque-label">Inicio</div>
+    <div class="bloque-title">Analista abre Claude.ai · nueva conversación</div>
+    <div class="bloque-sub">Copia el prompt → pega como primer mensaje → escribe los datos del cliente</div>
+  </div>
+
+  <div class="arrow"><div class="arrow-icon">↓</div></div>
+
+  <!-- DATOS DEL CLIENTE -->
+  <div class="bloque bloque-paso">
+    <div class="num">→</div>
+    <div class="bloque-label">Input del analista</div>
+    <div class="bloque-title">Cliente · Dominio · Servicio · Industria</div>
+    <div class="bloque-sub">Mínimo requerido para arrancar. Los datos GA4 son opcionales en este paso.</div>
+  </div>
+
+  <div class="arrow"><div class="arrow-icon">↓</div></div>
+
+  <!-- ② DECISIÓN DATOS -->
+  <div style="display:flex;justify-content:center;margin-bottom:0;">
+    <div class="bloque bloque-decision" style="width:100%;max-width:500px;">
+      <div class="bloque-label">Decisión</div>
+      <div class="bloque-title">¿Qué datos GA4 están disponibles?</div>
+    </div>
+  </div>
+
+  <!-- BIFURCACIÓN 3 CAMINOS -->
+  <div class="bifurcacion" style="margin-top:12px;">
+    <div class="bif-col">
+      <span class="bif-label green">MCP GA4 activo</span>
+      <div class="bif-connector"></div>
+      <div class="bloque bloque-mcp" style="width:100%;text-align:center;">
+        <div class="bloque-label">Automático</div>
+        <div class="bloque-title" style="font-size:13px;">Consulta GA4 directamente</div>
+        <div class="bloque-sub">Sin intervención del analista</div>
+      </div>
+    </div>
+    <div class="bif-col">
+      <span class="bif-label blue">CSV pegado</span>
+      <div class="bif-connector"></div>
+      <div class="bloque bloque-mcp" style="width:100%;text-align:center;">
+        <div class="bloque-label">Manual · 2 min</div>
+        <div class="bloque-title" style="font-size:13px;">Lee el reporte de canales</div>
+        <div class="bloque-sub">Exportado por el analista</div>
+      </div>
+    </div>
+    <div class="bif-col">
+      <span class="bif-label gray">Sin datos</span>
+      <div class="bif-connector"></div>
+      <div class="bloque bloque-mcp" style="width:100%;text-align:center;">
+        <div class="bloque-label">Benchmarks</div>
+        <div class="bloque-title" style="font-size:13px;">Usa estimados del sector</div>
+        <div class="bloque-sub">Badge "Estimado" en el output</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="arrow" style="margin-top:8px;"><div class="arrow-icon">↓</div><div class="arrow-label">Los 3 caminos convergen aquí</div></div>
+
+  <!-- ③ PASO 1 -->
+  <div class="bloque bloque-paso">
+    <div class="num">1</div>
+    <div class="bloque-label">Paso 1</div>
+    <div class="bloque-title">Lectura y procesamiento de datos</div>
+    <div class="bloque-sub">Identifica tráfico IA existente · detecta si está oculto en Directo · activa benchmarks si no hay datos</div>
+  </div>
+
+  <div class="arrow"><div class="arrow-icon">↓</div></div>
+
+  <!-- ④ PASO 2 -->
+  <div class="bloque bloque-paso">
+    <div class="num">2</div>
+    <div class="bloque-label">Paso 2</div>
+    <div class="bloque-title">Definición y medición de KPIs</div>
+    <div class="bloque-sub">Adapta los KPIs al servicio (SEO / Web / Ambos) · asigna valor actual o "—" si no hay dato</div>
+  </div>
+
+  <div class="arrow"><div class="arrow-icon">↓</div></div>
+
+  <!-- ⑤ PASO 3 + MCP lateral -->
+  <div class="bloque bloque-paso">
+    <div class="num">3</div>
+    <div class="bloque-label">Paso 3</div>
+    <div class="bloque-title">Configuración GA4 · Canal AI Referral</div>
+    <div class="bloque-sub">Define las 8 reglas del canal · eventos GTM · encuesta post-conversión</div>
+  </div>
+
+  <div class="mcp-lateral" style="margin-top:10px;">
+    <div class="mcp-box">
+      <strong>🔌 MCP Playwright (si está disponible)</strong>
+      Configura el canal AI Referral directamente en la UI de GA4 — con confirmación previa del analista.
+      Si no está disponible, entrega las instrucciones manuales paso a paso.
+      <div style="margin-top:6px;">
+        <span class="mcp-tag">GA4 → Admin</span>
+        <span class="mcp-tag">Grupos de canales</span>
+        <span class="mcp-tag">8 reglas OR</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="arrow"><div class="arrow-icon">↓</div></div>
+
+  <!-- ⑥ PASO 4 -->
+  <div class="bloque bloque-paso">
+    <div class="num">4</div>
+    <div class="bloque-label">Paso 4</div>
+    <div class="bloque-title">Estructura del dashboard en Looker Studio</div>
+    <div class="bloque-sub">4 vistas según el servicio: Resumen ejecutivo · Canales · Comportamiento Web · AI Referral Deep Dive</div>
+  </div>
+
+  <div class="arrow"><div class="arrow-icon">↓</div></div>
+
+  <!-- ⑦ PASO 5 -->
+  <div class="bloque bloque-paso" style="border-color:#B794F4;border-width:2px;">
+    <div class="num">5</div>
+    <div class="bloque-label" style="color:var(--output);">Paso 5 · Núcleo del agente</div>
+    <div class="bloque-title">Diagnóstico de Visibilidad IA</div>
+    <div class="bloque-sub">
+      Bloque A: estado actual con datos reales o estimados ·
+      Bloque B: diagnóstico estratégico (¿qué significa este número?) ·
+      Bloque C: 3 acciones prioritarias con responsable e impacto esperado
+    </div>
+  </div>
+
+  <div class="arrow"><div class="arrow-icon">↓</div></div>
+
+  <!-- OUTPUTS -->
+  <div class="seccion">Outputs · generados en una sola respuesta</div>
+  <div style="height:8px;"></div>
+
+  <div class="outputs-grid">
+    <div class="output-card">
+      <div class="output-num">1</div>
+      <div>
+        <div class="output-title">KPIs del cliente</div>
+        <div class="output-sub">Tabla con valor actual, fuente y estado por KPI</div>
+      </div>
+    </div>
+    <div class="output-card">
+      <div class="output-num">2</div>
+      <div>
+        <div class="output-title">Checklist GA4</div>
+        <div class="output-sub">Canal AI Referral + eventos GTM + encuesta post-conversión</div>
+      </div>
+    </div>
+    <div class="output-card">
+      <div class="output-num">3</div>
+      <div>
+        <div class="output-title">Estructura Looker Studio</div>
+        <div class="output-sub">4 vistas con métricas, fuentes y audiencia por vista</div>
+      </div>
+    </div>
+    <div class="output-card">
+      <div class="output-num">4</div>
+      <div>
+        <div class="output-title">Diagnóstico estratégico</div>
+        <div class="output-sub">Estado actual + interpretación + 3 acciones priorizadas</div>
+      </div>
+    </div>
+    <div class="output-star">
+      <div class="output-star-num">5</div>
+      <div>
+        <div class="output-star-title">Reporte HTML standalone · el deliverable</div>
+        <div class="output-star-sub">Abre en el browser sin internet · listo para compartir al cliente o imprimir a PDF · badge verde si los datos son reales · badge amarillo si son estimados</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="arrow" style="margin-top:20px;"><div class="arrow-icon">↓</div></div>
+
+  <!-- MCP CLICKUP -->
+  <div class="mcp-box" style="margin-bottom:0;">
+    <strong>🔌 MCP ClickUp (si está disponible)</strong>
+    Registra el setup del cliente como tarea completada en el backlog del equipo.
+    <div style="margin-top:6px;">
+      <span class="mcp-tag">Con confirmación previa</span>
+      <span class="mcp-tag">Folder GDO</span>
+    </div>
+  </div>
+
+  <div class="arrow"><div class="arrow-icon">↓</div></div>
+
+  <!-- FIN -->
+  <div class="bloque" style="background:var(--primary);color:#fff;text-align:center;padding:22px;">
+    <div class="bloque-label" style="color:#A0AEC0;justify-content:center;display:flex;">Fin</div>
+    <div class="bloque-title" style="font-size:16px;">Analista tiene los 5 outputs · 5–8 minutos en total</div>
+    <div class="bloque-sub" style="color:#A0AEC0;margin-top:6px;">
+      El HTML se abre en el browser · el diagnóstico va a la reunión con el cliente
+    </div>
+  </div>
+
+  <!-- RESUMEN TIEMPOS -->
+  <div class="divider" style="margin-top:48px;"><span>Tiempos de referencia</span></div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+    <div class="bloque bloque-paso" style="text-align:center;padding:20px 14px;">
+      <div class="bloque-label" style="justify-content:center;display:flex;">Sin datos GA4</div>
+      <div style="font-size:26px;font-weight:800;color:var(--primary);margin:8px 0;">3–5 min</div>
+      <div style="font-size:12px;color:var(--muted);">Prompt + datos del cliente + recibir outputs</div>
+    </div>
+    <div class="bloque bloque-paso" style="text-align:center;padding:20px 14px;">
+      <div class="bloque-label" style="justify-content:center;display:flex;">Con CSV de GA4</div>
+      <div style="font-size:26px;font-weight:800;color:var(--primary);margin:8px 0;">5–8 min</div>
+      <div style="font-size:12px;color:var(--muted);">Incluye exportar el CSV desde GA4 (2 min)</div>
+    </div>
+    <div class="bloque bloque-mcp" style="text-align:center;padding:20px 14px;">
+      <div class="bloque-label" style="justify-content:center;display:flex;">Con MCP GA4 activo</div>
+      <div style="font-size:26px;font-weight:800;color:var(--ai);margin:8px 0;">2–4 min</div>
+      <div style="font-size:12px;color:var(--muted);">Sin intervención del analista para los datos</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Diagnóstico de Visibilidad IA · <strong>Triario GDO</strong> · Junio 2026
+</div>
+
+</body>
+</html>

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WEB-08 · Manual de Uso</title>
+<style>
+  :root {
+    --red: #d42b2b;
+    --dark: #111827;
+    --gray: #6b7280;
+    --light: #f9fafb;
+    --border: #e5e7eb;
+    --green: #16a34a;
+    --yellow: #d97706;
+    --blue: #2563eb;
+    --white: #ffffff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f0f0f0; color: var(--dark); font-size: 13px; line-height: 1.6; }
+
+  /* HEADER */
+  .header { background: var(--dark); color: white; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; }
+  .logo { font-size: 20px; font-weight: 900; letter-spacing: -1px; }
+  .logo em { color: var(--red); font-style: normal; }
+  .header-right { text-align: right; }
+  .doc-title { font-size: 16px; font-weight: 700; color: white; }
+  .doc-sub { font-size: 11px; color: #9ca3af; margin-top: 2px; }
+
+  /* HERO */
+  .hero { background: var(--white); border-bottom: 3px solid var(--red); padding: 32px 40px; }
+  .hero-badge { display: inline-block; background: var(--red); color: white; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 4px 10px; border-radius: 4px; margin-bottom: 12px; }
+  .hero-title { font-size: 24px; font-weight: 900; color: var(--dark); line-height: 1.2; }
+  .hero-desc { font-size: 13px; color: var(--gray); margin-top: 8px; max-width: 600px; }
+  .hero-meta { display: flex; gap: 24px; margin-top: 16px; }
+  .meta-item { font-size: 11px; color: var(--gray); }
+  .meta-item strong { color: var(--dark); display: block; font-size: 12px; }
+
+  /* MAIN LAYOUT */
+  .container { max-width: 900px; margin: 0 auto; padding: 32px 20px; }
+
+  /* SECTION */
+  .section { background: var(--white); border-radius: 8px; border: 1px solid var(--border); margin-bottom: 20px; overflow: hidden; }
+  .section-header { background: var(--dark); color: white; padding: 12px 20px; display: flex; align-items: center; gap: 10px; }
+  .section-num { width: 24px; height: 24px; background: var(--red); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 900; flex-shrink: 0; }
+  .section-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+  .section-body { padding: 20px; }
+
+  /* STEPS */
+  .steps { display: flex; flex-direction: column; gap: 12px; }
+  .step { display: flex; gap: 12px; align-items: flex-start; }
+  .step-num { width: 28px; height: 28px; background: var(--light); border: 2px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: var(--dark); flex-shrink: 0; margin-top: 1px; }
+  .step-content { flex: 1; }
+  .step-label { font-weight: 700; font-size: 13px; color: var(--dark); }
+  .step-desc { font-size: 12px; color: var(--gray); margin-top: 3px; }
+
+  /* CODE BLOCK */
+  .code { background: var(--light); border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12px; color: var(--dark); margin-top: 8px; white-space: pre-wrap; }
+  .code-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--gray); margin-bottom: 4px; }
+
+  /* CALLOUT */
+  .callout { border-radius: 6px; padding: 12px 14px; margin-top: 10px; display: flex; gap: 10px; }
+  .callout-green { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .callout-yellow { background: #fffbeb; border: 1px solid #fde68a; }
+  .callout-red { background: #fef2f2; border: 1px solid #fecaca; }
+  .callout-blue { background: #eff6ff; border: 1px solid #bfdbfe; }
+  .callout-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+  .callout-text { font-size: 12px; line-height: 1.5; }
+  .callout-text strong { display: block; margin-bottom: 2px; }
+
+  /* TABLE */
+  .info-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+  .info-table th { background: var(--light); font-size: 10px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--gray); padding: 8px 12px; text-align: left; border-bottom: 2px solid var(--border); }
+  .info-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); font-size: 12px; vertical-align: top; }
+  .info-table tr:last-child td { border-bottom: none; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: 700; }
+  .badge-green { background: #dcfce7; color: #166534; }
+  .badge-yellow { background: #fef3c7; color: #92400e; }
+  .badge-red { background: #fee2e2; color: #991b1b; }
+  .badge-gray { background: #f3f4f6; color: #374151; }
+  .badge-blue { background: #dbeafe; color: #1e40af; }
+
+  /* MODE CARDS */
+  .mode-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 4px; }
+  .mode-card { border-radius: 8px; padding: 16px; border: 2px solid var(--border); }
+  .mode-card.mode-1 { border-color: #bfdbfe; background: #eff6ff; }
+  .mode-card.mode-2 { border-color: #bbf7d0; background: #f0fdf4; }
+  .mode-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+  .mode-1 .mode-title { color: var(--blue); }
+  .mode-2 .mode-title { color: var(--green); }
+  .mode-trigger { font-size: 11px; color: var(--gray); margin-bottom: 6px; }
+  .mode-trigger strong { color: var(--dark); }
+
+  /* DIVIDER */
+  .divider { height: 1px; background: var(--border); margin: 16px 0; }
+
+  /* FOOTER */
+  .footer { background: var(--dark); color: #9ca3af; padding: 16px 40px; display: flex; justify-content: space-between; align-items: center; font-size: 10px; }
+  .footer .logo-sm { font-size: 13px; font-weight: 900; color: white; letter-spacing: -1px; }
+  .footer .logo-sm em { color: var(--red); font-style: normal; }
+
+  @media print {
+    body { background: white; }
+    .container { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="logo">triario<em>.</em></div>
+  <div class="header-right">
+    <div class="doc-title">WEB-08 · Manual de Uso</div>
+    <div class="doc-sub">Semiagente de Gestión de Feedback Web · v1.4 · Junio 2026</div>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">WEB-08 · Desarrollo Web</div>
+  <div class="hero-title">Gestión de Feedback del Cliente Web</div>
+  <div class="hero-desc">Convierte el feedback del cliente (email, grabación o documento) en tareas priorizadas en ClickUp y verifica que cada ítem fue resuelto antes de notificar la entrega.</div>
+  <div class="hero-meta">
+    <div class="meta-item"><strong>Tipo</strong>Semiagente + MCP</div>
+    <div class="meta-item"><strong>Plataforma</strong>Claude.ai Project</div>
+    <div class="meta-item"><strong>MCPs</strong>ClickUp · Fathom · M365</div>
+    <div class="meta-item"><strong>Responsable</strong>Hernán</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- SECTION 1: ACCESO -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <div class="section-title">Cómo acceder al semiagente</div>
+    </div>
+    <div class="section-body">
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-label">Abre Claude.ai</div>
+            <div class="step-desc">Ingresa a claude.ai con tu cuenta de Triario.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-label">Abre el proyecto WEB-08</div>
+            <div class="step-desc">En el panel lateral busca el proyecto <strong>"WEB-08 · Gestión de Feedback Web — Triario"</strong> y haz clic para abrirlo.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-label">Inicia una conversación nueva</div>
+            <div class="step-desc">Cada feedback debe procesarse en una conversación nueva. Las instrucciones del semiagente se cargan automáticamente.</div>
+          </div>
+        </div>
+      </div>
+      <div class="callout callout-yellow" style="margin-top:16px;">
+        <div class="callout-icon">⚠️</div>
+        <div class="callout-text"><strong>Una conversación por feedback</strong>No reutilices conversaciones anteriores. Cada nuevo feedback de cliente inicia una conversación fresca para evitar mezclar contextos.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: MODOS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <div class="section-title">Los dos modos del semiagente</div>
+    </div>
+    <div class="section-body">
+      <div class="mode-grid">
+        <div class="mode-card mode-1">
+          <div class="mode-title">MODO 1 · Procesar Feedback</div>
+          <div class="mode-trigger"><strong>Cuándo:</strong> Cuando recibes feedback nuevo del cliente.</div>
+          <div class="mode-trigger"><strong>Qué hace:</strong> Extrae ítems, los cruza con ClickUp y genera tabla de tareas.</div>
+          <div class="mode-trigger"><strong>Cómo activar:</strong> Pega el feedback o da el link/asunto del email.</div>
+        </div>
+        <div class="mode-card mode-2">
+          <div class="mode-title">MODO 2 · Verificar Entrega</div>
+          <div class="mode-trigger"><strong>Cuándo:</strong> Cuando el equipo cree que terminó las correcciones.</div>
+          <div class="mode-trigger"><strong>Qué hace:</strong> Consulta ClickUp y genera notificación al cliente o reporte de pendientes.</div>
+          <div class="mode-trigger"><strong>Cómo activar:</strong> Escribe "¿está todo resuelto?" o "verifica la entrega".</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: MODO 1 PASO A PASO -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <div class="section-title">MODO 1 · Paso a paso: procesar feedback</div>
+    </div>
+    <div class="section-body">
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-label">Proporciona el feedback</div>
+            <div class="step-desc">Indica el canal y pega o enlaza el contenido:</div>
+            <table class="info-table" style="margin-top:8px;">
+              <tr><th>Canal</th><th>Qué escribir</th></tr>
+              <tr><td><span class="badge badge-blue">Texto</span></td><td>Pega el email, documento o anotaciones directamente en el chat.</td></tr>
+              <tr><td><span class="badge badge-blue">Grabación</span></td><td>Pega la URL de Fathom: <code>https://fathom.video/calls/...</code></td></tr>
+              <tr><td><span class="badge badge-blue">Email</span></td><td>Escribe: <em>"Busca el email de [nombre cliente] del [fecha] con asunto [asunto]"</em></td></tr>
+            </table>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-label">El semiagente consulta ClickUp automáticamente</div>
+            <div class="step-desc">Sin necesidad de hacer nada — el agente busca en el backlog y el sprint activo del cliente para detectar tareas existentes. Esto es autónomo.</div>
+            <div class="callout callout-green" style="margin-top:8px;">
+              <div class="callout-icon">✅</div>
+              <div class="callout-text">La consulta a ClickUp, Fathom y M365 es <strong>automática</strong>. El semiagente no pide permiso para leer.</div>
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-label">Recibe la tabla de feedback procesado</div>
+            <div class="step-desc">El semiagente entrega una tabla con cada ítem clasificado:</div>
+            <table class="info-table" style="margin-top:8px;">
+              <tr><th>Estado</th><th>Significa</th></tr>
+              <tr><td><span class="badge badge-red">CREAR</span></td><td>La tarea no existe en ClickUp — se creará nueva.</td></tr>
+              <tr><td><span class="badge badge-yellow">ACTUALIZAR</span></td><td>La tarea ya existe — se actualizará con el nuevo feedback.</td></tr>
+              <tr><td><span class="badge badge-blue">AMBIGUO</span></td><td>Hay múltiples candidatos — necesitas elegir cuál es.</td></tr>
+              <tr><td><span class="badge badge-gray">INCOMPLETO</span></td><td>El feedback no es suficientemente específico — necesita más info del cliente.</td></tr>
+              <tr><td><span class="badge badge-gray">SOLO REGISTRO</span></td><td>Es contexto sin acción — no va a ClickUp.</td></tr>
+            </table>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <div class="step-label">Resuelve los ítems AMBIGUO (si los hay)</div>
+            <div class="step-desc">El semiagente presentará opciones para cada ítem ambiguo. Responde con la letra correspondiente:</div>
+            <div class="code">El ítem 'cambiar color del botón CTA' podría corresponder a:
+  A) "Ajustar diseño botón homepage" — estado: en proceso
+  B) "Mejoras CRO megamenú" — estado: por hacer
+  C) Crear tarea nueva
+¿Cuál aplica?</div>
+            <div class="callout callout-yellow" style="margin-top:8px;">
+              <div class="callout-icon">⚠️</div>
+              <div class="callout-text">Responder "A", "B" o "C" <strong>solo clasifica el ítem</strong>. No crea ni actualiza nada en ClickUp todavía.</div>
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">5</div>
+          <div class="step-content">
+            <div class="step-label">Confirma las acciones en ClickUp</div>
+            <div class="step-desc">Una vez resueltos todos los AMBIGUO, el semiagente presentará el resumen de acciones y pedirá confirmación:</div>
+            <div class="code">"Voy a ejecutar 4 acciones en ClickUp para Topaz:
+  — CREAR: Actualizar color botón CTA homepage
+  — CREAR: Revisar formulario contacto mobile
+  — ACTUALIZAR: Megamenú mejoras (tarea 86e19naya)
+  — CREAR: Corregir texto sección hero
+¿Confirmas? Responde 'confirmo' o indica cambios."</div>
+            <div class="callout callout-red" style="margin-top:8px;">
+              <div class="callout-icon">🔴</div>
+              <div class="callout-text"><strong>Solo responde "confirmo"</strong> cuando estés seguro. "Ok" o "sí" sin más contexto no son suficientes — el semiagente pedirá confirmación explícita.</div>
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">6</div>
+          <div class="step-content">
+            <div class="step-label">El semiagente ejecuta y reporta</div>
+            <div class="step-desc">Tras confirmar, el agente crea y actualiza las tareas en ClickUp y reporta el resultado de cada acción con el link de la tarea creada.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: MODO 2 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <div class="section-title">MODO 2 · Verificar entrega y notificar al cliente</div>
+    </div>
+    <div class="section-body">
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-label">Activa el modo de verificación</div>
+            <div class="step-desc">En la conversación donde procesaste el feedback, escribe alguna de estas frases:</div>
+            <div class="code">¿Está todo resuelto?
+Verifica la entrega
+¿Puedo notificar al cliente?</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-label">El semiagente consulta ClickUp</div>
+            <div class="step-desc">Busca el estado actual de las tareas del feedback en backlog y sprint activo. Esto es automático y no requiere confirmación.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-label">Recibe el resultado</div>
+            <table class="info-table" style="margin-top:6px;">
+              <tr><th>Resultado</th><th>Output del semiagente</th></tr>
+              <tr><td><span class="badge badge-green">Todo completado</span></td><td>Genera borrador de email formal al cliente listo para copiar y enviar.</td></tr>
+              <tr><td><span class="badge badge-yellow">Hay pendientes</span></td><td>Genera reporte interno con tabla de tareas pendientes y completadas para el equipo.</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: FALLBACKS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <div class="section-title">Qué hacer si algo falla</div>
+    </div>
+    <div class="section-body">
+      <table class="info-table">
+        <tr><th>Situación</th><th>Qué hace el semiagente</th><th>Acción del operador</th></tr>
+        <tr>
+          <td>Fathom no accesible</td>
+          <td>Pide que pegues el contenido de la grabación</td>
+          <td>Copia el texto de la transcripción de Fathom y pégalo en el chat</td>
+        </tr>
+        <tr>
+          <td>M365 no disponible</td>
+          <td>Pide que copies y pegues el email</td>
+          <td>Abre el email, copia todo el contenido y pégalo en el chat</td>
+        </tr>
+        <tr>
+          <td>ClickUp sin acceso</td>
+          <td>Entrega la tabla para ejecución manual</td>
+          <td>Crea las tareas manualmente en ClickUp según la tabla</td>
+        </tr>
+        <tr>
+          <td>Cliente no está en la tabla</td>
+          <td>No puede buscar en ClickUp automáticamente</td>
+          <td>Indica a Hernán para agregar el cliente a la tabla del prompt</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- SECTION 6: TIPS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <div class="section-title">Buenas prácticas</div>
+    </div>
+    <div class="section-body">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+        <div class="callout callout-green">
+          <div class="callout-icon">✅</div>
+          <div class="callout-text"><strong>Haz esto</strong>Una conversación por sesión de feedback. Confirma explícitamente con "confirmo". Revisa los AMBIGUO antes de confirmar.</div>
+        </div>
+        <div class="callout callout-red">
+          <div class="callout-icon">❌</div>
+          <div class="callout-text"><strong>Evita esto</strong>No uses "ok" o "sí" para confirmar acciones en ClickUp. No mezcles feedback de diferentes clientes en una conversación.</div>
+        </div>
+        <div class="callout callout-blue">
+          <div class="callout-icon">💡</div>
+          <div class="callout-text"><strong>Si hay ítems INCOMPLETO</strong>Vuelve al cliente a pedir más detalle antes de continuar. Un ítem sin descripción específica no genera tarea.</div>
+        </div>
+        <div class="callout callout-yellow">
+          <div class="callout-icon">⚠️</div>
+          <div class="callout-text"><strong>SOLO REGISTRO</strong>Los ítems marcados así son contexto — no van a ClickUp. Es comportamiento esperado, no un error.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="logo-sm">triario<em>.</em></div>
+  <div>WEB-08 · Gestión de Feedback Web · Manual de Uso v1.4 · Junio 2026</div>
+  <div>Responsable: Hernán — kit-construccion-agentes</div>
+</div>
+
+</body>
+</html>

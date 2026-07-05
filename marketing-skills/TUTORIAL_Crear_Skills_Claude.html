@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cómo crear Skills en Claude.ai · Loop Marketing · Triario</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;700;900&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700&display=block" rel="stylesheet">
+<style>
+  :root {
+    --dark: #1F0C21;
+    --red: #EF2222;
+    --purple: #381134;
+    --lavanda: #F3EEF8;
+    --white: #FFFFFF;
+    --gray: #6b7280;
+    --light: #f9fafb;
+    --border: #e5e7eb;
+    --H: 'Gabarito', Georgia, serif;
+    --B: 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: var(--B); color: var(--dark); background: white; }
+
+  /* ── PRINT ── */
+  @media print {
+    .page { box-shadow: none !important; margin: 0 !important; border-radius: 0 !important; }
+    body { background: white; }
+  }
+
+  .page {
+    max-width: 900px;
+    margin: 32px auto;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 40px rgba(31,12,33,0.10);
+    overflow: hidden;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--dark);
+    padding: 40px 56px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 180px; height: 180px;
+    background: rgba(239,34,34,0.15);
+    border-radius: 50%;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -20px; right: 80px;
+    width: 100px; height: 100px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 50%;
+  }
+  .header-tag { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--red); margin-bottom: 10px; }
+  .header h1 { font-family: var(--H); font-size: 32px; font-weight: 900; color: white; line-height: 1.1; margin-bottom: 8px; }
+  .header h1 em { color: var(--red); font-style: normal; }
+  .header-sub { font-size: 14px; color: rgba(255,255,255,0.45); }
+  .header-logo { position: absolute; top: 36px; right: 56px; font-family: var(--H); font-size: 18px; font-weight: 900; color: white; z-index: 2; }
+  .header-logo em { color: var(--red); font-style: normal; }
+
+  /* ── BODY ── */
+  .body { padding: 48px 56px; }
+
+  /* ── STEP ── */
+  .step { margin-bottom: 48px; }
+  .step-header { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+  .step-num {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--red); color: white;
+    font-family: var(--H); font-size: 16px; font-weight: 900;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .step-title { font-family: var(--H); font-size: 20px; font-weight: 900; color: var(--dark); }
+  .step-desc { font-size: 14px; color: var(--gray); line-height: 1.7; margin-bottom: 20px; }
+  .step-desc strong { color: var(--dark); font-weight: 600; }
+
+  /* ── UI MOCKUP ── */
+  .mockup {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f8f8f8;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  }
+  .mockup-bar {
+    background: #e8e8e8;
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot.r { background: #ff5f57; }
+  .dot.y { background: #ffbd2e; }
+  .dot.g { background: #28ca41; }
+  .mockup-body { padding: 0; background: white; }
+
+  /* MOCKUP 1 — panel habilidades */
+  .panel-layout { display: flex; }
+  .panel-left {
+    width: 220px;
+    border-right: 1px solid var(--border);
+    padding: 16px 0;
+    background: #fafafa;
+    flex-shrink: 0;
+  }
+  .panel-left-title { font-size: 11px; font-weight: 700; letter-spacing: 1px; color: var(--gray); text-transform: uppercase; padding: 0 16px 8px; }
+  .panel-item { font-size: 13px; padding: 8px 16px; color: #374151; cursor: pointer; }
+  .panel-item.active { background: var(--lavanda); color: var(--dark); font-weight: 600; }
+  .panel-section-label { font-size: 10px; font-weight: 700; color: #9ca3af; text-transform: uppercase; letter-spacing: 1px; padding: 12px 16px 4px; }
+  .panel-skill-item { font-size: 12px; padding: 7px 16px; color: #374151; border-left: 2px solid transparent; }
+  .panel-skill-item.selected { border-left-color: var(--red); color: var(--dark); font-weight: 600; background: white; }
+  .panel-right { flex: 1; padding: 20px; }
+  .panel-right-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+  .panel-right-title { font-family: var(--H); font-size: 16px; font-weight: 700; color: var(--dark); }
+  .btn-crear {
+    background: var(--dark); color: white; border: none;
+    padding: 7px 14px; border-radius: 8px; font-size: 12px; font-weight: 600;
+    cursor: pointer; display: flex; align-items: center; gap: 6px;
+    position: relative;
+  }
+  .dropdown-menu {
+    position: absolute; top: 34px; right: 0;
+    background: white; border: 1px solid var(--border);
+    border-radius: 10px; box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    padding: 6px; width: 220px; z-index: 10;
+  }
+  .dropdown-item { font-size: 13px; padding: 8px 12px; border-radius: 6px; color: #374151; display: flex; align-items: center; gap: 8px; }
+  .dropdown-item:hover, .dropdown-item.highlight { background: var(--lavanda); color: var(--dark); font-weight: 600; }
+  .dropdown-item .icon { font-size: 14px; }
+  .arrow-badge {
+    background: var(--red); color: white; border-radius: 4px;
+    font-size: 9px; font-weight: 700; padding: 1px 6px; margin-left: auto;
+  }
+
+  /* MOCKUP 2 — formulario */
+  .form-mockup { padding: 28px 32px; }
+  .form-title { font-family: var(--H); font-size: 18px; font-weight: 900; color: var(--dark); margin-bottom: 20px; }
+  .form-group { margin-bottom: 16px; }
+  .form-label { font-size: 12px; font-weight: 700; color: var(--dark); margin-bottom: 6px; display: block; }
+  .form-input {
+    width: 100%; border: 1px solid #d1d5db; border-radius: 8px;
+    padding: 10px 14px; font-size: 13px; color: #374151;
+    font-family: var(--B); background: #fafafa;
+  }
+  .form-input.tall { height: 80px; resize: none; }
+  .form-input.filled { background: #fff; border-color: var(--dark); color: var(--dark); font-weight: 600; }
+  .form-input.example { color: #9ca3af; }
+  .form-note { font-size: 11px; color: var(--red); font-weight: 600; margin-top: 4px; display: flex; align-items: center; gap: 4px; }
+  .form-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; }
+  .btn-cancel { background: var(--light); border: 1px solid var(--border); color: #374151; padding: 9px 20px; border-radius: 8px; font-size: 13px; font-weight: 600; }
+  .btn-save { background: var(--dark); color: white; padding: 9px 20px; border-radius: 8px; font-size: 13px; font-weight: 600; border: none; }
+
+  /* MOCKUP 3 — conectores */
+  .connectors-layout { display: flex; }
+  .conn-left {
+    width: 200px; border-right: 1px solid var(--border);
+    padding: 14px 0; background: #fafafa; flex-shrink: 0;
+  }
+  .conn-item { font-size: 13px; padding: 8px 16px; color: #374151; display: flex; align-items: center; gap: 8px; }
+  .conn-item.active { background: var(--lavanda); color: var(--dark); font-weight: 600; }
+  .conn-icon { font-size: 15px; }
+  .conn-arrow { margin-left: auto; color: #9ca3af; font-size: 12px; }
+  .conn-right { flex: 1; padding: 16px; }
+  .conn-right-title { font-size: 11px; font-weight: 700; letter-spacing: 1px; color: var(--gray); text-transform: uppercase; margin-bottom: 12px; }
+  .conn-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 0; border-bottom: 1px solid var(--border);
+  }
+  .conn-row:last-child { border-bottom: none; }
+  .conn-logo { width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+  .conn-logo.hubspot { background: #ff7a59; }
+  .conn-logo.clickup { background: #7c4dff; }
+  .conn-logo.m365 { background: #0078d4; }
+  .conn-logo.github { background: #24292e; }
+  .conn-name { font-size: 13px; font-weight: 600; color: var(--dark); flex: 1; }
+  .conn-sub { font-size: 11px; color: var(--gray); }
+  .toggle { width: 36px; height: 20px; border-radius: 10px; background: #22c55e; position: relative; flex-shrink: 0; }
+  .toggle::after { content: ''; position: absolute; top: 2px; right: 2px; width: 16px; height: 16px; border-radius: 50%; background: white; }
+  .toggle.off { background: #d1d5db; }
+  .toggle.off::after { right: auto; left: 2px; }
+  .conn-badge { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; }
+  .conn-badge.required { background: #fef2f2; color: var(--red); border: 1px solid #fecaca; }
+  .conn-badge.optional { background: var(--lavanda); color: var(--purple); border: 1px solid #ddd6fe; }
+
+  /* ── CALLOUT ── */
+  .callout {
+    background: var(--lavanda);
+    border-left: 3px solid var(--red);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: var(--dark);
+    margin: 16px 0;
+    line-height: 1.6;
+  }
+  .callout strong { font-weight: 700; }
+
+  /* ── QUICK REF ── */
+  .quick-ref { background: var(--dark); border-radius: 12px; padding: 28px 32px; margin-top: 8px; }
+  .quick-ref-title { font-family: var(--H); font-size: 18px; font-weight: 900; color: white; margin-bottom: 4px; }
+  .quick-ref-sub { font-size: 13px; color: rgba(255,255,255,0.45); margin-bottom: 20px; }
+  .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .skill-card { background: rgba(255,255,255,0.07); border-radius: 8px; padding: 12px 14px; border: 1px solid rgba(255,255,255,0.08); }
+  .skill-cmd { font-family: var(--H); font-size: 13px; font-weight: 900; color: var(--red); margin-bottom: 4px; }
+  .skill-desc { font-size: 11px; color: rgba(255,255,255,0.55); line-height: 1.5; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--lavanda); padding: 20px 56px; display: flex; align-items: center; justify-content: space-between; }
+  .footer-logo { font-family: var(--H); font-size: 15px; font-weight: 900; color: var(--dark); }
+  .footer-logo em { color: var(--red); font-style: normal; }
+  .footer-note { font-size: 11px; color: var(--gray); }
+
+  /* ── DIVIDER ── */
+  hr { border: none; border-top: 1px solid var(--border); margin: 0 0 40px; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-logo">tri<em>a</em>rio</div>
+    <div class="header-tag">Loop Marketing · Guía de uso</div>
+    <h1>Cómo crear y activar<br>una <em>Skill</em> en Claude.ai</h1>
+    <div class="header-sub">Tutorial rápido para el equipo · Junio 2026</div>
+  </div>
+
+  <div class="body">
+
+    <!-- PASO 1 -->
+    <div class="step">
+      <div class="step-header">
+        <div class="step-num">1</div>
+        <div class="step-title">Ve a Habilidades y crea una nueva</div>
+      </div>
+      <p class="step-desc">
+        En Claude.ai haz clic en tu perfil (esquina inferior izquierda) → <strong>Personalizar</strong> → <strong>Habilidades</strong>.<br>
+        Luego clic en <strong>+</strong> → <strong>Crear habilidad</strong> → <strong>Escribe las instrucciones de la habilidad</strong>.
+      </p>
+
+      <div class="mockup">
+        <div class="mockup-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
+        <div class="mockup-body">
+          <div class="panel-layout">
+            <div class="panel-left">
+              <div class="panel-left-title">Personalizar</div>
+              <div class="panel-item active">⊞ Habilidades</div>
+              <div class="panel-item">⊟ Conectores</div>
+              <div style="height:12px"></div>
+              <div class="panel-section-label">Habilidades compartidas</div>
+              <div class="panel-skill-item">triario-visual-gdo</div>
+              <div class="panel-skill-item selected">sprint-intelligence-report</div>
+              <div class="panel-skill-item">memoria-operativa-gdo</div>
+              <div class="panel-skill-item">qa-entregables-gdo</div>
+            </div>
+            <div class="panel-right">
+              <div class="panel-right-header">
+                <div class="panel-right-title">Habilidades</div>
+                <div class="btn-crear" style="position:relative">
+                  + Crear habilidad &nbsp;›
+                  <div class="dropdown-menu">
+                    <div class="dropdown-item"><span class="icon">✦</span> Cree con Claude</div>
+                    <div class="dropdown-item highlight"><span class="icon">✎</span> Escribe las instrucciones <span class="arrow-badge">← Aquí</span></div>
+                    <div class="dropdown-item"><span class="icon">↑</span> Subir una habilidad</div>
+                  </div>
+                </div>
+              </div>
+              <p style="font-size:12px;color:#9ca3af;margin-top:8px;">Las habilidades compartidas están disponibles para todo el equipo del proyecto.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- PASO 2 -->
+    <div class="step">
+      <div class="step-header">
+        <div class="step-num">2</div>
+        <div class="step-title">Llena el formulario con el contenido del archivo .md</div>
+      </div>
+      <p class="step-desc">
+        Se abre un formulario con tres campos. <strong>Copia el contenido del archivo `.md` de la skill</strong> (están en la carpeta <code>loop-marketing-skills</code>) y pégalo en <strong>Instrucciones</strong>.
+      </p>
+
+      <div class="mockup">
+        <div class="mockup-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
+        <div class="mockup-body">
+          <div class="form-mockup">
+            <div class="form-title">Escribe las instrucciones de la habilidad</div>
+            <div class="form-group">
+              <label class="form-label">Nombre de la habilidad</label>
+              <input class="form-input filled" value="ab-testing" readonly>
+              <div class="form-note">⚠ Este nombre es el comando — se activa escribiendo /ab-testing</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Descripción</label>
+              <input class="form-input filled" value="Úsala para crear hipótesis del sprint, priorizar experimentos y evaluar resultados vs meta." readonly>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Instrucciones</label>
+              <textarea class="form-input tall example" readonly># A/B Testing y Experimentación — Loop Marketing · Triario
+
+Eres un experto en experimentación... [pega aquí el contenido completo del archivo .md]</textarea>
+              <div class="form-note">⚠ Pega el contenido completo del archivo ab-testing.md aquí</div>
+            </div>
+            <div class="form-actions">
+              <button class="btn-cancel">Cancelar</button>
+              <button class="btn-save">Crear</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <strong>¿Dónde están los archivos .md?</strong> En la carpeta <code>loop-marketing-skills</code> del repositorio del equipo. Hay 26 skills listas — cada archivo es el contenido de una skill. El nombre del archivo = el nombre del comando.
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- PASO 3 -->
+    <div class="step">
+      <div class="step-header">
+        <div class="step-num">3</div>
+        <div class="step-title">Activa los conectores MCP (una sola vez)</div>
+      </div>
+      <p class="step-desc">
+        Los conectores permiten que las skills lean datos reales de HubSpot, ClickUp y M365. En una conversación haz clic en <strong>+</strong> → <strong>Conectores</strong> → activa los que necesitas.
+      </p>
+
+      <div class="mockup">
+        <div class="mockup-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
+        <div class="mockup-body">
+          <div class="connectors-layout">
+            <div class="conn-left">
+              <div class="conn-item"><span>📎</span> Archivos o fotos</div>
+              <div class="conn-item"><span>📷</span> Captura de pantalla</div>
+              <div class="conn-item"><span>🗂</span> Agregar al proyecto</div>
+              <div class="conn-item"><span>⊞</span> Habilidades <span class="conn-arrow">›</span></div>
+              <div class="conn-item active"><span>⊟</span> Conectores <span class="conn-arrow">›</span></div>
+            </div>
+            <div class="conn-right">
+              <div class="conn-right-title">Conectores activos</div>
+              <div class="conn-row">
+                <div class="conn-logo hubspot" style="color:white;font-size:12px;font-weight:900;">Hs</div>
+                <div style="flex:1"><div class="conn-name">HubSpot</div><div class="conn-sub">CRM, contactos, campañas</div></div>
+                <span class="conn-badge required">Clave</span>
+                <div class="toggle"></div>
+              </div>
+              <div class="conn-row">
+                <div class="conn-logo clickup" style="color:white;font-size:12px;font-weight:900;">Cu</div>
+                <div style="flex:1"><div class="conn-name">ClickUp</div><div class="conn-sub">Tareas y sprints del cliente</div></div>
+                <span class="conn-badge required">Clave</span>
+                <div class="toggle"></div>
+              </div>
+              <div class="conn-row">
+                <div class="conn-logo m365" style="color:white;font-size:11px;font-weight:900;">M365</div>
+                <div style="flex:1"><div class="conn-name">Microsoft 365</div><div class="conn-sub">Correo, calendario, SharePoint</div></div>
+                <span class="conn-badge optional">Útil</span>
+                <div class="toggle"></div>
+              </div>
+              <div class="conn-row">
+                <div class="conn-logo github" style="color:white;font-size:13px;">⌥</div>
+                <div style="flex:1"><div class="conn-name">GitHub</div><div class="conn-sub">Documentación del kit</div></div>
+                <span class="conn-badge optional">Útil</span>
+                <div class="toggle off"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <strong>Importante:</strong> HubSpot y ClickUp son los conectores clave para Loop Marketing. Actívalos antes de usar las skills de <strong>/revops</strong>, <strong>/analytics</strong> y <strong>/ab-testing</strong> — sin ellos, las skills operan solo con lo que pegas en el chat.
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- PASO 4 — USO -->
+    <div class="step">
+      <div class="step-header">
+        <div class="step-num">4</div>
+        <div class="step-title">Activa la skill escribiendo /comando</div>
+      </div>
+      <p class="step-desc">
+        En cualquier conversación escribe <strong>/[nombre de la skill]</strong> y describe lo que necesitas. Claude activa la skill y entrega el resultado listo para revisar.
+      </p>
+
+      <!-- ejemplos de uso -->
+      <div style="background:var(--light);border-radius:10px;padding:20px 24px;border:1px solid var(--border);">
+        <div style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gray);margin-bottom:14px;">Ejemplos de uso</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="background:white;border-radius:8px;padding:12px 16px;border:1px solid var(--border);font-size:13px;font-family:monospace;color:var(--dark);">
+            <span style="color:var(--red);font-weight:700;">/ab-testing</span>  &nbsp;necesito crear la hipótesis del sprint para Fepasde
+          </div>
+          <div style="background:white;border-radius:8px;padding:12px 16px;border:1px solid var(--border);font-size:13px;font-family:monospace;color:var(--dark);">
+            <span style="color:var(--red);font-weight:700;">/cro</span>  &nbsp;audita esta landing page antes del lanzamiento: [URL]
+          </div>
+          <div style="background:white;border-radius:8px;padding:12px 16px;border:1px solid var(--border);font-size:13px;font-family:monospace;color:var(--dark);">
+            <span style="color:var(--red);font-weight:700;">/copywriting</span>  &nbsp;escribe el brief del sprint — objetivo: más leads calificados, ICP: CFO industria
+          </div>
+          <div style="background:white;border-radius:8px;padding:12px 16px;border:1px solid var(--border);font-size:13px;font-family:monospace;color:var(--dark);">
+            <span style="color:var(--red);font-weight:700;">/ai-seo</span>  &nbsp;diagnóstico AEO inicial para Internexa, sector telecomunicaciones B2B
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- QUICK REFERENCE -->
+    <div class="quick-ref">
+      <div class="quick-ref-title">Referencia rápida — 26 skills disponibles</div>
+      <div class="quick-ref-sub">Escribe /comando en Claude.ai para activar cualquiera de estas skills</div>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-cmd">/ab-testing</div>
+          <div class="skill-desc">Hipótesis del sprint · priorización · evaluación de resultados vs meta</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-cmd">/ai-seo</div>
+          <div class="skill-desc">Diagnóstico AEO · contenido para LLMs · medición de menciones</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-cmd">/analytics</div>
+          <div class="skill-desc">Dashboard base · lectura de métricas · configuración de eventos</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-cmd">/cro</div>
+          <div class="skill-desc">Auditoría de landing pages · formularios · QA pre-lanzamiento</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-cmd">/revops</div>
+          <div class="skill-desc">Propiedades HubSpot · segmentación dinámica · ruteo de leads</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-cmd">/ad-creative</div>
+          <div class="skill-desc">Copy de anuncios · headlines · variaciones de pauta a escala</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-cmd">/copywriting</div>
+          <div class="skill-desc">Brief del sprint · mensajes por ICP · copy de activos</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-cmd">/content-strategy</div>
+          <div class="skill-desc">Plan de contenido · pilares · remix multiformato del sprint</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-cmd">/emails</div>
+          <div class="skill-desc">Workflows de nurturing · campañas de email en HubSpot</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-cmd">/launch</div>
+          <div class="skill-desc">Definición del objetivo · primer lanzamiento del servicio</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-cmd">/ads</div>
+          <div class="skill-desc">Estrategia de campañas · audiencias · sincronización CRM-Ads</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-cmd">/social</div>
+          <div class="skill-desc">Contenido orgánico · LinkedIn · Instagram · RRSS del ICP</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-cmd">/customer-research</div>
+          <div class="skill-desc">Síntesis del cliente · ICP · preparación de kickoff</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-cmd">/competitor-profiling</div>
+          <div class="skill-desc">Análisis de competidores · mensajes · brechas del mercado</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-cmd">/sales-enablement</div>
+          <div class="skill-desc">Feedback comercial · coordinación con ventas del cliente</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-cmd">/marketing-plan</div>
+          <div class="skill-desc">OKRs trimestrales · planes de campaña con proyección</div>
+        </div>
+      </div>
+      <div style="margin-top:16px;font-size:11px;color:rgba(255,255,255,0.35);text-align:center;">
+        + 10 skills de apoyo general: /co-marketing · /cold-email · /community-marketing · /copy-editing · /lead-magnets · /marketing-ideas · /marketing-psychology · /pricing · /prospecting · /public-relations
+      </div>
+    </div>
+
+  </div><!-- /body -->
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-logo">tri<em>a</em>rio</div>
+    <div class="footer-note">Loop Marketing · Kit de Skills IA · v1.0 · Junio 2026 · Exporta a PDF con Ctrl+P</div>
+  </div>
+
+</div>
+</body>
+</html>

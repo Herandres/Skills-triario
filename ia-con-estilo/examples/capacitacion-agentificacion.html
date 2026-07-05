@@ -1,0 +1,705 @@
+<title>De Prompt a Agente — AI Agentification</title>
+<style>
+:root {
+  --g: #F5F3EE;
+  --t: #18120A;
+  --a: #D4500A;
+  --tm: rgba(24,18,10,0.48);
+  --b: rgba(24,18,10,0.1);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--g); color: var(--t); font-family: Georgia, "Times New Roman", serif; line-height: 1.75; overflow-x: hidden; }
+
+/* MESH */
+.mesh { position: fixed; inset: -10%; z-index: -1; pointer-events: none; transform-origin: center; animation: meshDrift 12s ease-in-out infinite; }
+.mesh::before { content: ''; position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(0deg, transparent 0, transparent 59px, rgba(212,80,10,0.058) 59px, rgba(212,80,10,0.058) 60px),
+    repeating-linear-gradient(90deg, transparent 0, transparent 59px, rgba(212,80,10,0.058) 59px, rgba(212,80,10,0.058) 60px); }
+.mesh::after { content: ''; position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(22deg, transparent 0, transparent 139px, rgba(212,80,10,0.022) 139px, rgba(212,80,10,0.022) 140px),
+    repeating-linear-gradient(-22deg, transparent 0, transparent 139px, rgba(212,80,10,0.022) 139px, rgba(212,80,10,0.022) 140px);
+  animation: meshDrift2 18s ease-in-out infinite reverse; }
+@keyframes meshDrift {
+  0%,100% { transform: skewY(0deg) skewX(0deg) translateY(0) scale(1.1); }
+  30%  { transform: skewY(0.4deg) skewX(0.2deg) translateY(-9px) scale(1.12); }
+  70%  { transform: skewY(-0.32deg) skewX(-0.16deg) translateY(7px) scale(1.1); }
+}
+@keyframes meshDrift2 { 0%,100% { transform: translateX(0) scale(1.05); } 50% { transform: translateX(22px) scale(1.07); } }
+.mesh-light { position: fixed; inset: -20%; z-index: -1; pointer-events: none;
+  background: linear-gradient(110deg, transparent 26%, rgba(212,80,10,0.035) 36%, rgba(245,243,238,0.09) 43%, rgba(212,80,10,0.035) 50%, transparent 60%);
+  animation: lightBeam 13s ease-in-out infinite; }
+@keyframes lightBeam { 0%,100% { transform: translateX(-42%); opacity: 0.38; } 50% { transform: translateX(42%); opacity: 1; } }
+
+/* NAV DOTS */
+.level-nav { position: fixed; right: 1.75rem; top: 50%; transform: translateY(-50%); z-index: 100; display: flex; flex-direction: column; gap: 1rem; }
+.dot { width: 7px; height: 7px; border-radius: 50%; background: transparent; border: 1.5px solid rgba(24,18,10,0.18); transition: background 0.3s, transform 0.3s, border-color 0.3s; }
+.dot[data-on="1"] { background: var(--a); border-color: var(--a); transform: scale(1.5); }
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1); }
+.reveal.in { opacity: 1; transform: none; }
+
+/* TYPE */
+.ew { display: block; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.26em; text-transform: uppercase; color: var(--a); margin-bottom: 2rem; }
+.big { display: block; font-size: clamp(2.4rem, 7vw, 7rem); font-weight: 300; line-height: 0.9; letter-spacing: -0.025em; width: 100%; }
+.big em { font-style: italic; color: var(--a); }
+.def { display: block; font-size: clamp(1rem, 1.8vw, 1.35rem); font-style: italic; color: var(--tm); max-width: 62ch; margin-top: 1rem; margin-bottom: 3.5rem; line-height: 1.5; }
+.body { font-size: 1rem; line-height: 1.85; max-width: 55ch; }
+.body + .body { margin-top: 1.2rem; }
+
+/* HERO */
+.hero { min-height: 87vh; position: relative; padding: 0 6vw 9vh; display: flex; flex-direction: column; justify-content: flex-end; }
+.hero-title { font-size: clamp(2.8rem, 7.5vw, 7.5rem); font-weight: 300; line-height: 0.88; letter-spacing: -0.03em; display: block; max-width: 46vw; margin-bottom: 2.5rem; }
+.hero-title em { font-style: italic; color: var(--a); }
+.hero-sub { display: block; font-size: clamp(0.9rem, 1.6vw, 1.2rem); font-style: italic; color: var(--tm); max-width: 40ch; margin-bottom: 1.5rem; }
+.scroll-cue { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--tm); display: flex; align-items: center; gap: 0.75rem; }
+.scroll-cue::before { content: ''; display: block; width: 28px; height: 1px; background: var(--tm); }
+
+/* ÍNDICE HERO */
+.hero-index { position: absolute; right: 6vw; top: 50%; transform: translateY(-50%); width: min(36rem, 42vw); border-top: 1.5px solid rgba(212,80,10,0.38); padding-top: 1.6rem; }
+.hero-index-label { font-size: 0.52rem; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: var(--a); display: block; margin-bottom: 1.6rem; }
+.hero-index-row { display: grid; grid-template-columns: 2.2rem 8.5rem 1fr; align-items: center; gap: 0.9rem; padding: 0.75rem 0; border-bottom: 1px solid rgba(24,18,10,0.07); animation: idxIn 0.5s cubic-bezier(0.22,1,0.36,1) both; }
+.hero-index-row:nth-child(2){ animation-delay:0.07s; }
+.hero-index-row:nth-child(3){ animation-delay:0.14s; }
+.hero-index-row:nth-child(4){ animation-delay:0.21s; }
+.hero-index-row:nth-child(5){ animation-delay:0.28s; }
+.hero-index-row:nth-child(6){ animation-delay:0.35s; }
+@keyframes idxIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+.idx-num { font-size: 0.5rem; color: var(--a); font-weight: 700; letter-spacing: 0.14em; }
+.idx-name { font-size: 0.78rem; color: rgba(24,18,10,0.52); letter-spacing: 0.03em; }
+.idx-bar-track { height: 2px; background: rgba(24,18,10,0.08); position: relative; }
+.idx-bar-fill { position: absolute; left:0; top:0; height:100%; background: var(--a); transform-origin: left; transform: scaleX(0); animation: barGrow 0.9s cubic-bezier(0.22,1,0.36,1) both; }
+.hero-index-row:nth-child(2) .idx-bar-fill { animation-delay: 0.75s; }
+.hero-index-row:nth-child(3) .idx-bar-fill { animation-delay: 0.9s; }
+.hero-index-row:nth-child(4) .idx-bar-fill { animation-delay: 1.05s; }
+.hero-index-row:nth-child(5) .idx-bar-fill { animation-delay: 1.2s; }
+.hero-index-row:nth-child(6) .idx-bar-fill { animation-delay: 1.35s; }
+@keyframes barGrow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.idx-spectrum { display: flex; align-items: center; gap: 0.8rem; margin-top: 1.4rem; padding-top: 1rem; border-top: 1px solid rgba(24,18,10,0.06); font-size: 0.48rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(24,18,10,0.28); }
+.idx-spectrum-track { flex: 1; height: 1px; position: relative; background: rgba(24,18,10,0.08); }
+.idx-spectrum-fill { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(212,80,10,0.2), var(--a)); }
+
+/* LEVELS */
+.lsec { border-top: 1px solid var(--b); padding: 10vh 6vw 8vh; }
+.ltag { display: inline-flex; align-items: center; gap: 0.75rem; font-size: 0.58rem; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: var(--tm); margin-bottom: 1.5rem; }
+.ltag::after { content: ''; display: block; width: 28px; height: 1px; background: var(--tm); }
+.lcols { display: grid; grid-template-columns: 1fr 1fr; gap: 4vw; align-items: start; margin-top: 0.5rem; }
+.llimit { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--b); font-size: 0.86rem; font-style: italic; color: var(--tm); }
+.llimit strong { display: block; font-size: 0.57rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; font-style: normal; color: var(--a); margin-bottom: 0.45rem; }
+.lvis { display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 0; padding-top: 0.5rem; }
+
+/* MCP BOX */
+.mcp-box { border: 1px solid rgba(212,80,10,0.22); background: rgba(212,80,10,0.04); padding: 1.5rem 1.75rem; margin-top: 2rem; }
+.mcp-box .ew { margin-bottom: 0.6rem; }
+.mcp-box p { font-size: 0.88rem; line-height: 1.7; }
+
+/* AI BROWSER */
+.ai-sim { width: 100%; max-width: 380px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 20px rgba(24,18,10,0.1), 0 0 0 1px rgba(24,18,10,0.07); background: #fff; }
+.ai-chrome { background: #EEEDE9; padding: 0.6rem 1rem; display: flex; align-items: center; gap: 0.75rem; border-bottom: 1px solid rgba(24,18,10,0.08); }
+.chrome-dots { display: flex; gap: 5px; }
+.chrome-dots i { width: 10px; height: 10px; border-radius: 50%; display: block; font-style: normal; }
+.chrome-dots i:nth-child(1) { background: #FF5F57; }
+.chrome-dots i:nth-child(2) { background: #FFBD2E; }
+.chrome-dots i:nth-child(3) { background: #28C840; }
+.chrome-url { flex: 1; background: rgba(24,18,10,0.07); padding: 0.22rem 0.75rem; border-radius: 4px; font-size: 0.66rem; color: rgba(24,18,10,0.45); text-align: center; font-family: "Courier New", monospace; }
+.ai-chat { padding: 1.25rem; display: flex; flex-direction: column; gap: 0.85rem; min-height: 150px; }
+.chat-msg { display: flex; flex-direction: column; gap: 0.22rem; }
+.chat-label { font-size: 0.56rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+.user-msg .chat-label { color: rgba(24,18,10,0.38); }
+.ai-resp .chat-label { color: var(--a); }
+.chat-bubble { padding: 0.55rem 0.85rem; font-size: 0.84rem; line-height: 1.55; min-height: 2.2rem; }
+.user-bubble { background: rgba(24,18,10,0.05); max-width: 92%; }
+.ai-bubble { background: rgba(212,80,10,0.05); max-width: 92%; }
+.tw-cur { display: inline-block; width: 2px; height: 1em; background: var(--t); vertical-align: middle; margin-left: 1px; animation: blink 1s step-end infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.think-dot { display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: var(--a); margin: 0 2px; animation: tdot 1.3s ease-in-out infinite; }
+.think-dot:nth-child(2) { animation-delay: 0.22s; }
+.think-dot:nth-child(3) { animation-delay: 0.44s; }
+@keyframes tdot { 0%,100% { opacity: 0.2; transform: scale(0.85); } 50% { opacity: 1; transform: scale(1); } }
+.ai-sim-foot { padding: 0.55rem 1rem; background: rgba(24,18,10,0.03); border-top: 1px solid rgba(24,18,10,0.07); font-size: 0.6rem; color: rgba(24,18,10,0.38); font-style: italic; text-align: center; }
+
+/* SKILLS */
+.chips-list { display: flex; flex-direction: column; gap: 1rem; }
+.chip-row { display: flex; align-items: center; gap: 1rem; }
+.chip-mono { font-family: "Courier New", monospace; font-size: 0.78rem; background: rgba(24,18,10,0.07); padding: 0.32rem 0.75rem; white-space: nowrap; }
+.chip-mono .sl { color: var(--a); font-weight: 700; }
+.chip-info { font-size: 0.75rem; color: var(--tm); font-style: italic; }
+.chips-note { margin-top: 1.25rem; font-size: 0.7rem; color: var(--a); font-style: italic; }
+
+/* SEMIAGENTE */
+.cp-list { width: 100%; max-width: 300px; }
+.cp-row { display: flex; align-items: center; gap: 0.9rem; padding: 0.8rem 0; border-bottom: 1px solid var(--b); }
+.cp-icon { width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid rgba(24,18,10,0.18); display: flex; align-items: center; justify-content: center; font-size: 0.68rem; flex-shrink: 0; }
+.cp-icon.done { background: var(--a); border-color: var(--a); color: #fff; }
+.cp-icon.wait { border-color: var(--a); animation: cpulse 1.6s ease-in-out infinite; }
+@keyframes cpulse { 0%,100% { box-shadow: 0 0 0 0 rgba(212,80,10,0.38); } 50% { box-shadow: 0 0 0 6px rgba(212,80,10,0); } }
+.cp-name { font-size: 0.8rem; flex: 1; }
+.cp-src { font-size: 0.62rem; color: var(--a); font-style: italic; }
+.cp-badge { font-size: 0.56rem; letter-spacing: 0.1em; background: var(--a); color: #fff; padding: 0.15rem 0.45rem; flex-shrink: 0; }
+.cp-dim { opacity: 0.3; }
+
+/* CANVAS */
+canvas { max-width: 100%; display: block; }
+.cv-wrap { display: flex; flex-direction: column; align-items: center; width: 100%; }
+.cv-label { font-size: 0.68rem; color: var(--tm); font-style: italic; text-align: center; max-width: 32ch; line-height: 1.5; margin-top: 0.75rem; }
+
+/* AGENT EVENT LOG */
+.agent-log { width: 100%; max-width: 420px; margin-top: 1rem; border-top: 1px solid rgba(24,18,10,0.1); padding-top: 0.75rem; }
+.agent-log-hdr { font-size: 0.48rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--a); display: block; margin-bottom: 0.5rem; font-family: "Courier New", monospace; }
+.log-line { display: flex; align-items: baseline; gap: 0.5rem; font-family: "Courier New", monospace; font-size: 0.6rem; color: rgba(24,18,10,0.3); padding: 0.2rem 0; border-bottom: 1px solid rgba(24,18,10,0.04); transition: color 0.4s; }
+.log-line.active { color: var(--a); }
+.log-arrow { flex-shrink: 0; }
+
+/* WORKFLOW STATUS */
+.wf-status { width: 100%; max-width: 480px; display: flex; margin-top: 1rem; border-top: 1px solid rgba(24,18,10,0.1); padding-top: 0.85rem; }
+.wf-team { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 0.45rem; font-size: 0.56rem; letter-spacing: 0.06em; color: rgba(24,18,10,0.4); border-right: 1px solid rgba(24,18,10,0.06); padding: 0 0.35rem; }
+.wf-team:last-child { border-right: none; }
+.wf-dot { width: 9px; height: 9px; border-radius: 50%; background: rgba(24,18,10,0.1); transition: background 0.4s; }
+.wf-dot.done { background: var(--a); }
+.wf-dot.active { background: rgba(212,80,10,0.5); animation: cpulse 1.4s ease-in-out infinite; }
+.wf-val { font-family: "Courier New", monospace; font-size: 0.46rem; color: rgba(24,18,10,0.28); text-align: center; min-height: 1em; }
+
+/* PROJECT */
+.proj-sec { border-top: 1px solid var(--b); padding: 10vh 6vw; background: rgba(24,18,10,0.02); }
+.proj-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 5vw; align-items: center; }
+.proj-box { max-width: 520px; border-left: 3px solid var(--a); padding-left: 2rem; }
+.proj-title { font-size: clamp(1.75rem, 4vw, 4rem); font-weight: 300; letter-spacing: -0.02em; margin-bottom: 1.5rem; line-height: 1; }
+.proj-snake { display: flex; align-items: center; justify-content: center; }
+#cv-snake { display: block; border-radius: 4px; border: 1px solid rgba(212,80,10,0.1); max-width: 100%; }
+
+/* DECISION TREE */
+.tree-sec { border-top: 1px solid var(--b); padding: 8vh 6vw 9vh; }
+.tree-sec-inner { max-width: 640px; }
+.tree-hd { font-size: clamp(1.8rem, 4.2vw, 4.5rem); font-weight: 300; line-height: 0.9; letter-spacing: -0.025em; display: block; margin-bottom: 3rem; }
+.tree-hd em { font-style: italic; color: var(--a); }
+.tree-step { display: none; max-width: 640px; }
+.tree-step.on { display: block; }
+.tree-q { font-size: 1.2rem; font-style: italic; line-height: 1.5; margin-bottom: 2rem; }
+.tree-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+.tree-btn { padding: 0.72rem 1.9rem; border: 2px solid var(--t); background: transparent; color: var(--t); font-family: Georgia, serif; font-size: 0.86rem; cursor: pointer; transition: background 0.2s, color 0.2s; }
+.tree-btn:hover { background: var(--t); color: var(--g); }
+.tree-btn:focus-visible { outline: 2px solid var(--a); outline-offset: 3px; }
+.tree-res { display: none; max-width: 460px; border: 2px solid var(--a); padding: 2.25rem; }
+.tree-res.on { display: block; }
+.res-name { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; color: var(--a); letter-spacing: -0.03em; margin-bottom: 0.4rem; }
+.res-def { font-size: 0.88rem; font-style: italic; color: var(--tm); margin-bottom: 1.5rem; line-height: 1.6; }
+.tree-reset { background: none; border: none; color: var(--tm); font-family: Georgia, serif; font-size: 0.76rem; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; letter-spacing: 0.08em; }
+
+/* BRAND LOGO */
+.brand-logo { display: block; margin-bottom: 3.5rem; }
+.brand-logo svg { height: 34px; width: auto; }
+
+/* FOOTER */
+.footer { padding: 2.5rem 6vw 5rem; border-top: 1px solid var(--b); display: flex; justify-content: space-between; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--tm); }
+
+/* READING PROGRESS */
+.read-progress { position: fixed; top: 0; left: 0; height: 2px; width: 0%; background: linear-gradient(90deg, rgba(212,80,10,0.6) 0%, #D4500A 60%, rgba(212,80,10,0.85) 100%); z-index: 200; transition: width 0.08s linear; pointer-events: none; }
+
+/* BLOOMBERG TICKER */
+.ticker-bar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 100; height: 36px; background: #0E0B07; border-top: 1px solid rgba(212,80,10,0.35); display: flex; align-items: center; overflow: hidden; }
+.ticker-label { flex-shrink: 0; padding: 0 1.1rem; font-family: "Courier New", monospace; font-size: 0.52rem; font-weight: 700; letter-spacing: 0.22em; color: #D4500A; border-right: 1px solid rgba(212,80,10,0.3); height: 100%; display: flex; align-items: center; background: #0E0B07; position: relative; z-index: 2; }
+.ticker-label::after { content: '▶'; font-size: 0.4rem; margin-left: 0.6rem; animation: tpulse 1.2s ease-in-out infinite; }
+@keyframes tpulse { 0%,100%{opacity:1} 50%{opacity:0.25} }
+.ticker-track { flex: 1; overflow: hidden; position: relative; }
+.ticker-inner { display: flex; align-items: center; white-space: nowrap; animation: tickerScroll 38s linear infinite; }
+.ticker-inner:hover { animation-play-state: paused; }
+@keyframes tickerScroll { 0%{ transform: translateX(0); } 100%{ transform: translateX(-50%); } }
+.t-item { display: inline-flex; align-items: center; gap: 0.7rem; font-family: "Courier New", monospace; font-size: 0.52rem; letter-spacing: 0.08em; color: rgba(245,243,238,0.55); padding: 0 1.8rem; }
+.t-item .t-key { color: rgba(245,243,238,0.28); font-size: 0.44rem; letter-spacing: 0.2em; text-transform: uppercase; }
+.t-item .t-val { color: #F5F3EE; font-weight: 700; }
+.t-item .t-val.up { color: #6FCF97; }
+.t-item .t-val.warn { color: #D4500A; }
+.t-sep { color: rgba(212,80,10,0.4); font-size: 0.7rem; padding: 0 0.4rem; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) { .hero-index { display: none; } .hero-title { max-width: 90vw; } }
+@media (max-width: 760px) {
+  .lcols { grid-template-columns: 1fr; }
+  .proj-cols { grid-template-columns: 1fr; }
+  .level-nav { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  html { scroll-behavior: auto; }
+}
+</style>
+
+<div class="mesh" aria-hidden="true"></div>
+<div class="mesh-light" aria-hidden="true"></div>
+
+<nav class="level-nav" aria-label="Niveles">
+  <span class="dot" data-on="0" title="Prompt"></span>
+  <span class="dot" data-on="0" title="Skill"></span>
+  <span class="dot" data-on="0" title="Semiagente"></span>
+  <span class="dot" data-on="0" title="Agente"></span>
+  <span class="dot" data-on="0" title="Workflow"></span>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-index">
+    <span class="hero-index-label">Contenido</span>
+    <div class="hero-index-row"><span class="idx-num">01</span><span class="idx-name">Prompt</span><div class="idx-bar-track"><div class="idx-bar-fill" style="width:20%"></div></div></div>
+    <div class="hero-index-row"><span class="idx-num">02</span><span class="idx-name">Skill</span><div class="idx-bar-track"><div class="idx-bar-fill" style="width:40%"></div></div></div>
+    <div class="hero-index-row"><span class="idx-num">03</span><span class="idx-name">Semiagente</span><div class="idx-bar-track"><div class="idx-bar-fill" style="width:60%"></div></div></div>
+    <div class="hero-index-row"><span class="idx-num">04</span><span class="idx-name">Agente</span><div class="idx-bar-track"><div class="idx-bar-fill" style="width:80%"></div></div></div>
+    <div class="hero-index-row"><span class="idx-num">05</span><span class="idx-name">Workflow</span><div class="idx-bar-track"><div class="idx-bar-fill" style="width:100%"></div></div></div>
+    <div class="idx-spectrum"><span>Manual</span><div class="idx-spectrum-track"><div class="idx-spectrum-fill"></div></div><span>Autónomo</span></div>
+  </div>
+  <div class="brand-logo" aria-label="Sprint AI">
+    <svg viewBox="0 0 160 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Brand mark: three-stroke fan -->
+      <path d="M6 36 C6 36 16 10 22 8 C18 12 14 22 13 36 Z" fill="#E8352A"/>
+      <path d="M16 36 C16 36 26 10 32 8 C28 12 24 22 23 36 Z" fill="#E8352A" opacity="0.65"/>
+      <path d="M26 36 C26 36 36 10 42 8 C38 12 34 22 33 36 Z" fill="#E8352A" opacity="0.35"/>
+      <!-- texto -->
+      <text x="50" y="31" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="22" font-weight="700" fill="#E8352A" letter-spacing="-0.6">sprint.ai</text>
+    </svg>
+  </div>
+  <span class="ew" style="margin-bottom:2.5rem;">Mini Capacitación IA · 2026</span>
+  <span class="hero-title">De Prompt<br>a <em>Agente</em></span>
+  <span class="hero-sub">El espectro completo: de la instrucción al sistema autónomo.</span>
+  <span class="scroll-cue">Desplázate para comenzar</span>
+</section>
+
+<!-- NIVEL 01 -->
+<section class="lsec" id="ls0" data-lv="0">
+  <div class="reveal">
+    <span class="ltag">Nivel 01</span>
+    <span class="big">Prompt</span>
+    <span class="def">Una instrucción de texto. Sin herramientas, sin memoria, sin persistencia.</span>
+  </div>
+  <div class="lcols">
+    <div class="reveal" style="transition-delay:0.1s;">
+      <p class="body">Llevas meses hablando con la IA. Pero cada conversación empieza de cero. Explicas el contexto, el tono, el objetivo cada vez. La IA responde bien, pero tú eres quien lleva el peso mental de la tarea.</p>
+      <p class="body">Un prompt bien escrito, con contexto, objetivo y restricciones claras, es la diferencia entre una respuesta genérica y una que sirve de verdad. El punto de partida de todo.</p>
+      <div class="llimit">
+        <strong>El límite</strong>
+        Funciona perfectamente para tareas únicas. El problema llega cuando esa misma tarea se repite cuarenta veces al mes. Y cada vez hay que escribir el prompt desde cero.
+      </div>
+    </div>
+    <div class="lvis reveal" style="transition-delay:0.2s;">
+      <div class="ai-sim">
+        <div class="ai-chrome">
+          <div class="chrome-dots"><i></i><i></i><i></i></div>
+          <div class="chrome-url">claude.ai · nueva conversación</div>
+        </div>
+        <div class="ai-chat">
+          <div class="chat-msg user-msg">
+            <span class="chat-label">Tú</span>
+            <div class="chat-bubble user-bubble"><span id="tw"></span><span class="tw-cur"></span></div>
+          </div>
+          <div class="chat-msg ai-resp">
+            <span class="chat-label">Claude</span>
+            <div class="chat-bubble ai-bubble">
+              <span class="think-dot"></span><span class="think-dot"></span><span class="think-dot"></span>
+            </div>
+          </div>
+        </div>
+        <div class="ai-sim-foot">Sin contexto guardado · comienza de cero cada vez</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NIVEL 02 -->
+<section class="lsec" id="ls1" data-lv="1">
+  <div class="reveal">
+    <span class="ltag">Nivel 02</span>
+    <span class="big"><em>Skill</em></span>
+    <span class="def">Un prompt especializado con un nombre y un disparador. Reutilizable, invocable, transferible.</span>
+  </div>
+  <div class="lcols">
+    <div class="reveal" style="transition-delay:0.1s;">
+      <p class="body">Identificas tres tareas que el equipo repite cada semana: el brief de un prospecto antes de una llamada, el recap de una reunión, el email de seguimiento. En lugar de re-escribir el prompt, lo encapsulas.</p>
+      <p class="body">Le das un nombre, un disparador. Ahora existe como capacidad: cualquiera del equipo puede invocarla con un comando. La consistencia dejó de depender de quién tenga el prompt guardado en sus notas.</p>
+      <div class="llimit">
+        <strong>El límite</strong>
+        La Skill sabe hacer su tarea. No sabe quién eres, dónde trabajas, ni qué contexto tiene tu empresa. Cada ejecución sigue siendo una conversación nueva para la IA.
+      </div>
+    </div>
+    <div class="lvis reveal" style="transition-delay:0.2s;">
+      <div>
+        <div class="chips-list">
+          <div class="chip-row"><span class="chip-mono"><span class="sl">/</span>brief-prospecto</span><span class="chip-info">Pre-llamada · HubSpot + Wayne</span></div>
+          <div class="chip-row"><span class="chip-mono"><span class="sl">/</span>recap-reunion</span><span class="chip-info">Post-reunión · minuta + tareas</span></div>
+          <div class="chip-row"><span class="chip-mono"><span class="sl">/</span>copywriting</span><span class="chip-info">Copy persuasivo · cualquier canal</span></div>
+          <div class="chip-row"><span class="chip-mono"><span class="sl">/</span>sprint-report</span><span class="chip-info">Reporte visual del sprint activo</span></div>
+          <div class="chip-row"><span class="chip-mono"><span class="sl">/</span>diagnostico-seo</span><span class="chip-info">Visibilidad IA · análisis de sitio</span></div>
+        </div>
+        <p class="chips-note">Active skills in production today</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NIVEL 03 -->
+<section class="lsec" id="ls2" data-lv="2">
+  <div class="reveal">
+    <span class="ltag">Nivel 03</span>
+    <span class="big">Semi<em>agente</em></span>
+    <span class="def">Una Skill conectada al mundo real. El humano supervisa cada paso: la IA ejecuta con herramientas.</span>
+  </div>
+  <div class="lcols">
+    <div class="reveal" style="transition-delay:0.1s;">
+      <p class="body">La Skill de brief de prospecto sería mucho más poderosa si pudiera leer el CRM directamente. La de recap de reunión debería crear la tarea en ClickUp automáticamente. Para eso, la IA necesita herramientas reales.</p>
+      <p class="body">El humano sigue en el loop y valida cada paso antes de continuar. Pero ya no copia y pega datos entre sistemas. La productividad salta de inmediato.</p>
+      <div class="mcp-box">
+        <span class="ew">MCP · Model Context Protocol</span>
+        <p>El puente entre la IA y un sistema externo. HubSpot MCP, ClickUp MCP, GitHub MCP: cada uno le da a la IA acceso directo para leer y actuar sobre datos reales. Sin MCP, la IA solo ve texto.</p>
+      </div>
+      <div class="llimit" style="margin-top:1.5rem;">
+        <strong>El límite</strong>
+        Poderoso. Pero depende de que alguien esté mirando. Si el humano no está presente para aprobar cada paso, el semiagente se detiene.
+      </div>
+    </div>
+    <div class="lvis reveal" style="transition-delay:0.2s;">
+      <div class="cp-list">
+        <div class="cp-row"><div class="cp-icon done">✓</div><div><div class="cp-name">Leer perfil en HubSpot</div><span class="cp-src">HubSpot MCP</span></div><span class="cp-badge">listo</span></div>
+        <div class="cp-row"><div class="cp-icon done">✓</div><div><div class="cp-name">Consultar conversaciones previas</div><span class="cp-src">Wayne MCP</span></div><span class="cp-badge">listo</span></div>
+        <div class="cp-row"><div class="cp-icon wait"></div><div><div class="cp-name">Generar brief · esperando validación</div><span class="cp-src">Humano revisa</span></div></div>
+        <div class="cp-row cp-dim"><div class="cp-icon"></div><div><div class="cp-name">Crear tarea en ClickUp</div><span class="cp-src">ClickUp MCP</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NIVEL 04 -->
+<section class="lsec" id="ls3" data-lv="3">
+  <div class="reveal">
+    <span class="ltag">Nivel 04</span>
+    <span class="big"><em>Agente</em></span>
+    <span class="def">Razona, actúa, observa, vuelve a razonar. Loop autónomo con herramientas reales.</span>
+  </div>
+  <div class="lcols">
+    <div class="reveal" style="transition-delay:0.1s;">
+      <p class="body">Le das el objetivo, no los pasos. "Genera el reporte del sprint activo para los 5 equipos." La IA decide qué herramientas usar, en qué orden, cómo manejar los errores. Tú recibes el resultado: el proceso, invisible.</p>
+      <p class="body">La diferencia con el semiagente no es técnica: es la pregunta que hace el humano. En el semiagente, "¿apruebo este paso?". En el agente, "¿el resultado cumplió el objetivo?"</p>
+      <div class="llimit">
+        <strong>El límite</strong>
+        Un agente hace una cosa bien. Cuando el problema tiene muchas partes independientes que pueden ejecutarse en paralelo, la solución es coordinar varios agentes.
+      </div>
+    </div>
+    <div class="lvis reveal" style="transition-delay:0.2s;">
+      <div class="cv-wrap">
+        <canvas id="cv-orbit" width="420" height="280" aria-hidden="true"></canvas>
+        <div class="agent-log" id="cv-agent-log">
+          <span class="agent-log-hdr">AGENTE · LIVE DATA · EN EJECUCIÓN</span>
+          <div class="log-line active"><span class="log-arrow">→</span><span>get_tasks(folder=90031873398)</span></div>
+          <div class="log-line"><span class="log-arrow">→</span><span>147 tareas · UNA Tech recuperadas</span></div>
+          <div class="log-line"><span class="log-arrow">→</span><span>KPIs calculados: completado 88.4%</span></div>
+          <div class="log-line"><span class="log-arrow">→</span><span>Sprint122_Dashboard.html generado</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NIVEL 05 -->
+<section class="lsec" id="ls4" data-lv="4">
+  <div class="reveal">
+    <span class="ltag">Nivel 05</span>
+    <span class="big">Work<em>flow</em></span>
+    <span class="def">Múltiples agentes coordinados por un orquestador. Cada parte opera de forma independiente.</span>
+  </div>
+  <div class="lcols">
+    <div class="reveal" style="transition-delay:0.1s;">
+      <p class="body">The Sprint Intelligence system queries 5 teams, normalizes data, calculates KPIs y genera un dashboard. Ningún agente solo puede hacer todo eso de forma eficiente. Cinco agentes coordinados, sí.</p>
+      <p class="body">Un orquestador distribuye el trabajo, gestiona dependencias, consolida resultados. El humano da el objetivo final y recibe el entregable. Lo que ocurre en medio es invisible. Eso es exactamente el punto.</p>
+      <div class="llimit" style="border-color:rgba(212,80,10,0.28); color:var(--t);">
+        <strong>El techo del espectro</strong>
+        No hay un nivel por encima del workflow. La escala se resuelve aquí: más agentes, mejores MCPs, objetivos más grandes. La arquitectura escala sin que la supervisión tenga que escalar con ella.
+      </div>
+    </div>
+    <div class="lvis reveal" style="transition-delay:0.2s;">
+      <div class="cv-wrap">
+        <canvas id="cv-net" width="480" height="300" aria-hidden="true"></canvas>
+        <div class="wf-status" id="wf-status">
+          <div class="wf-team"><div class="wf-dot done"></div><span>Tech</span><span class="wf-val">✓ listo</span></div>
+          <div class="wf-team"><div class="wf-dot done"></div><span>GDO</span><span class="wf-val">✓ listo</span></div>
+          <div class="wf-team"><div class="wf-dot active"></div><span>NAM</span><span class="wf-val">procesando</span></div>
+          <div class="wf-team"><div class="wf-dot"></div><span>IMPL</span><span class="wf-val">en cola</span></div>
+          <div class="wf-team"><div class="wf-dot"></div><span>MKT</span><span class="wf-val">en cola</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECT -->
+<section class="proj-sec">
+  <div class="proj-cols">
+    <div class="proj-box reveal">
+      <span class="ew">Una nota sobre el entorno</span>
+      <h2 class="proj-title">El Project no es un nivel.</h2>
+      <p class="body">Un Project es el entorno donde viven los niveles: instrucciones permanentes para la IA, archivos de contexto de tu empresa, MCPs conectados, Skills organizadas. No es una forma de automatización: es el lugar desde donde opera todo lo demás.</p>
+      <p class="body">Los niveles son los actores. El Project es el escenario.</p>
+    </div>
+    <div class="proj-snake reveal" style="transition-delay:0.15s;">
+      <canvas id="cv-snake" width="380" height="260" aria-hidden="true"></canvas>
+    </div>
+  </div>
+</section>
+
+<!-- DECISION TREE -->
+<section class="tree-sec">
+  <div class="tree-sec-inner">
+    <div class="reveal">
+      <span class="ew">Herramienta · El constructor decide</span>
+      <span class="tree-hd">¿Qué construyo<br><em>hoy?</em></span>
+    </div>
+    <div id="tree">
+      <div class="tree-step on" id="ts0"><p class="tree-q">¿Esta tarea se repite más de una vez al mes?</p><div class="tree-btns"><button class="tree-btn" onclick="tGo('ts1')">Sí, se repite</button><button class="tree-btn" onclick="tRes('rp')">No, es puntual</button></div></div>
+      <div class="tree-step" id="ts1"><p class="tree-q">¿Necesita conocer el contexto de tu empresa: clientes, procesos, tono?</p><div class="tree-btns"><button class="tree-btn" onclick="tGo('ts2')">Sí, necesita contexto</button><button class="tree-btn" onclick="tRes('rs')">No, es genérica</button></div></div>
+      <div class="tree-step" id="ts2"><p class="tree-q">¿Necesita conectarse a sistemas externos: CRM, proyectos, calendarios?</p><div class="tree-btns"><button class="tree-btn" onclick="tGo('ts3')">Sí, necesita datos reales</button><button class="tree-btn" onclick="tRes('rsp')">No, solo texto y contexto</button></div></div>
+      <div class="tree-step" id="ts3"><p class="tree-q">¿El humano necesita aprobar cada paso del proceso?</p><div class="tree-btns"><button class="tree-btn" onclick="tRes('rsm')">Sí, supervisa paso a paso</button><button class="tree-btn" onclick="tGo('ts4')">No, solo el resultado final</button></div></div>
+      <div class="tree-step" id="ts4"><p class="tree-q">¿El problema tiene partes independientes que podrían resolverse en paralelo?</p><div class="tree-btns"><button class="tree-btn" onclick="tRes('rw')">Sí, son partes independientes</button><button class="tree-btn" onclick="tRes('ra')">No, es un objetivo único</button></div></div>
+      <div class="tree-res" id="rp"><div class="res-name">Prompt</div><p class="res-def">La tarea es única. Un prompt bien escrito es la herramienta correcta. No sobre-ingenieres.</p><button class="tree-reset" onclick="tReset()">Otra consulta →</button></div>
+      <div class="tree-res" id="rs"><div class="res-name">Skill</div><p class="res-def">Se repite y es genérica. Encapsula el prompt en una Skill invocable. Sin contexto, sin MCPs.</p><button class="tree-reset" onclick="tReset()">Otra consulta →</button></div>
+      <div class="tree-res" id="rsp"><div class="res-name">Skill en Project</div><p class="res-def">Se repite y necesita contexto. La Skill vive dentro de un Project que le da ese mundo de forma persistente.</p><button class="tree-reset" onclick="tReset()">Otra consulta →</button></div>
+      <div class="tree-res" id="rsm"><div class="res-name">Semiagente</div><p class="res-def">Herramientas reales con supervisión humana por paso. La validación es parte del diseño, no un defecto.</p><button class="tree-reset" onclick="tReset()">Otra consulta →</button></div>
+      <div class="tree-res" id="ra"><div class="res-name">Agente</div><p class="res-def">Herramientas reales, objetivo único, sin supervisión de proceso. El humano evalúa el resultado final.</p><button class="tree-reset" onclick="tReset()">Otra consulta →</button></div>
+      <div class="tree-res" id="rw"><div class="res-name">Workflow</div><p class="res-def">Problema multi-parte. Diseña un orquestador que coordine agentes especializados en paralelo.</p><button class="tree-reset" onclick="tReset()">Otra consulta →</button></div>
+    </div>
+  </div>
+</section>
+
+<div class="read-progress" id="read-progress" aria-hidden="true"></div>
+
+<div class="ticker-bar" aria-hidden="true">
+  <div class="ticker-label">
+    <svg viewBox="0 0 108 30" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:14px;width:auto;margin-right:0.7rem;flex-shrink:0;">
+      <path d="M4 24 C4 24 10 7 14 6 C12 9 9 15 9 24 Z" fill="#E8352A"/>
+      <path d="M11 24 C11 24 17 7 21 6 C19 9 16 15 15 24 Z" fill="#E8352A" opacity="0.65"/>
+      <path d="M18 24 C18 24 24 7 28 6 C26 9 23 15 22 24 Z" fill="#E8352A" opacity="0.35"/>
+      <text x="33" y="21" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#E8352A" letter-spacing="-0.4">sprint.ai</text>
+    </svg>LIVE DATA
+  </div>
+  <div class="ticker-track">
+    <div class="ticker-inner" id="ticker-inner">
+      <!-- items duplicated in JS for seamless loop -->
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <svg viewBox="0 0 108 30" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:18px;width:auto;opacity:0.45;">
+    <path d="M4 24 C4 24 10 7 14 6 C12 9 9 15 9 24 Z" fill="#18120A"/>
+    <path d="M11 24 C11 24 17 7 21 6 C19 9 16 15 15 24 Z" fill="#18120A" opacity="0.6"/>
+    <path d="M18 24 C18 24 24 7 28 6 C26 9 23 15 22 24 Z" fill="#18120A" opacity="0.3"/>
+    <text x="33" y="21" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#18120A" letter-spacing="-0.4">sprint.ai</text>
+  </svg>
+  <span>Sprint Intelligence · AI Agentification · 2026</span>
+</footer>
+
+<script>
+/* READING PROGRESS */
+(function() {
+  const bar = document.getElementById('read-progress');
+  window.addEventListener('scroll', function() {
+    const scrolled = window.scrollY;
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (total > 0 ? (scrolled / total) * 100 : 0) + '%';
+  }, { passive: true });
+})();
+
+/* REVEAL */
+const obs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); }), { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+/* NAV DOTS */
+const dots = document.querySelectorAll('.dot');
+const lvObs = new IntersectionObserver(es => { es.forEach(e => { const i = e.target.dataset.lv; if (dots[i]) dots[i].dataset.on = e.isIntersecting ? '1' : '0'; }); }, { threshold: 0.35 });
+document.querySelectorAll('section[data-lv]').forEach(s => lvObs.observe(s));
+
+/* TYPEWRITER */
+const phrases = ["Dame un resumen de esta reunión con el cliente.", "Redacta el email de seguimiento para la propuesta.", "¿Cuál es el estado del proyecto Bancolombia?"];
+let pi = 0, pos = 0, dir = 1;
+const tw = document.getElementById('tw');
+function tick() {
+  const ph = phrases[pi];
+  if (dir === 1) { tw.textContent = ph.slice(0, ++pos); if (pos >= ph.length) { dir = -1; setTimeout(tick, 2000); return; } setTimeout(tick, 50); }
+  else { tw.textContent = ph.slice(0, --pos); if (pos <= 0) { dir = 1; pi = (pi + 1) % phrases.length; setTimeout(tick, 500); return; } setTimeout(tick, 24); }
+}
+tick();
+
+/* ORBIT — 420×280 */
+(function() {
+  const cv = document.getElementById('cv-orbit');
+  const cx = cv.getContext('2d');
+  const W=420, H=280, ox=210, oy=140, R=105;
+  const tools = ['HubSpot','ClickUp','Fathom','GitHub'];
+  const tAngs = tools.map((_,i) => i/tools.length * Math.PI * 2);
+  let ang = 0;
+  (function draw() {
+    cx.clearRect(0,0,W,H);
+    cx.beginPath(); cx.arc(ox,oy,30,0,6.28);
+    cx.fillStyle='rgba(212,80,10,0.1)'; cx.fill();
+    cx.strokeStyle='rgba(212,80,10,0.55)'; cx.lineWidth=1.5; cx.stroke();
+    cx.fillStyle='#18120A'; cx.font='700 10px Georgia'; cx.textAlign='center'; cx.textBaseline='middle';
+    cx.fillText('Objetivo',ox,oy);
+    cx.beginPath(); cx.arc(ox,oy,R,0,6.28);
+    cx.strokeStyle='rgba(24,18,10,0.08)'; cx.lineWidth=1; cx.setLineDash([3,6]); cx.stroke(); cx.setLineDash([]);
+    tools.forEach((t,i) => {
+      const nx=ox+Math.cos(tAngs[i])*R, ny=oy+Math.sin(tAngs[i])*R;
+      cx.beginPath(); cx.arc(nx,ny,13,0,6.28);
+      cx.fillStyle='rgba(24,18,10,0.05)'; cx.fill();
+      cx.strokeStyle='rgba(24,18,10,0.18)'; cx.lineWidth=1; cx.stroke();
+      cx.fillStyle='#18120A'; cx.font='9px Georgia'; cx.textAlign='center'; cx.textBaseline='top';
+      cx.fillText(t,nx,ny+16);
+    });
+    for (let k=14;k>=1;k--) {
+      const ta=ang-k*0.09, tx=ox+Math.cos(ta)*R, ty=oy+Math.sin(ta)*R;
+      cx.beginPath(); cx.arc(tx,ty,6-k*0.36,0,6.28);
+      cx.fillStyle='rgba(212,80,10,'+(0.65-k*0.044)+')'; cx.fill();
+    }
+    const ax=ox+Math.cos(ang)*R, ay=oy+Math.sin(ang)*R;
+    cx.beginPath(); cx.arc(ax,ay,8,0,6.28);
+    cx.fillStyle='#D4500A'; cx.fill();
+    ang+=0.022; requestAnimationFrame(draw);
+  })();
+})();
+
+/* AGENT LOG CYCLE */
+(function() {
+  const lines = document.querySelectorAll('#cv-agent-log .log-line');
+  let idx = 0;
+  if (!lines.length) return;
+  setInterval(() => {
+    lines.forEach((l,i) => l.classList.toggle('active', i === idx));
+    idx = (idx + 1) % lines.length;
+  }, 1700);
+})();
+
+/* NETWORK — 480×300 */
+(function() {
+  const cv = document.getElementById('cv-net');
+  const cx = cv.getContext('2d');
+  const W=480, H=300;
+  const hub={x:240,y:146};
+  const nodes=[{l:'Tech',x:95,y:67},{l:'GDO',x:390,y:62},{l:'NAM',x:428,y:180},{l:'IMPL',x:240,y:251},{l:'MKT',x:65,y:205}];
+  const pkts=nodes.map((_,i) => ({i,t:(i/nodes.length),spd:0.004+i*0.001}));
+  function lerp(a,b,t){return a+(b-a)*t;}
+  (function draw() {
+    cx.clearRect(0,0,W,H);
+    nodes.forEach(n => {
+      cx.beginPath(); cx.moveTo(n.x,n.y); cx.lineTo(hub.x,hub.y);
+      cx.strokeStyle='rgba(24,18,10,0.07)'; cx.lineWidth=1; cx.setLineDash([3,6]); cx.stroke(); cx.setLineDash([]);
+    });
+    cx.beginPath(); cx.arc(hub.x,hub.y,24,0,6.28);
+    cx.fillStyle='rgba(212,80,10,0.1)'; cx.fill();
+    cx.strokeStyle='#D4500A'; cx.lineWidth=1.5; cx.stroke();
+    cx.fillStyle='#D4500A'; cx.font='700 9px Georgia'; cx.textAlign='center'; cx.textBaseline='middle';
+    cx.fillText('ORQ',hub.x,hub.y);
+    nodes.forEach(n => {
+      cx.beginPath(); cx.arc(n.x,n.y,16,0,6.28);
+      cx.fillStyle='rgba(24,18,10,0.05)'; cx.fill();
+      cx.strokeStyle='rgba(24,18,10,0.18)'; cx.lineWidth=1; cx.stroke();
+      cx.fillStyle='#18120A'; cx.font='8.5px Georgia'; cx.textAlign='center'; cx.textBaseline='top';
+      cx.fillText(n.l,n.x,n.y+19);
+    });
+    pkts.forEach(p => {
+      p.t+=p.spd; if(p.t>1) p.t=0;
+      const n=nodes[p.i];
+      const px=lerp(n.x,hub.x,p.t), py=lerp(n.y,hub.y,p.t);
+      cx.beginPath(); cx.arc(px,py,5,0,6.28);
+      cx.fillStyle='rgba(212,80,10,'+(0.3+p.t*0.7)+')'; cx.fill();
+    });
+    requestAnimationFrame(draw);
+  })();
+})();
+
+/* WORKFLOW STATUS CYCLE */
+(function() {
+  const teams = document.querySelectorAll('#wf-status .wf-team');
+  if (!teams.length) return;
+  let step = 0;
+  function update() {
+    teams.forEach((el, i) => {
+      const dot = el.querySelector('.wf-dot');
+      const val = el.querySelector('.wf-val');
+      if (i < step) { dot.className='wf-dot done'; val.textContent='✓ listo'; }
+      else if (i===step) { dot.className='wf-dot active'; val.textContent='procesando'; }
+      else { dot.className='wf-dot'; val.textContent='en cola'; }
+    });
+    step++;
+    if (step > teams.length) { step = 0; setTimeout(update, 2200); }
+    else setTimeout(update, 1500);
+  }
+  update();
+})();
+
+/* SNAKE */
+(function() {
+  const cv = document.getElementById('cv-snake');
+  const cx = cv.getContext('2d');
+  const CELL=20, COLS=Math.floor(cv.width/CELL), ROWS=Math.floor(cv.height/CELL);
+  let snake, dir, food;
+  function init() {
+    const sx=Math.floor(COLS/2), sy=Math.floor(ROWS/2);
+    snake=[];
+    for(let i=0;i<6;i++) snake.push({x:sx-i,y:sy});
+    dir={x:1,y:0}; placeFood();
+  }
+  function placeFood() { do { food={x:Math.floor(Math.random()*COLS),y:Math.floor(Math.random()*ROWS)}; } while(snake.some(s=>s.x===food.x&&s.y===food.y)); }
+  function steer() {
+    const head=snake[0]; const opts=[];
+    [{x:1,y:0},{x:-1,y:0},{x:0,y:1},{x:0,y:-1}].forEach(o=>{ if(dir.x!==-o.x||dir.y!==-o.y) opts.push(o); });
+    const scored=opts.map(o=>{ const nx=(head.x+o.x+COLS)%COLS,ny=(head.y+o.y+ROWS)%ROWS; return {o,d:snake.slice(1,-2).some(s=>s.x===nx&&s.y===ny)?9999:Math.abs(food.x-nx)+Math.abs(food.y-ny)}; });
+    scored.sort((a,b)=>a.d-b.d); const valid=scored.filter(s=>s.d<9999); if(!valid.length) return;
+    dir=Math.random()>0.18?valid[0].o:valid[Math.floor(Math.random()*Math.min(2,valid.length))].o;
+  }
+  function step() {
+    steer(); const head=snake[0]; const nh={x:(head.x+dir.x+COLS)%COLS,y:(head.y+dir.y+ROWS)%ROWS};
+    if(snake.slice(1).some(s=>s.x===nh.x&&s.y===nh.y)){init();return;}
+    const ate=nh.x===food.x&&nh.y===food.y; snake.unshift(nh);
+    if(!ate) snake.pop(); else placeFood();
+    if(snake.length>COLS*ROWS*0.45) init();
+  }
+  function draw() {
+    cx.clearRect(0,0,cv.width,cv.height);
+    cx.strokeStyle='rgba(212,80,10,0.07)'; cx.lineWidth=0.5;
+    for(let c=0;c<=COLS;c++){cx.beginPath();cx.moveTo(c*CELL,0);cx.lineTo(c*CELL,cv.height);cx.stroke();}
+    for(let r=0;r<=ROWS;r++){cx.beginPath();cx.moveTo(0,r*CELL);cx.lineTo(cv.width,r*CELL);cx.stroke();}
+    cx.beginPath(); cx.arc(food.x*CELL+CELL/2,food.y*CELL+CELL/2,CELL*0.28,0,6.28); cx.fillStyle='#D4500A'; cx.fill();
+    snake.forEach((s,i)=>{ const ratio=1-(i/snake.length)*0.68; const sz=i===0?CELL-2:Math.max(6,(CELL-2)*ratio); const off=(CELL-sz)/2; cx.fillStyle=i===0?'#18120A':`rgba(24,18,10,${0.28+ratio*0.72})`; cx.fillRect(s.x*CELL+off,s.y*CELL+off,sz,sz); });
+  }
+  init(); setInterval(()=>{step();draw();},110);
+})();
+
+/* BLOOMBERG TICKER */
+(function() {
+  const items = [
+    { key: 'ESTADO', val: 'ACTIVO', cls: 'up' },
+    { key: 'COMPLETADO', val: '88.4%', cls: 'up' },
+    { key: 'RITMO', val: '0.91x', cls: 'up' },
+    { key: 'TOTAL TAREAS', val: '843', cls: '' },
+    { key: 'VENCIDAS', val: '12', cls: 'warn' },
+    { key: 'SLA ALERT', val: '2 CLIENTES', cls: 'warn' },
+    { key: 'TEAM ALPHA', val: '91.2%', cls: 'up' },
+    { key: 'TEAM BETA', val: '86.7%', cls: 'up' },
+    { key: 'TEAM GAMMA', val: '84.3%', cls: '' },
+    { key: 'TEAM DELTA', val: '90.1%', cls: 'up' },
+    { key: 'TEAM EPSILON', val: '88.9%', cls: 'up' },
+    { key: 'CAPACIDAD', val: '68%', cls: '' },
+    { key: 'AGENTE', val: 'EN EJECUCIÓN', cls: 'up' },
+    { key: 'EQUIPOS', val: '5 ACTIVOS', cls: 'up' },
+    { key: 'DIAS CONSUMIDOS', val: '93%', cls: '' },
+    { key: 'EN PROGRESO', val: '74', cls: '' },
+    { key: 'SIN INICIAR', val: '18', cls: 'warn' },
+    { key: 'SALUD SPRINT', val: 'VERDE', cls: 'up' },
+  ];
+  const sep = '<span class="t-sep">·</span>';
+  const html = items.map(it =>
+    `<span class="t-item"><span class="t-key">${it.key}</span><span class="t-val ${it.cls}">${it.val}</span></span>${sep}`
+  ).join('');
+  const inner = document.getElementById('ticker-inner');
+  inner.innerHTML = html + html;
+})();
+
+/* TREE */
+function tGo(id){document.querySelectorAll('.tree-step,.tree-res').forEach(el=>el.classList.remove('on'));document.getElementById(id).classList.add('on');}
+function tRes(id){document.querySelectorAll('.tree-step,.tree-res').forEach(el=>el.classList.remove('on'));document.getElementById(id).classList.add('on');}
+function tReset(){document.querySelectorAll('.tree-step,.tree-res').forEach(el=>el.classList.remove('on'));document.getElementById('ts0').classList.add('on');}
+</script>
