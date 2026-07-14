@@ -19,7 +19,7 @@ El 60% del trabajo de un agente está en entender cómo está organizada la info
 | [**Sprint Intelligence System**](./sprint-intelligence-system/) | Pipeline que detecta el sprint activo, recupera tareas y genera el reporte operativo automático | Prompt de producción · dashboard demo · roadmap |
 | [**IA con Estilo**](./ia-con-estilo/) | Sistema de diseño para artefactos HTML interactivos — editorials, tickers, canvas animado | Design system documentado · artefacto de referencia |
 | [**Storytelling Ejecutivo**](./STORYTELLING_EJECUTIVO_PROJECT_INSTRUCTIONS.md) | Instrucciones para agente especializado en narrativa ejecutiva de alto impacto | Project instructions listas para Claude |
-| [**Agentes Curados · aitmpl**](./agentes-curados-aitmpl/) | Curaduría de un catálogo de 600+ agentes open-source — criterio de evaluación documentado y 9 piezas seleccionadas | 9 agentes auditados · criterio de adopción · atribución MIT |
+| [**Agentes Curados · aitmpl**](https://github.com/Herandres/agentes-curados-aitmpl) | Curaduría de un catálogo de 600+ agentes open-source — criterio de evaluación documentado y 9 piezas seleccionadas | Repo independiente · 9 agentes auditados · atribución MIT |
 
 ---
 
