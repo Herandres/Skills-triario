@@ -2,6 +2,8 @@
 
 Rama: `claude/cierre-le-t15-patrones` · Carpeta: `investigacion/cierre-loop-engineering/t15-patrones/` · Fecha de la corrida: 2026-11-19 · Proyecto: cierre de Loop Engineering (Triario).
 
+Estado: versión final (20 fichas aprobadas por el auditor ciego; 5 analogías en `archivo.md`).
+
 Pregunta: ¿qué prácticas de equipos humanos tienen una técnica equivalente con agentes de IA, y cómo se arma cada una?
 
 Sellos: [Fuente primaria] (paper, documentación oficial, estándar o repositorio original) · [Fuente secundaria] · [Visto solo en buscador] (no se pudo abrir o no se intentó abrir; el enlace es el que dio el buscador) · [Hipótesis] (deducción de esta tarea). Los hechos internos del proyecto vienen del encargo y se usan como contexto, no como fuente externa.
