@@ -131,3 +131,9 @@ Versión corta: *ingeniería de datos aplicada al trabajo de los agentes.*
 Abrieron bien: `www.anthropic.com` y `github.com`. No intenté airflow.apache.org, docs.getdbt.com, docs.databricks.com, openlineage.io ni docs.dagster.io para ahorrar aperturas; todo lo de esos sitios va como [Visto solo en buscador]. Para permitirlos, hay que agregarlos en la configuración de red del entorno.
 
 Presupuesto usado: 16 búsquedas de 25 y 9 aperturas de 15 (4 fallidas).
+
+---
+
+## Nota de la fase 2
+
+La revisión del especialista en ingeniería de datos está en `ideas-ingenieria-datos.md`, guardada tal cual. El subagente recibió como única entrada este archivo (`tesis.md`, leído desde su ruta con la instrucción de no abrir nada más del repo ni la historia de git) y la instrucción del encargo; no recibió notas ni proceso de esta tarea. Sus propuestas no se incorporaron a este documento: quedan para las tareas siguientes del relevo.
