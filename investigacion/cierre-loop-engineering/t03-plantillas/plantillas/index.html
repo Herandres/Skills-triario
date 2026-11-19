@@ -1,0 +1,26 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Galería de plantillas de cierre</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@500;700;900&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--red:#EF2222;--ink:#361133;--dark:#1E0C21;--r1:#FFE9E9;--r2:#FFF8F8;--blue:#534DFF;--yellow:#F8D53C}
+*{box-sizing:border-box}body{margin:0;background:var(--r2);color:var(--ink);font:400 15px/1.5 'Plus Jakarta Sans',sans-serif}
+header{background:var(--red);color:#fff;padding:28px 24px}header h1{font:900 34px Gabarito,sans-serif;margin:0 0 4px}header p{margin:0;max-width:60ch}
+main{max-width:1280px;margin:0 auto;padding:24px 16px 48px;display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px}
+.c{background:#fff;border:1px solid #36113322;border-top:5px solid var(--red);display:flex;flex-direction:column}
+.c:nth-child(3n){border-top-color:var(--dark)}
+.shot{height:330px;overflow:hidden;background:var(--r1);position:relative;border-bottom:1px solid #36113322}
+.shot iframe{width:850px;height:1100px;border:0;transform:scale(.3);transform-origin:0 0;pointer-events:none;position:absolute;left:50%;margin-left:-127px;top:0}
+.t{padding:14px 16px}.t h2{font:700 20px Gabarito,sans-serif;margin:0 0 6px;color:var(--dark)}
+.t p{margin:0 0 8px;font-size:14px}.t b{color:var(--red)}
+.t a{display:inline-block;margin-top:4px;background:var(--red);color:#fff;text-decoration:none;padding:6px 14px;font-weight:700;font-size:13px}
+.t a:focus-visible{outline:3px solid var(--blue)}
+.tag{display:inline-block;font-size:11px;background:var(--yellow);color:var(--dark);padding:1px 8px;font-weight:700;margin-bottom:6px}
+</style></head><body>
+<header><h1>Plantillas de cierre · HTML a PDF</h1><p>Seis estilos con marcadores de contenido, listos para imprimir desde Chrome en tamaño carta. Pruebe cada una con Ctrl+P.</p></header>
+<main>
+<article class="c"><div class="shot"><iframe src="01-formal.html" title="Vista previa formal" loading="lazy"></iframe></div><div class="t"><span class="tag">Índice 3.1</span><h2>01 · Formal</h2><p><b>Sirve para:</b> informe a la gerencia, al estilo de un informe de fin de proyecto, con portada, contenido, diez secciones numeradas y firmas.</p><p><b>Punto débil:</b> es el menos memorable; si el texto es largo se vuelve un muro gris.</p><a href="01-formal.html">Abrir</a></div></article>
+<article class="c"><div class="shot"><iframe src="02-editorial.html" title="Vista previa editorial" loading="lazy"></iframe></div><div class="t"><span class="tag">Índice 3.3</span><h2>02 · Editorial</h2><p><b>Sirve para:</b> el relato del proyecto en capítulos, con dos columnas, letra capital y citas destacadas.</p><p><b>Punto débil:</b> las columnas CSS parten mal figuras y citas entre páginas; pide revisar cada salto.</p><a href="02-editorial.html">Abrir</a></div></article>
+<article class="c"><div class="shot"><iframe src="03-informe-anual.html" title="Vista previa informe anual" loading="lazy"></iframe></div><div class="t"><span class="tag">Índice 3.1</span><h2>03 · Informe anual</h2><p><b>Sirve para:</b> mostrar cifras clave con tarjetas, bandas de color y una página oscura de impacto.</p><p><b>Punto débil:</b> usa mucho fondo de color: gasta tinta y depende de activar los gráficos de fondo al imprimir.</p><a href="03-informe-anual.html">Abrir</a></div></article>
+<article class="c"><div class="shot"><iframe src="04-portafolio-casos.html" title="Vista previa portafolio" loading="lazy"></iframe></div><div class="t"><span class="tag">Evidencia</span><h2>04 · Portafolio de casos</h2><p><b>Sirve para:</b> una ficha por caso con seis campos (contexto, acción propia, acción del equipo, resultado, evidencia, patrón).</p><p><b>Punto débil:</b> exige una página por caso; con casos cortos queda aire vacío.</p><a href="04-portafolio-casos.html">Abrir</a></div></article>
+<article class="c"><div class="shot"><iframe src="05-linea-de-tiempo.html" title="Vista previa línea de tiempo" loading="lazy"></iframe></div><div class="t"><span class="tag">Índice 3.3</span><h2>05 · Línea de tiempo</h2><p><b>Sirve para:</b> contar de septiembre a noviembre con hitos y una tabla de carriles por capa o equipo.</p><p><b>Punto débil:</b> la línea vertical se corta al cambiar de página; por eso va dividida en tramos.</p><a href="05-linea-de-tiempo.html">Abrir</a></div></article>
+<article class="c"><div class="shot"><iframe src="06-plano-tecnico.html" title="Vista previa plano técnico" loading="lazy"></iframe></div><div class="t"><span class="tag">Sistema</span><h2>06 · Plano técnico</h2><p><b>Sirve para:</b> explicar el loop como tubería, con nodos, reintento, parada y cuadro de rotulación.</p><p><b>Punto débil:</b> retícula de fondo y flechas hechas en CSS; si se desactivan los fondos, se pierde el efecto de plano.</p><a href="06-plano-tecnico.html">Abrir</a></div></article>
+</main></body></html>

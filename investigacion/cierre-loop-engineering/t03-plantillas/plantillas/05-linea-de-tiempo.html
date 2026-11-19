@@ -1,0 +1,47 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>[Título del documento] · plantilla línea de tiempo</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@500;700;900&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet"><style>
+:root{--red:#EF2222;--ink:#361133;--dark:#1E0C21;--r1:#FFE9E9;--r2:#FFF8F8;--blue:#534DFF;--yellow:#F8D53C;--head:'Gabarito',system-ui,sans-serif;--body:'Plus Jakarta Sans',system-ui,sans-serif}
+*{box-sizing:border-box}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{margin:0;font:400 10.5pt/1.55 var(--body);color:var(--ink);background:#e9e4ea}
+h1,h2,h3,h4{font-family:var(--head);margin:0;line-height:1.1;color:var(--dark)}
+p{margin:0 0 .7em}
+.page{width:8.5in;min-height:11in;margin:16px auto;background:#fff;padding:.8in .75in;position:relative;box-shadow:0 2px 14px #0003}
+.logo{display:inline-block;border:1.5px dashed currentColor;padding:4px 14px;font:700 9pt var(--head);letter-spacing:.06em}
+.ph{color:var(--red);font-weight:500}
+.box{border:1.5px dashed #361133aa;background:var(--r2);padding:.5in 0;text-align:center;font-size:9pt}
+table{width:100%;border-collapse:collapse;font-size:9.5pt}
+th{background:var(--dark);color:#fff;text-align:left;font-family:var(--head);padding:6px 8px}
+td{padding:6px 8px;border-bottom:1px solid #36113322;vertical-align:top}
+tr{break-inside:avoid}
+thead{display:table-header-group}
+h2,h3{break-after:avoid}
+figure,.card,.kpi,.step,.case{break-inside:avoid}
+.break{break-before:page}
+@page{size:Letter;margin:.7in .75in .8in}
+/* Para A4 cambie: size:A4; y .page{width:210mm;min-height:297mm} */
+@page{@bottom-left{content:"[Título corto del documento]";font:500 8pt 'Plus Jakarta Sans',sans-serif;color:#361133}@bottom-right{content:"Página " counter(page) " de " counter(pages);font:500 8pt 'Plus Jakarta Sans',sans-serif;color:#361133}}
+@page cover{margin:0;@bottom-left{content:none}@bottom-right{content:none}}
+.cover{page:cover}
+@media print{
+ body{background:#fff}
+ .page{margin:0;box-shadow:none;width:auto;min-height:0;padding:0;break-after:page}
+ .page.cover{width:8.5in;height:11in;padding:.8in .75in;overflow:hidden}
+ .page:last-child{break-after:auto}
+ a{color:inherit;text-decoration:none}
+}
+
+.cover{background:var(--dark);color:#fff}.cover h1{color:#fff;font-size:44pt;margin:2in 0 .2in}.cover .logo{color:var(--yellow)}
+.cover .bar{height:10px;background:var(--red);width:4in;margin-top:.3in}
+.tl{position:relative;margin-left:1.1in;border-left:4px solid var(--red);padding-left:.3in}
+.step{position:relative;margin-bottom:.28in}
+.step::before{content:"";position:absolute;left:calc(-.3in - 12px);top:4px;width:20px;height:20px;border-radius:50%;background:#fff;border:5px solid var(--red)}
+.step.hit::before{background:var(--yellow);border-color:var(--dark)}
+.step .d{position:absolute;left:calc(-1.1in - .3in - 4px);width:.95in;text-align:right;font:700 9pt var(--head);color:var(--red);top:3px}
+.step h3{font-size:13pt}
+.lanes{display:grid;grid-template-columns:1in repeat(3,1fr);gap:0;border:1.5px solid var(--ink);font-size:9pt}
+.lanes>div{padding:8px;border-bottom:1px solid #36113333;border-right:1px solid #36113333;min-height:.55in}
+.lanes .h{background:var(--dark);color:#fff;font:700 9pt var(--head)}
+.lanes .r{background:var(--r1);font:700 9pt var(--head)}
+.lanes .m{background:var(--blue);color:#fff}
+</style></head><body><section class="page cover"><span class="logo">[logo]</span><h1>[Línea de tiempo del proyecto]</h1><p style="font-size:14pt">[Mes inicio] a [Mes fin]</p><div class="bar"></div></section>
+<section class="page"><h2 style="font-size:24pt;margin-bottom:.3in">[Título del tramo 1]</h2><div class="tl"><div class="step"><span class="d">[Fecha 1]</span><h3>[Hito 1]</h3><p>[Qué pasó, con evidencia]</p></div><div class="step"><span class="d">[Fecha 2]</span><h3>[Hito 2]</h3><p>[Qué pasó, con evidencia]</p></div><div class="step hit"><span class="d">[Fecha 3]</span><h3>[Hito 3]</h3><p>[Qué pasó, con evidencia]</p></div><div class="step"><span class="d">[Fecha 4]</span><h3>[Hito 4]</h3><p>[Qué pasó, con evidencia]</p></div><div class="step"><span class="d">[Fecha 5]</span><h3>[Hito 5]</h3><p>[Qué pasó, con evidencia]</p></div><div class="step"><span class="d">[Fecha 6]</span><h3>[Hito 6]</h3><p>[Qué pasó, con evidencia]</p></div></div></section><section class="page"><h2 style="font-size:24pt;margin-bottom:.3in">[Título del tramo 2]</h2><div class="tl"><div class="step"><span class="d">[Fecha 7]</span><h3>[Hito 7]</h3><p>[Qué pasó, con evidencia]</p></div><div class="step"><span class="d">[Fecha 8]</span><h3>[Hito 8]</h3><p>[Qué pasó, con evidencia]</p></div><div class="step"><span class="d">[Fecha 9]</span><h3>[Hito 9]</h3><p>[Qué pasó, con evidencia]</p></div><div class="step"><span class="d">[Fecha 10]</span><h3>[Hito 10]</h3><p>[Qué pasó, con evidencia]</p></div><div class="step"><span class="d">[Fecha 11]</span><h3>[Hito 11]</h3><p>[Qué pasó, con evidencia]</p></div><div class="step"><span class="d">[Fecha 12]</span><h3>[Hito 12]</h3><p>[Qué pasó, con evidencia]</p></div></div></section><section class="page"><h2 style="font-size:24pt;margin-bottom:.3in">[Carriles por capa y por equipo]</h2><div class="lanes"><div class="h">[Carril]</div><div class="h">[Mes 1]</div><div class="h">[Mes 2]</div><div class="h">[Mes 3]</div><div class="r">[Carril 1]</div><div>[Evento]</div><div class="m">[Hito]</div><div>[Evento]</div><div class="r">[Carril 2]</div><div>[Evento]</div><div class="m">[Hito]</div><div>[Evento]</div><div class="r">[Carril 3]</div><div>[Evento]</div><div class="m">[Hito]</div><div>[Evento]</div><div class="r">[Carril 4]</div><div>[Evento]</div><div class="m">[Hito]</div><div>[Evento]</div></div></section></body></html>

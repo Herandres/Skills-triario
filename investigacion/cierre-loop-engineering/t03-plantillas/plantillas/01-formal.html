@@ -1,0 +1,45 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>[Título del documento] · plantilla formal</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@500;700;900&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet"><style>
+:root{--red:#EF2222;--ink:#361133;--dark:#1E0C21;--r1:#FFE9E9;--r2:#FFF8F8;--blue:#534DFF;--yellow:#F8D53C;--head:'Gabarito',system-ui,sans-serif;--body:'Plus Jakarta Sans',system-ui,sans-serif}
+*{box-sizing:border-box}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{margin:0;font:400 10.5pt/1.55 var(--body);color:var(--ink);background:#e9e4ea}
+h1,h2,h3,h4{font-family:var(--head);margin:0;line-height:1.1;color:var(--dark)}
+p{margin:0 0 .7em}
+.page{width:8.5in;min-height:11in;margin:16px auto;background:#fff;padding:.8in .75in;position:relative;box-shadow:0 2px 14px #0003}
+.logo{display:inline-block;border:1.5px dashed currentColor;padding:4px 14px;font:700 9pt var(--head);letter-spacing:.06em}
+.ph{color:var(--red);font-weight:500}
+.box{border:1.5px dashed #361133aa;background:var(--r2);padding:.5in 0;text-align:center;font-size:9pt}
+table{width:100%;border-collapse:collapse;font-size:9.5pt}
+th{background:var(--dark);color:#fff;text-align:left;font-family:var(--head);padding:6px 8px}
+td{padding:6px 8px;border-bottom:1px solid #36113322;vertical-align:top}
+tr{break-inside:avoid}
+thead{display:table-header-group}
+h2,h3{break-after:avoid}
+figure,.card,.kpi,.step,.case{break-inside:avoid}
+.break{break-before:page}
+@page{size:Letter;margin:.7in .75in .8in}
+/* Para A4 cambie: size:A4; y .page{width:210mm;min-height:297mm} */
+@page{@bottom-left{content:"[Título corto del documento]";font:500 8pt 'Plus Jakarta Sans',sans-serif;color:#361133}@bottom-right{content:"Página " counter(page) " de " counter(pages);font:500 8pt 'Plus Jakarta Sans',sans-serif;color:#361133}}
+@page cover{margin:0;@bottom-left{content:none}@bottom-right{content:none}}
+.cover{page:cover}
+@media print{
+ body{background:#fff}
+ .page{margin:0;box-shadow:none;width:auto;min-height:0;padding:0;break-after:page}
+ .page.cover{width:8.5in;height:11in;padding:.8in .75in;overflow:hidden}
+ .page:last-child{break-after:auto}
+ a{color:inherit;text-decoration:none}
+}
+
+.cover{background:#fff;border-top:.35in solid var(--red)}
+.cover h1{font-size:34pt;margin:1.6in 0 .2in}
+.cover .meta{border-top:2px solid var(--red);margin-top:.6in;padding-top:.15in;display:grid;grid-template-columns:1fr 1fr;gap:6px 24px;font-size:9.5pt}
+h2{font-size:17pt;border-bottom:2px solid var(--red);padding-bottom:4px;margin:0 0 .15in}
+h2 .n{color:var(--red);margin-right:8px}
+.sec{margin-bottom:.35in}
+.note{background:var(--r1);border-left:4px solid var(--red);padding:8px 12px;font-size:9.5pt}
+.toc li{padding:3px 0;border-bottom:1px dotted #36113344}
+.sign{display:grid;grid-template-columns:1fr 1fr;gap:.5in;margin-top:.5in}.sign div{border-top:1px solid var(--ink);padding-top:4px;font-size:9pt}
+</style></head><body><section class="page cover"><span class="logo">[logo]</span><h1>[Título del documento de cierre]</h1><p style="font-size:13pt">[Subtítulo en una línea]</p>
+<div class="meta"><div><b>Proyecto</b><br>[Nombre del proyecto]</div><div><b>Periodo</b><br>[Fecha inicio] a [Fecha fin]</div><div><b>Responsable</b><br>[Nombre y rol]</div><div><b>Versión</b><br>[Versión y fecha]</div></div></section>
+<section class="page"><h2>Contenido</h2><ol class="toc"><li>[Título de la sección 1] <span style='float:right'>[pág.]</span></li><li>[Título de la sección 2] <span style='float:right'>[pág.]</span></li><li>[Título de la sección 3] <span style='float:right'>[pág.]</span></li><li>[Título de la sección 4] <span style='float:right'>[pág.]</span></li><li>[Título de la sección 5] <span style='float:right'>[pág.]</span></li><li>[Título de la sección 6] <span style='float:right'>[pág.]</span></li><li>[Título de la sección 7] <span style='float:right'>[pág.]</span></li><li>[Título de la sección 8] <span style='float:right'>[pág.]</span></li><li>[Título de la sección 9] <span style='float:right'>[pág.]</span></li><li>[Título de la sección 10] <span style='float:right'>[pág.]</span></li></ol><div class="note" style="margin-top:.4in">[Nota de lectura: alcance del documento y cómo se citan las fuentes]</div></section>
+<section class="page"><div class="sec"><h2><span class="n">01</span>[Título de la sección 1]</h2><p>[Párrafo de contenido con dato y fuente]</p><p>[Párrafo de contenido]</p></div><div class="sec"><h2><span class="n">02</span>[Título de la sección 2]</h2><p>[Párrafo de contenido con dato y fuente]</p><p>[Párrafo de contenido]</p></div><div class="sec"><h2><span class="n">03</span>[Título de la sección 3]</h2><p>[Párrafo de contenido con dato y fuente]</p><p>[Párrafo de contenido]</p></div></section><section class="page"><div class="sec"><h2><span class="n">04</span>[Título de la sección 4]</h2><p>[Párrafo de contenido con dato y fuente]</p><p>[Párrafo de contenido]</p><table><thead><tr><th>[Columna A]</th><th>[Columna B]</th><th>[Columna C]</th></tr></thead><tbody><tr><td>[Dato]</td><td>[Dato con fuente]</td><td>[Dato]</td></tr><tr><td>[Dato]</td><td>[Dato con fuente]</td><td>[Dato]</td></tr><tr><td>[Dato]</td><td>[Dato con fuente]</td><td>[Dato]</td></tr><tr><td>[Dato]</td><td>[Dato con fuente]</td><td>[Dato]</td></tr></tbody></table></div><div class="sec"><h2><span class="n">05</span>[Título de la sección 5]</h2><p>[Párrafo de contenido con dato y fuente]</p><p>[Párrafo de contenido]</p><table><thead><tr><th>[Columna A]</th><th>[Columna B]</th><th>[Columna C]</th></tr></thead><tbody><tr><td>[Dato]</td><td>[Dato con fuente]</td><td>[Dato]</td></tr><tr><td>[Dato]</td><td>[Dato con fuente]</td><td>[Dato]</td></tr><tr><td>[Dato]</td><td>[Dato con fuente]</td><td>[Dato]</td></tr><tr><td>[Dato]</td><td>[Dato con fuente]</td><td>[Dato]</td></tr></tbody></table></div><div class="sec"><h2><span class="n">06</span>[Título de la sección 6]</h2><p>[Párrafo de contenido con dato y fuente]</p><p>[Párrafo de contenido]</p></div></section><section class="page"><div class="sec"><h2><span class="n">07</span>[Título de la sección 7]</h2><p>[Párrafo de contenido con dato y fuente]</p><p>[Párrafo de contenido]</p></div><div class="sec"><h2><span class="n">08</span>[Título de la sección 8]</h2><p>[Párrafo de contenido con dato y fuente]</p><p>[Párrafo de contenido]</p><table><thead><tr><th>[Columna A]</th><th>[Columna B]</th><th>[Columna C]</th></tr></thead><tbody><tr><td>[Dato]</td><td>[Dato con fuente]</td><td>[Dato]</td></tr><tr><td>[Dato]</td><td>[Dato con fuente]</td><td>[Dato]</td></tr><tr><td>[Dato]</td><td>[Dato con fuente]</td><td>[Dato]</td></tr><tr><td>[Dato]</td><td>[Dato con fuente]</td><td>[Dato]</td></tr></tbody></table></div></section><section class="page"><div class="sec"><h2><span class="n">09</span>[Título de la sección 9]</h2><p>[Párrafo de contenido con dato y fuente]</p><p>[Párrafo de contenido]</p></div><div class="sec"><h2><span class="n">10</span>[Título de la sección 10]</h2><p>[Párrafo de contenido con dato y fuente]</p><p>[Párrafo de contenido]</p></div><div class="sign"><div>[Nombre y cargo · aprueba]</div><div>[Nombre y cargo · recibe]</div></div></section></body></html>
