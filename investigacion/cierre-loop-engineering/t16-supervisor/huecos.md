@@ -41,3 +41,29 @@
 - **Qué es:** rama de prueba con `t00-prueba/prueba.md`; no es un entregable.
 - **Daño:** podría arrastrarse al consolidado por error.
 - **Estado:** abierto (informativo): excluir del consolidado.
+
+## Sábado
+
+Corte: viernes 2026-11-20 21:15 UTC (4:15 p. m. Bogotá). Bucle de reconciliación sobre las 11 ramas `origin/claude/*`.
+
+### Huecos del jueves: cierre
+- **HR-004 · cerrado.** El explorador hizo las 7 paradas (commits `69aa4c4`, `69dcb1e`, `932a8aa`, `bfdb32c`, `b3c6767`, `3be1998`, `3734bfc`) y entregó `informe-de-viaje.md` (`f40bd13`, 2026-11-20 20:36 UTC). No hubo rescate.
+- **HR-001, HR-002, HR-005, HR-006:** siguen abiertos (nada cambió; `origin/master` sigue con 0 archivos de `cierre-loop-engineering`).
+- **HR-003:** sigue abierto y se amplía en HR-007.
+
+### HR-007 · Sellos de hora del diario no coinciden con los commits en 4 de 7 paradas
+- **Qué es:** los títulos de las paradas 2, 5, 6 y 7 traen una hora redondeada distinta a la del commit: P2 `00:15:00Z` (commit 00:02:49), P5 `12:10:00Z` (12:02:59), P6 `16:15:00Z` (16:02:52), P7 `20:20:00Z` (20:02:55). Las paradas 1, 3 y 4 coinciden.
+- **Evidencia:** `diario.md` en `claude/cierre-le-t13-explorador` contra `git log` del archivo.
+- **Daño:** si la oficina del Relevo toma la hora del título, mostrará horas que git no respalda.
+- **Qué hice:** `estado-final.md` usa solo la hora del commit.
+- **Estado:** abierto. Usar la tabla «Horas reales» como fuente.
+
+### HR-008 · El informe de viaje se apoya en una sola fuente primaria abierta
+- **Qué es:** el propio informe (sección 5) admite que solo Anthropic y el repositorio de Microsoft se abrieron completos; las cifras de Airbnb, Spotify, Nubank, Grab, Itaú, Mercari y Deloitte no están verificadas. Los hallazgos H3, H5, H6 y H7 dependen de resúmenes o buscador.
+- **Daño:** el cierre podría citarlos como firmes.
+- **Qué hice:** no verifiqué (sin búsquedas; el informe ya trae sellos).
+- **Estado:** abierto. Respetar los sellos al consolidar.
+
+### HR-009 · Las 7 paradas se hicieron cada 4 h, pero la rama del explorador no tiene commits entre paradas
+- **Qué es:** informe final llegó 33 min después de la parada 7 (20:36 UTC). Es una sola rama con todo; si se borra tras un merge parcial se pierden diario e informe a la vez.
+- **Estado:** abierto (informativo), unido a HR-001.
