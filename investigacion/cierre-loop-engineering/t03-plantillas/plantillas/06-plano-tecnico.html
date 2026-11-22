@@ -1,0 +1,56 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>[Título del documento] · plantilla plano técnico</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@500;700;900&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet"><style>
+:root{--red:#EF2222;--ink:#361133;--dark:#1E0C21;--r1:#FFE9E9;--r2:#FFF8F8;--blue:#534DFF;--yellow:#F8D53C;--head:'Gabarito',system-ui,sans-serif;--body:'Plus Jakarta Sans',system-ui,sans-serif}
+*{box-sizing:border-box}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{margin:0;font:400 10.5pt/1.55 var(--body);color:var(--ink);background:#e9e4ea}
+h1,h2,h3,h4{font-family:var(--head);margin:0;line-height:1.1;color:var(--dark)}
+p{margin:0 0 .7em}
+.page{width:8.5in;min-height:11in;margin:16px auto;background:#fff;padding:.8in .75in;position:relative;box-shadow:0 2px 14px #0003}
+.logo{display:inline-block;border:1.5px dashed currentColor;padding:4px 14px;font:700 9pt var(--head);letter-spacing:.06em}
+.ph{color:var(--red);font-weight:500}
+.box{border:1.5px dashed #361133aa;background:var(--r2);padding:.5in 0;text-align:center;font-size:9pt}
+table{width:100%;border-collapse:collapse;font-size:9.5pt}
+th{background:var(--dark);color:#fff;text-align:left;font-family:var(--head);padding:6px 8px}
+td{padding:6px 8px;border-bottom:1px solid #36113322;vertical-align:top}
+tr{break-inside:avoid}
+thead{display:table-header-group}
+h2,h3{break-after:avoid}
+figure,.card,.kpi,.step,.case{break-inside:avoid}
+.break{break-before:page}
+@page{size:Letter;margin:.7in .75in .8in}
+/* Para A4 cambie: size:A4; y .page{width:210mm;min-height:297mm} */
+@page{@bottom-left{content:"[Título corto del documento]";font:500 8pt 'Plus Jakarta Sans',sans-serif;color:#361133}@bottom-right{content:"Página " counter(page) " de " counter(pages);font:500 8pt 'Plus Jakarta Sans',sans-serif;color:#361133}}
+@page cover{margin:0;@bottom-left{content:none}@bottom-right{content:none}}
+.cover{page:cover}
+@media print{
+ body{background:#fff}
+ .page{margin:0;box-shadow:none;width:auto;min-height:0;padding:0;break-after:page}
+ .page.cover{width:8.5in;height:11in;padding:.8in .75in;overflow:hidden}
+ .page:last-child{break-after:auto}
+ a{color:inherit;text-decoration:none}
+}
+
+.page{background-color:#fff;background-image:linear-gradient(#EF222218 1px,transparent 1px),linear-gradient(90deg,#EF222218 1px,transparent 1px);background-size:.25in .25in}
+.frame{border:2px solid var(--dark);padding:.2in;min-height:9.2in;position:relative}
+.cover{background-color:var(--dark);background-image:none;color:#fff}.cover h1{color:#fff;font-size:38pt;margin:2in 0 .2in}.cover .logo{color:var(--yellow)}
+.cover .frame{border-color:var(--red)}
+@media print{.page.cover{padding:.4in}.frame{min-height:9.3in}}
+.mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:8.5pt}
+.pipe{display:flex;align-items:stretch;gap:.28in;margin:.25in 0}
+.node{flex:1;border:2px solid var(--dark);background:#fff;padding:.12in;position:relative;text-align:center;font-weight:700}
+.node:not(:last-child)::after{content:"→";position:absolute;right:-.26in;top:50%;transform:translateY(-50%);color:var(--red);font:900 18pt var(--head)}
+.node.stop{border-color:var(--red);background:var(--r1)}
+.loopback{border:2px dashed var(--red);border-top:none;height:.35in;margin:-.25in .6in .3in;position:relative}
+.loopback span{position:absolute;left:50%;bottom:-.1in;transform:translateX(-50%);background:#fff;padding:0 8px;font-size:8.5pt;color:var(--red);font-weight:700}
+.tblock{position:absolute;right:.2in;bottom:.2in;width:3.3in;border:2px solid var(--dark);background:#fff;font-size:8pt}
+.tblock div{display:grid;grid-template-columns:1fr 1fr}.tblock span{padding:4px 6px;border:1px solid var(--dark);margin:-1px 0 0 -1px}
+.ann{border-left:3px solid var(--blue);padding-left:8px;margin:.12in 0;font-size:9pt}
+h2{font-size:18pt;margin-bottom:.12in}
+</style></head><body><section class="page cover"><div class="frame" style="min-height:9.4in"><span class="logo">[logo]</span><h1>[Plano del sistema]</h1><p class="mono">[Código del plano] · [Revisión] · [Fecha]</p></div></section>
+<section class="page"><div class="frame"><div class="mono" style="color:var(--red)">[Plano 1 de N] · [Escala o nivel]</div><h2>[Título del diagrama principal]</h2>
+<div class="pipe"><div class="node">[Entrada]</div><div class="node">[Capa 1]</div><div class="node">[Auditor]</div><div class="node stop">[Parada]</div></div><div class="loopback"><span>[Reintento a la capa que falló · máximo N]</span></div>
+<div class="ann"><b>[Nota 1]</b> [Explicación del componente]</div><div class="ann"><b>[Nota 2]</b> [Explicación con fuente]</div>
+<table style="margin-top:.2in"><thead><tr><th>[Ref.]</th><th>[Componente]</th><th>[Regla]</th></tr></thead><tbody><tr><td class='mono'>[R-00]</td><td>[Nombre]</td><td>[Regla fija]</td></tr><tr><td class='mono'>[R-00]</td><td>[Nombre]</td><td>[Regla fija]</td></tr><tr><td class='mono'>[R-00]</td><td>[Nombre]</td><td>[Regla fija]</td></tr><tr><td class='mono'>[R-00]</td><td>[Nombre]</td><td>[Regla fija]</td></tr><tr><td class='mono'>[R-00]</td><td>[Nombre]</td><td>[Regla fija]</td></tr></tbody></table>
+<div class="tblock"><div><span>[Proyecto]</span><span>[Autor]</span></div><div><span>[Plano]</span><span>[Revisión]</span></div><div><span>[Fecha]</span><span>[Hoja X de N]</span></div></div></div></section>
+<section class="page"><div class="frame"><div class="mono" style="color:var(--red)">[Plano 2 de N]</div><h2>[Título del detalle]</h2><div class="box" style="padding:1.6in 0">[Diagrama de detalle]</div><div class="ann"><b>[Nota]</b> [Texto]</div><div class="ann"><b>[Nota]</b> [Texto]</div>
+<div class="tblock"><div><span>[Proyecto]</span><span>[Autor]</span></div><div><span>[Plano]</span><span>[Revisión]</span></div><div><span>[Fecha]</span><span>[Hoja X de N]</span></div></div></div></section></body></html>

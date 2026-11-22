@@ -1,0 +1,44 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>[Título del documento] · plantilla editorial</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@500;700;900&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet"><style>
+:root{--red:#EF2222;--ink:#361133;--dark:#1E0C21;--r1:#FFE9E9;--r2:#FFF8F8;--blue:#534DFF;--yellow:#F8D53C;--head:'Gabarito',system-ui,sans-serif;--body:'Plus Jakarta Sans',system-ui,sans-serif}
+*{box-sizing:border-box}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{margin:0;font:400 10.5pt/1.55 var(--body);color:var(--ink);background:#e9e4ea}
+h1,h2,h3,h4{font-family:var(--head);margin:0;line-height:1.1;color:var(--dark)}
+p{margin:0 0 .7em}
+.page{width:8.5in;min-height:11in;margin:16px auto;background:#fff;padding:.8in .75in;position:relative;box-shadow:0 2px 14px #0003}
+.logo{display:inline-block;border:1.5px dashed currentColor;padding:4px 14px;font:700 9pt var(--head);letter-spacing:.06em}
+.ph{color:var(--red);font-weight:500}
+.box{border:1.5px dashed #361133aa;background:var(--r2);padding:.5in 0;text-align:center;font-size:9pt}
+table{width:100%;border-collapse:collapse;font-size:9.5pt}
+th{background:var(--dark);color:#fff;text-align:left;font-family:var(--head);padding:6px 8px}
+td{padding:6px 8px;border-bottom:1px solid #36113322;vertical-align:top}
+tr{break-inside:avoid}
+thead{display:table-header-group}
+h2,h3{break-after:avoid}
+figure,.card,.kpi,.step,.case{break-inside:avoid}
+.break{break-before:page}
+@page{size:Letter;margin:.7in .75in .8in}
+/* Para A4 cambie: size:A4; y .page{width:210mm;min-height:297mm} */
+@page{@bottom-left{content:"[Título corto del documento]";font:500 8pt 'Plus Jakarta Sans',sans-serif;color:#361133}@bottom-right{content:"Página " counter(page) " de " counter(pages);font:500 8pt 'Plus Jakarta Sans',sans-serif;color:#361133}}
+@page cover{margin:0;@bottom-left{content:none}@bottom-right{content:none}}
+.cover{page:cover}
+@media print{
+ body{background:#fff}
+ .page{margin:0;box-shadow:none;width:auto;min-height:0;padding:0;break-after:page}
+ .page.cover{width:8.5in;height:11in;padding:.8in .75in;overflow:hidden}
+ .page:last-child{break-after:auto}
+ a{color:inherit;text-decoration:none}
+}
+
+.cover{background:var(--r1);}
+.cover .logo{color:var(--red)}
+.cover h1{font-size:54pt;font-weight:900;color:var(--red);margin:1.8in 0 .2in;line-height:.95;letter-spacing:-.02em}
+.cover .lede{font-size:15pt;max-width:5in}
+.kicker{font:700 8.5pt var(--head);letter-spacing:.18em;text-transform:uppercase;color:var(--red);margin-bottom:6px}
+h2{font-size:28pt;font-weight:900;margin-bottom:.12in}
+.cols{column-count:2;column-gap:.35in;column-fill:balance}
+.cols p:first-of-type::first-letter{font:900 40pt/.8 var(--head);float:left;padding:4px 6px 0 0;color:var(--red)}
+.pull{font:700 17pt/1.2 var(--head);color:var(--red);border-top:3px solid var(--red);border-bottom:1px solid var(--red);padding:10px 0;margin:.2in 0}
+figure{margin:0 0 .2in}figcaption{font-size:8pt;margin-top:4px}
+.art{margin-bottom:.3in}
+</style></head><body><section class="page cover"><span class="logo">[logo]</span><div class="kicker" style="margin-top:1.2in">[Colección o edición]</div><h1>[Título del relato]</h1><p class="lede">[Bajada: una frase que invita a leer]</p></section><section class="page"><div class="kicker">[Capítulo 1] · [Etiqueta]</div><h2>[Título del capítulo 1]</h2><p style="font-size:12pt">[Entradilla de dos líneas]</p><div class="pull">«[Cita destacada con autor y fecha]»</div><div class="cols"><p>[Texto del cuerpo, párrafo 1]</p><p>[Texto del cuerpo, párrafo 2]</p><figure><div class="box">[Imagen o diagrama]</div><figcaption>[Pie de figura con fuente]</figcaption></figure><p>[Texto del cuerpo, párrafo 3]</p><p>[Texto del cuerpo, párrafo 4]</p></div></section><section class="page"><div class="kicker">[Capítulo 2] · [Etiqueta]</div><h2>[Título del capítulo 2]</h2><p style="font-size:12pt">[Entradilla de dos líneas]</p><div class="pull">«[Cita destacada con autor y fecha]»</div><div class="cols"><p>[Texto del cuerpo, párrafo 1]</p><p>[Texto del cuerpo, párrafo 2]</p><figure><div class="box">[Imagen o diagrama]</div><figcaption>[Pie de figura con fuente]</figcaption></figure><p>[Texto del cuerpo, párrafo 3]</p><p>[Texto del cuerpo, párrafo 4]</p></div></section><section class="page"><div class="kicker">[Capítulo 3] · [Etiqueta]</div><h2>[Título del capítulo 3]</h2><p style="font-size:12pt">[Entradilla de dos líneas]</p><div class="pull">«[Cita destacada con autor y fecha]»</div><div class="cols"><p>[Texto del cuerpo, párrafo 1]</p><p>[Texto del cuerpo, párrafo 2]</p><figure><div class="box">[Imagen o diagrama]</div><figcaption>[Pie de figura con fuente]</figcaption></figure><p>[Texto del cuerpo, párrafo 3]</p><p>[Texto del cuerpo, párrafo 4]</p></div></section><section class="page"><div class="kicker">[Capítulo 4] · [Etiqueta]</div><h2>[Título del capítulo 4]</h2><p style="font-size:12pt">[Entradilla de dos líneas]</p><div class="pull">«[Cita destacada con autor y fecha]»</div><div class="cols"><p>[Texto del cuerpo, párrafo 1]</p><p>[Texto del cuerpo, párrafo 2]</p><figure><div class="box">[Imagen o diagrama]</div><figcaption>[Pie de figura con fuente]</figcaption></figure><p>[Texto del cuerpo, párrafo 3]</p><p>[Texto del cuerpo, párrafo 4]</p></div></section></body></html>

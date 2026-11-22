@@ -1,0 +1,51 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>[Título del documento] · plantilla informe anual</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@500;700;900&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet"><style>
+:root{--red:#EF2222;--ink:#361133;--dark:#1E0C21;--r1:#FFE9E9;--r2:#FFF8F8;--blue:#534DFF;--yellow:#F8D53C;--head:'Gabarito',system-ui,sans-serif;--body:'Plus Jakarta Sans',system-ui,sans-serif}
+*{box-sizing:border-box}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{margin:0;font:400 10.5pt/1.55 var(--body);color:var(--ink);background:#e9e4ea}
+h1,h2,h3,h4{font-family:var(--head);margin:0;line-height:1.1;color:var(--dark)}
+p{margin:0 0 .7em}
+.page{width:8.5in;min-height:11in;margin:16px auto;background:#fff;padding:.8in .75in;position:relative;box-shadow:0 2px 14px #0003}
+.logo{display:inline-block;border:1.5px dashed currentColor;padding:4px 14px;font:700 9pt var(--head);letter-spacing:.06em}
+.ph{color:var(--red);font-weight:500}
+.box{border:1.5px dashed #361133aa;background:var(--r2);padding:.5in 0;text-align:center;font-size:9pt}
+table{width:100%;border-collapse:collapse;font-size:9.5pt}
+th{background:var(--dark);color:#fff;text-align:left;font-family:var(--head);padding:6px 8px}
+td{padding:6px 8px;border-bottom:1px solid #36113322;vertical-align:top}
+tr{break-inside:avoid}
+thead{display:table-header-group}
+h2,h3{break-after:avoid}
+figure,.card,.kpi,.step,.case{break-inside:avoid}
+.break{break-before:page}
+@page{size:Letter;margin:.7in .75in .8in}
+/* Para A4 cambie: size:A4; y .page{width:210mm;min-height:297mm} */
+@page{@bottom-left{content:"[Título corto del documento]";font:500 8pt 'Plus Jakarta Sans',sans-serif;color:#361133}@bottom-right{content:"Página " counter(page) " de " counter(pages);font:500 8pt 'Plus Jakarta Sans',sans-serif;color:#361133}}
+@page cover{margin:0;@bottom-left{content:none}@bottom-right{content:none}}
+.cover{page:cover}
+@media print{
+ body{background:#fff}
+ .page{margin:0;box-shadow:none;width:auto;min-height:0;padding:0;break-after:page}
+ .page.cover{width:8.5in;height:11in;padding:.8in .75in;overflow:hidden}
+ .page:last-child{break-after:auto}
+ a{color:inherit;text-decoration:none}
+}
+
+.cover{background:var(--red);color:#fff}
+.cover h1{color:#fff;font-size:60pt;font-weight:900;margin:2.2in 0 .15in;line-height:.95}
+.cover .logo{color:#fff}
+.band{background:var(--dark);color:#fff;margin:-.8in -.75in .4in;padding:.5in .75in}
+.band h2{color:#fff;font-size:26pt}
+@media print{.band{margin:0 0 .4in}}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:.15in;margin:.25in 0}
+.kpi{background:var(--r1);padding:.18in;border-top:5px solid var(--red)}
+.kpi b{display:block;font:900 30pt var(--head);color:var(--red)}
+.kpi:nth-child(3n){border-top-color:var(--blue)}
+.chart{height:2.2in;background:linear-gradient(var(--r2),var(--r2));border:1.5px dashed var(--ink);display:grid;place-items:center;margin:.2in 0}
+.dark{background:var(--dark);color:#fff}.dark h2{color:var(--yellow)}
+h3{font-size:14pt;color:var(--red);margin:.2in 0 .08in}
+</style></head><body><section class="page cover"><span class="logo">[logo]</span><h1>[Informe de cierre]</h1><p style="font-size:16pt">[Periodo] · [Proyecto]</p></section>
+<section class="page"><div class="band"><div class="kicker" style="color:var(--yellow)">[Etiqueta]</div><h2>[Carta de apertura]</h2></div><p>[Texto de la carta, párrafo 1]</p><p>[Texto de la carta, párrafo 2]</p><p><b>[Nombre, cargo]</b></p>
+<h3>[Cifras clave]</h3><div class="kpis"><div class="kpi"><b>[Cifra]</b>[Qué mide, con fuente y fecha]</div><div class="kpi"><b>[Cifra]</b>[Qué mide, con fuente y fecha]</div><div class="kpi"><b>[Cifra]</b>[Qué mide, con fuente y fecha]</div><div class="kpi"><b>[Cifra]</b>[Qué mide, con fuente y fecha]</div><div class="kpi"><b>[Cifra]</b>[Qué mide, con fuente y fecha]</div><div class="kpi"><b>[Cifra]</b>[Qué mide, con fuente y fecha]</div></div></section>
+<section class="page"><div class="band"><h2>[Título del capítulo]</h2></div><div class="chart">[Gráfico con dato y fuente]</div><h3>[Subtítulo]</h3><p>[Texto]</p><div class="kpis"><div class="kpi"><b>[Cifra]</b>[Descripción]</div><div class="kpi"><b>[Cifra]</b>[Descripción]</div><div class="kpi"><b>[Cifra]</b>[Descripción]</div></div></section>
+<section class="page dark" style="background:var(--dark)"><h2>[Título de la página oscura]</h2><p>[Mensaje principal en una o dos frases]</p><div class="chart" style="border-color:#fff;background:#ffffff10">[Visual de apoyo]</div><p>[Texto]</p></section>
+<section class="page"><h2>[Notas, metodología y fuentes]</h2><table><thead><tr><th>[Fuente]</th><th>[Qué respalda]</th><th>[Sello]</th></tr></thead><tbody><tr><td>[Enlace]</td><td>[Afirmación]</td><td>[Sello]</td></tr><tr><td>[Enlace]</td><td>[Afirmación]</td><td>[Sello]</td></tr><tr><td>[Enlace]</td><td>[Afirmación]</td><td>[Sello]</td></tr><tr><td>[Enlace]</td><td>[Afirmación]</td><td>[Sello]</td></tr><tr><td>[Enlace]</td><td>[Afirmación]</td><td>[Sello]</td></tr><tr><td>[Enlace]</td><td>[Afirmación]</td><td>[Sello]</td></tr></tbody></table></section></body></html>
