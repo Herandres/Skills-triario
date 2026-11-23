@@ -1,9 +1,9 @@
 ## 8. Referencias
 Responde: P5
 
-Cada fuente lleva su nivel de evidencia y las secciones donde se usa. Las marcadas «Visto solo en buscador» no se pudieron abrir y verificar completas.
+Cada fuente se presenta con su nivel de evidencia y las secciones donde se usa. Las fuentes consultadas sin verificación completa se identificaron por buscador y no se pudieron revisar en su totalidad.
 
-### Fuente primaria
+### Fuentes primarias
 
 - Anthropic, Effective harnesses for long-running agents · secciones 2, 3
 - Anthropic, Harness design for long-running apps · secciones 2, 4
@@ -21,13 +21,11 @@ Cada fuente lleva su nivel de evidencia y las secciones donde se usa. Las marcad
 - Microsoft Agent Governance Toolkit, repositorio · secciones 4
 - Anthropic, Building effective agents; Claude Code, subagents · secciones 5
 - ODCS de Bitol; Anthropic, Building effective agents · secciones 5
-- rama origin/claude/doc-le-d06-equipos; hecho interno de t06-evidencia/evidencia.md Caso 6 · secciones 5
-- hechos internos de t06-evidencia/evidencia.md Casos 1 a 5 · secciones 5
 - regla «no medido» · secciones 5
 - ADR-008, commit 424f350 · secciones 5
 - proceso/ciclo.md paso 8 · secciones 5
 
-### Fuente secundaria
+### Fuentes secundarias
 
 - Blue Orange · secciones 2
 - MightyBot; Airflow BaseOperator · secciones 3
@@ -35,7 +33,7 @@ Cada fuente lleva su nivel de evidencia y las secciones donde se usa. Las marcad
 - Kafka Connect vía MongoDB docs; DZone · secciones 3
 - resúmenes de ZenML sobre Nubank y Grab · secciones 4
 
-### Visto solo en buscador
+### Fuentes consultadas sin verificación completa
 
 - Steinberger y Osmani, vía reseñas · secciones 2
 - Osmani, vía reseñas · secciones 2, 3
@@ -54,29 +52,17 @@ Cada fuente lleva su nivel de evidencia y las secciones donde se usa. Las marcad
 - explorador, sobre reseñas y resúmenes · secciones 4
 - fuentes primarias débiles · secciones 6
 
-### Hipótesis
+### Interpretaciones
 
 - juicio del autor · secciones 6
 
 ### Investigación interna de Triario
 
-- `investigacion/cierre-loop-engineering/t01-tesis/tesis.md` · secciones 2, 3
-- `investigacion/cierre-loop-engineering/t13-explorador/informe-de-viaje.md` · secciones 2, 4
-- `documento/cierre-loop-engineering/d02-marco/parte1.md` · secciones 3
-- `investigacion/cierre-loop-engineering/t01-tesis/ideas-ingenieria-datos.md` · secciones 3
-- `investigacion/cierre-loop-engineering/t14-aterrizador/radar.md` · secciones 4, 6
-- `investigacion/cierre-loop-engineering/t14-aterrizador/fichas/context-engineering.md` · secciones 4
-- `investigacion/cierre-loop-engineering/t14-aterrizador/fichas/evals.md` · secciones 4
-- `investigacion/cierre-loop-engineering/t14-aterrizador/fichas/guardrails.md` · secciones 4
-- `fichas/human-in-the-loop.md` · secciones 4
-- `investigacion/cierre-loop-engineering/t14-aterrizador/fichas/harness.md` · secciones 4
-- `investigacion/cierre-loop-engineering/t14-aterrizador/fichas/observabilidad-trazas.md` · secciones 4
-- `investigacion/cierre-loop-engineering/t14-aterrizador/fichas/human-in-the-loop.md` · secciones 4
-- `investigacion/cierre-loop-engineering/t14-aterrizador/fichas/gobernanza-ia.md` · secciones 4
-- `investigacion/cierre-loop-engineering/t14-aterrizador/fichas/versionado-prompts-skills.md` · secciones 4
-- `investigacion/cierre-loop-engineering/t14-aterrizador/fichas/presupuesto-tokens-costo.md` · secciones 4
-- `investigacion/cierre-loop-engineering/t15-patrones/patrones.md` · secciones 4, 5
-- `documento/cierre-loop-engineering/d06-equipos/parte2-base.md` · secciones 5
-- `documento/cierre-loop-engineering/d03-radar/radar.md` · secciones 5, 6
-- `retro/2026-11-21.md` · secciones 5
-- `t16-supervisor/huecos.md` · secciones 6
+- Tesis de Loop Engineering · secciones 2, 3, 5
+- Informe de exploración de la industria · secciones 2, 4
+- Marco conceptual · secciones 3
+- Radar de conceptos de la industria · secciones 4, 6
+- Catálogo de patrones · secciones 4, 5
+- Base de los equipos · secciones 5
+- Revisión de la investigación · secciones 5, 6
+- Plano cartesiano · secciones 5, 6

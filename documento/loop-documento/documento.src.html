@@ -37,6 +37,10 @@ ol.toc .ok .e{color:var(--red)}
 .sec{margin-bottom:.35in}
 .responde{font:500 8.5pt var(--mono);color:var(--blue);margin:-.06in 0 .16in;text-transform:uppercase;letter-spacing:.05em}
 .sec strong{color:var(--dark)}
+.sec p,.sec li{text-align:justify;hyphens:auto}
+.sello{font-size:.86em;font-style:italic;color:#361133aa}
+ol.toc a{color:inherit;text-decoration:none}
+.notas i{color:var(--blue);font-style:normal}
 .sec blockquote{margin:.15in 0;border-left:4px solid var(--red);padding:2px 0 2px 12px;font-size:12pt;color:var(--dark)}
 sup.ref{font:700 7.5pt var(--mono);color:var(--red);margin-left:1px}
 .notas{border-top:1px solid #36113333;margin-top:.2in;padding-top:.08in;font-size:8pt;line-height:1.45;color:#361133cc}
@@ -69,7 +73,7 @@ sup.ref{font:700 7.5pt var(--mono);color:var(--red);margin-left:1px}
 <section class="page toc-page">
   <h2>Contenido</h2>
   <ol class="toc" id="toc"></ol>
-  <div class="note">Este documento se construye sección por sección con un loop: cada sección la escribe un agente con un paquete de fuentes fijo, la revisa un script contra el contrato y la aprueba un auditor ciego. Las fuentes van numeradas al final de cada sección con su nivel de evidencia.</div>
+  <div class="note"><b>Nota de lectura.</b> Cada afirmación remite a una nota numerada al final de su sección, con el origen de la fuente y su nivel de evidencia: fuente primaria, fuente secundaria, fuente consultada sin verificación completa o interpretación. Los puntos marcados «por validar» están pendientes de confirmación interna.</div>
 </section>
 
 <div id="doc"></div>
@@ -87,16 +91,28 @@ sup.ref{font:700 7.5pt var(--mono);color:var(--red);margin-left:1px}
     estados:['estados-del-ciclo.svg','Estados de un ciclo frente al tronco de trabajo. Diagrama en Archify.'],
     plano:['plano-cartesiano.svg','El plano cartesiano: madurez en la industria frente a adopción en Triario.']};
   let nfig=0;
+  // Lenguaje formal para el lector: sellos y notas sin rutas ni códigos internos
+  const SELLO={'Fuente primaria':'fuente primaria','Fuente secundaria':'fuente secundaria','Visto solo en buscador':'fuente consultada sin verificación completa','Hipótesis':'interpretación','confirmar con Hernán':'por validar'};
+  const DOCS={'t01-tesis':'Tesis de Loop Engineering','t04-mostrar-loop':'Estudio de innovación del loop','t13-explorador':'Informe de exploración de la industria','t14-aterrizador':'Radar de conceptos de la industria','t15-patrones':'Catálogo de patrones','t16-supervisor':'Revisión de la investigación','d02-marco':'Marco conceptual','d03-radar':'Plano cartesiano','d06-equipos':'Base de los equipos','sección':'Este documento'};
+  const INTERNO=/Triario|agente|tesis|mapa de|fichas|radar|bitácora|lectura|especialista|propia|veredicto|encargo|supervisor|D0\d|T\d\d|rama|origin\//i;
+  function nota(t){
+    const sellos=[...new Set([...t.matchAll(/\[([^\]]+)\]/g)].map(m=>SELLO[m[1]]).filter(Boolean))];
+    const ext=[...t.matchAll(/\(([^)]+)\)/g)].map(m=>m[1]).filter(x=>!INTERNO.test(x));
+    let origen=ext.join('; ');
+    if(!origen){const k=Object.keys(DOCS).find(k=>t.includes(k));origen=(k?DOCS[k]:'Investigación interna')+(k==='sección'?(' · '+(t.match(/sección \d/)||[''])[0]):' · investigación interna de Triario');}
+    return esc(origen)+(sellos.length?' · <i>'+sellos.join(', ')+'</i>':'');
+  }
+  function sellosEnLinea(h){return h.replace(/\[(Fuente primaria|Fuente secundaria|Visto solo en buscador|Hipótesis|confirmar con Hernán)\]/g,(m,s)=>'<span class="sello">('+SELLO[s]+')</span>');}
   function render(md,s){
     const notas=[],idx={};
     md=md.replace(/^\[\^([^\]]+)\]:\s*(.+)$/gm,(m,k,t)=>{idx[k]=notas.push(t);return '';});
     md=md.replace(/^Responde:.*$/m,'');
     md=md.replace(/<!--\s*figura:\s*([\w-]+)\s*-->/g,(m,k)=>{const f=FIG[k];if(!f)return '';nfig++;
       return '\n<figure><img src="figuras/'+f[0]+'" alt="'+esc(f[1])+'"><figcaption><b>Figura '+nfig+'.</b> '+esc(f[1])+'</figcaption></figure>\n';});
-    md=md.replace(/^##\s+(\d+)\.\s+(.+)$/m,(m,n,t)=>'<h2><span class="n">'+String(n).padStart(2,'0')+'</span>'+esc(t)+'</h2><div class="responde">Responde · '+s.responde.map(p=>p+' '+(PREG[p]||'')).join(' · ')+'</div>');
+    md=md.replace(/^##\s+(\d+)\.\s+(.+)$/m,(m,n,t)=>'<h2><span class="n">'+String(n).padStart(2,'0')+'</span>'+esc(t)+'</h2>'+(s.n===8?'':'<div class="responde">'+s.responde.map(p=>PREG[p]||'').join(' · ')+'</div>'));
     md=md.replace(/\[\^([^\]]+)\]/g,(m,k)=>'<sup class="ref">'+(idx[k]||k)+'</sup>');
-    let html=window.marked?marked.parse(md):'<pre>'+esc(md)+'</pre>';
-    if(notas.length) html+='<div class="notas"><ol>'+notas.map(t=>'<li>'+esc(t)+'</li>').join('')+'</ol></div>';
+    let html=sellosEnLinea(window.marked?marked.parse(md):'<pre>'+esc(md)+'</pre>');
+    if(notas.length) html+='<div class="notas"><ol>'+notas.map(t=>'<li>'+nota(t)+'</li>').join('')+'</ol></div>';
     const cuerpo='<div class="sec" id="s'+s.n+'">'+html+'</div>';
     if(PLANO.includes(s.n)) return '<section class="page plano"><div class="frame"><div class="hoja">Plano '+(PLANO.indexOf(s.n)+1)+' de '+PLANO.length+' · sección '+s.n+'</div>'+cuerpo+'<div class="tblock"><span>Loop Engineering</span><span>Datos e IA</span><span>Sección '+s.n+'</span><span>Triario · 2026</span></div></div></section>';
     return cuerpo;
@@ -105,8 +121,8 @@ sup.ref{font:700 7.5pt var(--mono);color:var(--red);margin-left:1px}
   fetch('indice.json',{cache:'no-store'}).then(r=>r.json()).then(async ix=>{
     const orden=ix.secciones.slice().sort((a,b)=>a.n-b.n);
     const ok=orden.filter(s=>s.estado==='aprobada').length;
-    $('ver').textContent=ok+' de '+orden.length+' secciones · '+new Date(ix.actualizado).toLocaleDateString('es-CO',{day:'numeric',month:'long',year:'numeric'});
-    $('toc').innerHTML=orden.map(s=>'<li class="'+(s.estado==='aprobada'?'ok':'')+'"><span class="n">'+String(s.n).padStart(2,'0')+'</span><span>'+esc(s.titulo)+'</span><span class="e">'+(s.estado==='aprobada'?'Aprobada':s.estado==='curso'?'Escribiéndose':'En construcción')+'</span></li>').join('');
+    $('ver').textContent='Versión 1.0 · '+new Date(ix.actualizado).toLocaleDateString('es-CO',{day:'numeric',month:'long',year:'numeric'});
+    $('toc').innerHTML=orden.map(s=>'<li><span class="n">'+String(s.n).padStart(2,'0')+'</span><span><a href="#s'+s.n+'">'+esc(s.titulo)+'</a></span></li>').join('');
     const partes=await Promise.all(orden.map(async s=>{
       if(s.archivo){try{return render(await (await fetch(s.archivo,{cache:'no-store'})).text(),s);}catch(e){}}
       return hueco(s);
