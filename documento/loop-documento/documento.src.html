@@ -1,0 +1,113 @@
+<title>Loop Engineering en Triario</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gabarito:wght@500;700;900&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap">
+<style>
+/* Plantillas T03: 01 Formal (columna) + 06 Plano técnico (secciones 3 y 5). Una sola apariencia: papel blanco sobre mesa gris, también en tema oscuro. */
+:root{--red:#EF2222;--ink:#361133;--dark:#1E0C21;--r1:#FFE9E9;--r2:#FFF8F8;--blue:#534DFF;--yellow:#F8D53C;--mesa:#E9E4EA;--paper:#FFFFFF;
+  --head:"Gabarito",system-ui,sans-serif;--body:"Plus Jakarta Sans",system-ui,sans-serif;--mono:ui-monospace,Menlo,Consolas,monospace;color-scheme:light}
+*{box-sizing:border-box}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{margin:0;font:400 10.5pt/1.6 var(--body);color:var(--ink);background:var(--mesa);padding-block:8px 24px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3,h4{font-family:var(--head);margin:0;line-height:1.1;color:var(--dark)}
+p{margin:0 0 .7em}
+.page{width:8.5in;max-width:100%;margin:16px auto;background:var(--paper);padding:.8in .75in;position:relative;box-shadow:0 2px 14px #0003}
+.cover,.toc-page{min-height:11in}
+table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:.15in 0}
+th{background:var(--dark);color:#fff;text-align:left;font-family:var(--head);padding:6px 8px}
+td{padding:6px 8px;border-bottom:1px solid #36113322;vertical-align:top}
+tr{break-inside:avoid}thead{display:table-header-group}
+h2,h3{break-after:avoid}figure,.notas{break-inside:avoid}
+/* Portada formal */
+.cover{border-top:.35in solid var(--red);display:flex;flex-direction:column}
+.cover img{height:40px;width:auto;align-self:flex-start}
+.cover .eyebrow{font:700 9pt var(--head);letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-top:1.3in}
+.cover h1{font-size:46pt;font-weight:900;letter-spacing:-.02em;margin:.12in 0 .2in}
+.cover .sub{font-size:14pt;line-height:1.45;max-width:5.6in;color:var(--ink)}
+.cover .meta{border-top:2px solid var(--red);margin-top:auto;padding-top:.15in;display:grid;grid-template-columns:1fr 1fr;gap:8px 24px;font-size:9.5pt}
+/* Contenido */
+.toc-page h2,.sec h2{font-size:17pt;border-bottom:2px solid var(--red);padding-bottom:4px;margin:0 0 .15in}
+.sec h2 .n{color:var(--red);margin-right:8px}
+ol.toc{list-style:none;padding:0;margin:0}
+ol.toc li{display:flex;gap:10px;padding:7px 0;border-bottom:1px dotted #36113344}
+ol.toc .n{font:700 10.5pt var(--head);color:var(--red);width:28px}
+ol.toc .e{margin-left:auto;font:500 8pt var(--mono);text-transform:uppercase;letter-spacing:.06em;color:#36113399}
+ol.toc .ok .e{color:var(--red)}
+.note{background:var(--r1);border-left:4px solid var(--red);padding:8px 12px;font-size:9.5pt;margin-top:.4in}
+/* Secciones */
+.sec{margin-bottom:.35in}
+.responde{font:500 8.5pt var(--mono);color:var(--blue);margin:-.06in 0 .16in;text-transform:uppercase;letter-spacing:.05em}
+.sec strong{color:var(--dark)}
+.sec blockquote{margin:.15in 0;border-left:4px solid var(--red);padding:2px 0 2px 12px;font-size:12pt;color:var(--dark)}
+sup.ref{font:700 7.5pt var(--mono);color:var(--red);margin-left:1px}
+.notas{border-top:1px solid #36113333;margin-top:.2in;padding-top:.08in;font-size:8pt;line-height:1.45;color:#361133cc}
+.notas ol{margin:0;padding-left:18px}.notas li{overflow-wrap:anywhere}
+.hueco{border:1.5px dashed #361133aa;background:var(--r2);padding:.35in .3in;text-align:center;font-size:9.5pt;margin-bottom:.35in}
+.hueco b{display:block;font:700 13pt var(--head);color:var(--dark);margin-bottom:4px}
+/* Plano técnico (06) */
+.plano{background-image:linear-gradient(#EF222218 1px,transparent 1px),linear-gradient(90deg,#EF222218 1px,transparent 1px);background-size:.25in .25in}
+.plano .frame{border:2px solid var(--dark);padding:.22in;background:#ffffffd9}
+.plano .hoja{font:500 8.5pt var(--mono);color:var(--red);margin-bottom:6px}
+.tblock{margin:.25in 0 0 auto;width:3.3in;max-width:100%;border:2px solid var(--dark);font-size:8pt;display:grid;grid-template-columns:1fr 1fr}
+.tblock span{padding:4px 6px;border:1px solid var(--dark);margin:-1px 0 0 -1px}
+@page{size:Letter;margin:.7in .75in .8in}
+@page{@bottom-left{content:"Loop Engineering · Triario";font:500 8pt "Plus Jakarta Sans",sans-serif;color:#361133}@bottom-right{content:"Página " counter(page) " de " counter(pages);font:500 8pt "Plus Jakarta Sans",sans-serif;color:#361133}}
+@page cover{margin:0;@bottom-left{content:none}@bottom-right{content:none}}
+.cover{page:cover}
+@media print{body{background:#fff;padding:0}.page{margin:0;box-shadow:none;width:auto;min-height:0;padding:0;break-after:page}
+  .page.cover{width:8.5in;height:11in;padding:.8in .75in;overflow:hidden}.page:last-child{break-after:auto}a{color:inherit;text-decoration:none}}
+@media (max-width:860px){.page{padding:.45in .35in}.cover h1{font-size:34pt}.cover .eyebrow{margin-top:.7in}.cover,.toc-page{min-height:0}}
+</style>
+
+<section class="page cover">
+  <img src="__LOGO__" alt="Triario">
+  <div class="eyebrow">Informe técnico · Parte 1 · El concepto</div>
+  <h1>Loop Engineering</h1>
+  <p class="sub">La disciplina de construir sistemas de agentes de IA que se repiten, se revisan con reglas fijas, saben cuándo parar y aprenden de cada vuelta.</p>
+  <div class="meta"><div><b>Proyecto</b><br>Loop Engineering · Fase 2.0</div><div><b>Periodo</b><br>Septiembre a noviembre de 2026</div><div><b>Área</b><br>Datos e IA · Triario</div><div><b>Versión</b><br><span id="ver">En construcción</span></div></div>
+</section>
+
+<section class="page toc-page">
+  <h2>Contenido</h2>
+  <ol class="toc" id="toc"></ol>
+  <div class="note">Este documento se construye sección por sección con un loop: cada sección la escribe un agente con un paquete de fuentes fijo, la revisa un script contra el contrato y la aprueba un auditor ciego. Las fuentes van numeradas al final de cada sección con su nivel de evidencia.</div>
+</section>
+
+<div id="doc"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const PREG={P1:'¿Qué es y por qué importa?',P2:'¿Cómo estamos frente a la industria?',P3:'¿Qué ya produce valor?',P4:'¿Hasta dónde puede llegar?',P5:'¿Con qué evidencia se sostiene?'};
+  const PLANO=[3,5];
+  function render(md,s){
+    const notas=[],idx={};
+    md=md.replace(/^\[\^([^\]]+)\]:\s*(.+)$/gm,(m,k,t)=>{idx[k]=notas.push(t);return '';});
+    md=md.replace(/^Responde:.*$/m,'');
+    md=md.replace(/^##\s+(\d+)\.\s+(.+)$/m,(m,n,t)=>'<h2><span class="n">'+String(n).padStart(2,'0')+'</span>'+esc(t)+'</h2><div class="responde">Responde · '+s.responde.map(p=>p+' '+(PREG[p]||'')).join(' · ')+'</div>');
+    md=md.replace(/\[\^([^\]]+)\]/g,(m,k)=>'<sup class="ref">'+(idx[k]||k)+'</sup>');
+    let html=window.marked?marked.parse(md):'<pre>'+esc(md)+'</pre>';
+    if(notas.length) html+='<div class="notas"><ol>'+notas.map(t=>'<li>'+esc(t)+'</li>').join('')+'</ol></div>';
+    const cuerpo='<div class="sec" id="s'+s.n+'">'+html+'</div>';
+    if(PLANO.includes(s.n)) return '<section class="page plano"><div class="frame"><div class="hoja">Plano '+(PLANO.indexOf(s.n)+1)+' de '+PLANO.length+' · sección '+s.n+'</div>'+cuerpo+'<div class="tblock"><span>Loop Engineering</span><span>Datos e IA</span><span>Sección '+s.n+'</span><span>Triario · 2026</span></div></div></section>';
+    return cuerpo;
+  }
+  function hueco(s){return '<div class="hueco" id="s'+s.n+'"><b>'+String(s.n).padStart(2,'0')+' · '+esc(s.titulo)+'</b>'+(s.estado==='curso'?'Escribiéndose':'En construcción')+' · responde '+s.responde.join(', ')+'</div>';}
+  fetch('indice.json',{cache:'no-store'}).then(r=>r.json()).then(async ix=>{
+    const orden=ix.secciones.slice().sort((a,b)=>a.n-b.n);
+    const ok=orden.filter(s=>s.estado==='aprobada').length;
+    $('ver').textContent=ok+' de '+orden.length+' secciones · '+new Date(ix.actualizado).toLocaleDateString('es-CO',{day:'numeric',month:'long',year:'numeric'});
+    $('toc').innerHTML=orden.map(s=>'<li class="'+(s.estado==='aprobada'?'ok':'')+'"><span class="n">'+String(s.n).padStart(2,'0')+'</span><span>'+esc(s.titulo)+'</span><span class="e">'+(s.estado==='aprobada'?'Aprobada':s.estado==='curso'?'Escribiéndose':'En construcción')+'</span></li>').join('');
+    const partes=await Promise.all(orden.map(async s=>{
+      if(s.archivo){try{return render(await (await fetch(s.archivo,{cache:'no-store'})).text(),s);}catch(e){}}
+      return hueco(s);
+    }));
+    // Las secciones corridas comparten hoja; los planos van en hoja propia
+    let out='',hoja='';
+    partes.forEach(p=>{if(p.startsWith('<section')){if(hoja){out+='<section class="page">'+hoja+'</section>';hoja='';}out+=p;}else hoja+=p;});
+    if(hoja) out+='<section class="page">'+hoja+'</section>';
+    $('doc').innerHTML=out;
+  }).catch(()=>{$('doc').innerHTML='<section class="page"><p>No se pudo cargar el índice del documento. Recarga la página.</p></section>';});
+})();
+</script>
