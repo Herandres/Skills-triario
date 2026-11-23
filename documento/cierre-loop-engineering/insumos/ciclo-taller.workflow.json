@@ -1,0 +1,100 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "El Taller · Un ciclo de mejora",
+    "subtitle": "8 roles, un auditor ciego, retorno a la capa que falló y una memoria que solo crece",
+    "animation": "none",
+    "visual_preset": "classic",
+    "quality_profile": "showcase",
+    "legend": {
+      "mode": "auto",
+      "entries": {
+        "backend": { "label": "Coordinador" },
+        "frontend": { "label": "Subagentes" },
+        "security": { "label": "Controles" },
+        "database": { "label": "Memoria en git" },
+        "cloud": { "label": "Publicado" }
+      }
+    },
+    "views": [
+      {
+        "id": "camino",
+        "label": "Camino aprobado",
+        "focus": ["tronco", "supervisor", "investigador", "arquitecto", "desarrollador", "guardian", "qa", "publicador", "cronista"],
+        "note": "De la memoria del tronco a una versión publicada y registrada."
+      },
+      {
+        "id": "retorno",
+        "label": "Rechazo y retorno",
+        "focus": ["qa", "rechazo", "desarrollador", "guardian"],
+        "note": "Si el QA ciego rechaza, un Desarrollador nuevo corrige. Máximo 2 rondas."
+      },
+      {
+        "id": "memoria",
+        "label": "Memoria en git",
+        "focus": ["tronco", "artefacto", "bitacoras", "cronista", "publicador"],
+        "note": "Lo publicado sale del tronco y lo aprendido queda en bitácoras que solo crecen."
+      }
+    ]
+  },
+  "lanes": [
+    { "id": "mem", "label": "Memoria · git" },
+    { "id": "coord", "label": "Coordinador" },
+    { "id": "sub", "label": "Subagentes" },
+    { "id": "ctrl", "label": "Controles", "variant": "exception" }
+  ],
+  "phases": [
+    { "id": "f1", "label": "Reconciliar e investigar", "fromCol": 0, "toCol": 1 },
+    { "id": "f2", "label": "Planear y construir", "fromCol": 2, "toCol": 3, "variant": "emphasis" },
+    { "id": "f3", "label": "Verificar y publicar", "fromCol": 4, "toCol": 5, "variant": "dashed" }
+  ],
+  "mainPath": ["tronco", "supervisor", "investigador", "arquitecto", "desarrollador", "guardian", "qa", "publicador", "cronista"],
+  "nodes": [
+    { "id": "tronco", "lane": "mem", "col": 0, "type": "database", "label": "Tronco", "sublabel": "CLAUDE.md · estado.json", "width": 140 },
+    { "id": "artefacto", "lane": "mem", "col": 4, "type": "cloud", "label": "Artefacto vN", "sublabel": "solo si aprueba", "width": 140 },
+    { "id": "bitacoras", "lane": "mem", "col": 5, "type": "database", "label": "Bitácoras", "sublabel": "solo crecen", "width": 140 },
+    { "id": "supervisor", "lane": "coord", "col": 0, "type": "backend", "label": "Supervisor", "sublabel": "reconciliación", "tag": "repara primero", "width": 140 },
+    { "id": "arquitecto", "lane": "coord", "col": 2, "type": "backend", "label": "Arquitecto", "sublabel": "1 mejora + ADR", "width": 140 },
+    { "id": "publicador", "lane": "coord", "col": 4, "type": "backend", "label": "Publicador", "sublabel": "merge al tronco", "width": 140 },
+    { "id": "cronista", "lane": "coord", "col": 5, "type": "backend", "label": "Cronista", "sublabel": "aciertos · huecos", "width": 140 },
+    { "id": "investigador", "lane": "sub", "col": 1, "type": "frontend", "label": "Investigador", "sublabel": "web + relevo", "width": 140 },
+    { "id": "desarrollador", "lane": "sub", "col": 2, "type": "frontend", "label": "Desarrollador", "sublabel": "src/ por secciones", "width": 140 },
+    { "id": "qa", "lane": "sub", "col": 4, "type": "frontend", "label": "QA ciego", "sublabel": "solo capturas", "tag": "no ve el proceso", "width": 140 },
+    { "id": "guardian", "lane": "ctrl", "col": 3, "type": "security", "label": "Guardián", "sublabel": "qa.mjs + contrato", "width": 140 },
+    { "id": "rechazo", "lane": "ctrl", "col": 4, "type": "security", "label": "Rechazo", "sublabel": "máx. 2 rondas", "width": 140 }
+  ],
+  "edges": [
+    { "id": "e-lee", "from": "tronco", "to": "supervisor", "label": "lee memoria", "variant": "default" },
+    { "id": "e-sup-inv", "from": "supervisor", "to": "investigador", "variant": "default" },
+    { "id": "e-inv-arq", "from": "investigador", "to": "arquitecto", "label": "técnicas", "variant": "default" },
+    { "id": "e-plan", "from": "arquitecto", "to": "desarrollador", "label": "plan + criterios", "variant": "emphasis" },
+    { "id": "e-build", "from": "desarrollador", "to": "guardian", "label": "build", "variant": "default" },
+    { "id": "e-capturas", "from": "guardian", "to": "qa", "label": "capturas", "variant": "emphasis" },
+    { "id": "e-aprobado", "from": "qa", "to": "publicador", "label": "aprobado", "variant": "emphasis" },
+    { "id": "e-rechazado", "from": "qa", "to": "rechazo", "label": "rechazado", "variant": "security", "role": "error" },
+    { "id": "e-retorno", "from": "rechazo", "to": "desarrollador", "label": "corrige", "variant": "dashed", "role": "return" },
+    { "id": "e-publica", "from": "publicador", "to": "artefacto", "label": "publica", "variant": "default" },
+    { "id": "e-registra", "from": "publicador", "to": "cronista", "variant": "default" },
+    { "id": "e-memoria", "from": "cronista", "to": "bitacoras", "label": "agrega", "variant": "dashed" }
+  ],
+  "cards": [
+    {
+      "dot": "rose",
+      "title": "Reglas fijas",
+      "items": [
+        "El contrato no cambia durante el ciclo",
+        "Un solo cambio de producto por ciclo",
+        "Nada se sobrescribe y nunca push --force"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "Rastro",
+      "items": [
+        "IDEA → ADR → CICLO → commit → vN",
+        "El Guardián de la memoria corre al empezar y al cerrar"
+      ]
+    }
+  ]
+}
