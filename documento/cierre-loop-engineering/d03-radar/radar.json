@@ -1,0 +1,242 @@
+{
+  "tarea": "D03 · Plano cartesiano (radar) con dos puntos por concepto",
+  "fecha": "2026-11-23",
+  "rama": "claude/doc-le-d03-radar",
+  "base": "investigacion/cierre-loop-engineering/t14-aterrizador/radar.md (commit 628300d) y fichas/*.md",
+  "convenciones": {
+    "rutas": "Sin prefijo: Herandres/Skills-triario. Con prefijo oficina-relevo: Herandres/oficina-relevo, rama claude/taller (corte en el commit d24488d, CICLO-022, 23/11/2026 12:59Z).",
+    "sellos": "[Fuente primaria] · [Fuente secundaria] · [Visto solo en buscador] · [Hipótesis]. Una ruta interna o un commit citado sin sello es [Fuente primaria].",
+    "escala_madurez": "consenso · emergente · moda · no cumple la vara (vara fija de t14-aterrizador/radar.md §2)",
+    "escala_adopcion": "aplicado · a medias · se habla · por confirmar",
+    "zonas": "Fortaleza = validado (consenso o emergente) y aplicado · Brecha = validado y se habla o a medias · Por confirmar = validado y adopción sin evidencia · Fuera = no cumple la vara (definición de t14-aterrizador/radar.md §2)",
+    "punto_equipos": "Columna «Adopción aquí» de t14-aterrizador/radar.md §3, que T14 tomó del contexto del encargo. Donde T14 dijo «No sé: preguntar a Hernán», aquí va «por confirmar con Hernán».",
+    "punto_cierre": "Evidencia leída por D03 en oficina-relevo (claude/taller) y en la investigación del Relevo. El nivel es juicio de D03 sobre esa evidencia [Hipótesis]."
+  },
+  "conceptos": [
+    {
+      "n": 1,
+      "concepto": "Observabilidad y trazas (observability and tracing)",
+      "ficha_t14": "t14-aterrizador/fichas/observabilidad-trazas.md",
+      "madurez_afuera": {
+        "nivel": "consenso",
+        "fuente": "Anthropic, sistema de investigación multiagente: «Adding full production tracing let us diagnose why agents failed…» (https://www.anthropic.com/engineering/multi-agent-research-system); OpenAI Agents SDK, «Tracing» (https://github.com/openai/openai-agents-python)",
+        "sello": "[Fuente primaria]"
+      },
+      "equipos": {
+        "nivel": "por confirmar",
+        "evidencia": "por confirmar con Hernán. T14 lo dejó en «No sé: preguntar a Hernán» (t14-aterrizador/radar.md §3). El BRIEF §3 recoge que, según Hernán, los equipos no han llegado a este concepto: es su afirmación, no un registro.",
+        "zona": "Por confirmar"
+      },
+      "cierre": {
+        "nivel": "aplicado",
+        "alcance": "Por corrida (una entrada por ciclo), no por cada llamada al modelo ni con tokens.",
+        "evidencia": [
+          "oficina-relevo:bitacora/ciclos.md (25 entradas: tres de CICLO-000, que son línea base, canario y ajustes, y una por ciclo de CICLO-001 a CICLO-022; cada una con quién, idea, cambio, salida del Guardián, veredicto del QA y versión publicada; último commit d24488d)",
+          "oficina-relevo:capturas/ (451 archivos versionados, una carpeta por ciclo; regla M8 de tools/integridad.mjs)",
+          "oficina-relevo:tools/integridad.mjs (Guardián de la memoria, creado en f910c04; revisiones M1 a M8)",
+          "t16-supervisor/estado-final.md, tabla «Horas reales (solo de git log)» (commit 59c639a)"
+        ],
+        "zona": "Fortaleza"
+      }
+    },
+    {
+      "n": 2,
+      "concepto": "Barandas (guardrails)",
+      "ficha_t14": "t14-aterrizador/fichas/guardrails.md",
+      "madurez_afuera": {
+        "nivel": "consenso",
+        "fuente": "OpenAI Agents SDK, «Guardrails: Configurable safety checks for input and output validation» (https://github.com/openai/openai-agents-python); NVIDIA NeMo Guardrails (https://github.com/NVIDIA/NeMo-Guardrails)",
+        "sello": "[Fuente primaria]"
+      },
+      "equipos": {
+        "nivel": "por confirmar",
+        "evidencia": "por confirmar con Hernán. T14: «No sé: preguntar a Hernán»; los repos tienen «algún hook» y no se sabe qué revisan (t14-aterrizador/fichas/guardrails.md, que cita t15-patrones/patrones.md ficha A7).",
+        "zona": "Por confirmar"
+      },
+      "cierre": {
+        "nivel": "aplicado",
+        "alcance": "Chequeos deterministas que detienen la publicación; no son hooks de Claude Code sobre herramientas.",
+        "evidencia": [
+          "oficina-relevo:CONTRATO.md (11 criterios; «no cambia durante los ciclos»; un solo commit en su historia, b1d5cfa)",
+          "oficina-relevo:tools/qa.mjs (10 criterios automáticos en CICLO-001, 28 en CICLO-022, según oficina-relevo:bitacora/ciclos.md; último cambio b5a34d9)",
+          "oficina-relevo:tools/integridad.mjs (sale con código 1 si encuentra un hueco no registrado)",
+          "oficina-relevo:proceso/ciclo.md pasos 2 y 6 (si el tronco no pasa, el ciclo solo repara; el Guardián revisa el diff contra el contrato)"
+        ],
+        "zona": "Fortaleza"
+      }
+    },
+    {
+      "n": 3,
+      "concepto": "Versionado de prompts y skills (prompt and skill versioning)",
+      "ficha_t14": "t14-aterrizador/fichas/versionado-prompts-skills.md",
+      "madurez_afuera": {
+        "nivel": "no cumple la vara",
+        "fuente": "Langfuse, «version control… your prompts» (https://github.com/langfuse/langfuse) [Fuente primaria]; MLflow Prompt Registry [Visto solo en buscador]; sin caso publicado en producción con empresa nombrada (T14)",
+        "sello": "[Fuente primaria] y [Visto solo en buscador]"
+      },
+      "equipos": {
+        "nivel": "por confirmar",
+        "evidencia": "por confirmar con Hernán. T14: «No sé: preguntar a Hernán»; que las skills tengan historial por vivir en git es deducción, no hecho (t14-aterrizador/fichas/versionado-prompts-skills.md).",
+        "zona": "Fuera"
+      },
+      "cierre": {
+        "nivel": "a medias",
+        "alcance": "Las instrucciones y el contrato están en git con línea «Versión»; no se registra qué versión produjo cada salida.",
+        "evidencia": [
+          "oficina-relevo:proceso/ciclo.md, proceso/retro.md, proceso/limpieza.md (copias de las instrucciones de cada rutina con línea «Versión: 20/11/2026»; creadas en f910c04 y 8de7396)",
+          "oficina-relevo:CONTRATO.md (sin cambios desde b1d5cfa)",
+          "oficina-relevo:decisiones/ADR-001 a ADR-008 (cada cambio de arquitectura queda como decisión nueva)"
+        ],
+        "zona": "Fuera"
+      }
+    },
+    {
+      "n": 4,
+      "concepto": "Presupuesto de tokens y costo (token budget and cost management)",
+      "ficha_t14": "t14-aterrizador/fichas/presupuesto-tokens-costo.md",
+      "madurez_afuera": {
+        "nivel": "consenso",
+        "fuente": "Claude Code, Manage costs effectively (https://code.claude.com/docs/en/costs); Anthropic, sistema multiagente: «about 15× more tokens than chats» (https://www.anthropic.com/engineering/multi-agent-research-system)",
+        "sello": "[Fuente primaria]"
+      },
+      "equipos": {
+        "nivel": "por confirmar",
+        "evidencia": "por confirmar con Hernán. T14: «No sé: preguntar a Hernán» (t14-aterrizador/radar.md §3).",
+        "zona": "Por confirmar"
+      },
+      "cierre": {
+        "nivel": "por confirmar",
+        "alcance": "No se encontró registro de tokens ni de costo en oficina-relevo ni en la investigación.",
+        "evidencia": [
+          "por confirmar. Único indicio: oficina-relevo:decisiones/ADR-008-mudanza-a-data-ia.md (commit 424f350): «Las rutinas gastaban el uso de una sola cuenta, que se estaba agotando». Es un efecto observado, no una medición."
+        ],
+        "zona": "Por confirmar"
+      }
+    },
+    {
+      "n": 5,
+      "concepto": "Evaluaciones automáticas de agentes (agent evals)",
+      "ficha_t14": "t14-aterrizador/fichas/evals.md",
+      "madurez_afuera": {
+        "nivel": "consenso",
+        "fuente": "Anthropic, Demystifying evals for AI agents (https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents)",
+        "sello": "[Fuente primaria]"
+      },
+      "equipos": {
+        "nivel": "a medias",
+        "evidencia": "t14-aterrizador/radar.md §3 y fichas/evals.md: auditor ciego por salida, sin conjunto fijo de casos que mida al auditor.",
+        "zona": "Brecha"
+      },
+      "cierre": {
+        "nivel": "a medias",
+        "alcance": "QA ciego en cada ciclo y prueba automática que crece; sin set dorado (golden set: casos ya juzgados por una persona) que mida si el QA acierta.",
+        "evidencia": [
+          "oficina-relevo:proceso/ciclo.md paso 7 (QA ciego en subagente nuevo, veredicto por criterio)",
+          "oficina-relevo:bitacora/ciclos.md: 22 de 22 ciclos con producto aprobados en la primera ronda (CICLO-001 a CICLO-022)",
+          "oficina-relevo:retro/2026-11-21.md (commit 0455d88): «el QA ciego nunca ha rechazado nada»"
+        ],
+        "zona": "Brecha"
+      }
+    },
+    {
+      "n": 6,
+      "concepto": "Arnés del agente (agent harness)",
+      "ficha_t14": "t14-aterrizador/fichas/harness.md",
+      "madurez_afuera": {
+        "nivel": "consenso",
+        "fuente": "Anthropic, Claude Agent SDK overview (https://code.claude.com/docs/en/agent-sdk/overview); Anthropic, Effective harnesses for long-running agents (https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)",
+        "sello": "[Fuente primaria]"
+      },
+      "equipos": {
+        "nivel": "se habla",
+        "evidencia": "t14-aterrizador/radar.md §3 y fichas/harness.md: el equipo usa la palabra; hay piezas (CLAUDE.md, skills, agentes, algún hook) sin diseño ni revisión como harness.",
+        "zona": "Brecha"
+      },
+      "cierre": {
+        "nivel": "aplicado",
+        "alcance": "Memoria en disco que se carga al arrancar, prueba de punta a punta antes de trabajar y herramientas propias; sin hooks de Claude Code.",
+        "evidencia": [
+          "oficina-relevo:CLAUDE.md (índice que todo agente lee primero; creado en b1d5cfa)",
+          "oficina-relevo:proceso/ciclo.md pasos 0 a 10 (rutina con roles fijos; paso 2 corre integridad y QA sobre el tronco antes de tocar nada)",
+          "oficina-relevo:tools/qa.mjs, tools/integridad.mjs, tools/captura.mjs, build.mjs"
+        ],
+        "zona": "Fortaleza"
+      }
+    },
+    {
+      "n": 7,
+      "concepto": "Gobernanza de IA (AI governance)",
+      "ficha_t14": "t14-aterrizador/fichas/gobernanza-ia.md",
+      "madurez_afuera": {
+        "nivel": "consenso",
+        "fuente": "NIST AI RMF 1.0, NIST AI 600-1 e ISO/IEC 42001:2023, leídos por resúmenes (t14-aterrizador/fichas/gobernanza-ia.md)",
+        "sello": "[Visto solo en buscador]"
+      },
+      "equipos": {
+        "nivel": "se habla",
+        "evidencia": "t14-aterrizador/radar.md §3 y fichas/gobernanza-ia.md: el equipo la menciona; no consta inventario de loops ni responsable por loop.",
+        "zona": "Brecha"
+      },
+      "cierre": {
+        "nivel": "a medias",
+        "alcance": "Reglas con dueño humano y decisiones registradas; sin inventario de loops ni marco formal (NIST o ISO).",
+        "evidencia": [
+          "oficina-relevo:CONTRATO.md («solo lo cambia Hernán»)",
+          "oficina-relevo:decisiones/ (ADR-001 a ADR-008; ADR-008 «decisión de Hernán», commit 424f350)",
+          "oficina-relevo:bitacora/restricciones.md (un criterio que estorba se anota y lo decide Hernán, según oficina-relevo:CLAUDE.md)"
+        ],
+        "zona": "Brecha"
+      }
+    },
+    {
+      "n": 8,
+      "concepto": "Ingeniería de contexto (context engineering)",
+      "ficha_t14": "t14-aterrizador/fichas/context-engineering.md",
+      "madurez_afuera": {
+        "nivel": "consenso",
+        "fuente": "Anthropic, Effective context engineering for AI agents (https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents); Claude Code, costs (https://code.claude.com/docs/en/costs)",
+        "sello": "[Fuente primaria]"
+      },
+      "equipos": {
+        "nivel": "a medias",
+        "evidencia": "t14-aterrizador/radar.md §3 y fichas/context-engineering.md: CLAUDE.md, skills y bitácora del loop de 30 días; no consta que se mida el contexto.",
+        "zona": "Brecha"
+      },
+      "cierre": {
+        "nivel": "aplicado",
+        "alcance": "Qué lee cada agente está decidido y escrito; no se midió el tamaño del contexto en tokens.",
+        "evidencia": [
+          "oficina-relevo:decisiones/ADR-006-memoria-compartida.md (memoria que todos leen primero; la Retro la resume «para que siga siendo legible»; commit b1d5cfa)",
+          "oficina-relevo:CLAUDE.md «Lee en este orden antes de actuar» (7 pasos)",
+          "oficina-relevo:proceso/ciclo.md paso 7 (al QA ciego se le pasa «SOLO» contrato, criterios, salida de la prueba, resumen del diff, la diferencia entre versiones, y capturas)"
+        ],
+        "zona": "Fortaleza"
+      }
+    },
+    {
+      "n": 9,
+      "concepto": "Persona en el circuito (human-in-the-loop)",
+      "ficha_t14": "t14-aterrizador/fichas/human-in-the-loop.md",
+      "madurez_afuera": {
+        "nivel": "consenso",
+        "fuente": "Anthropic, Building effective agents (https://www.anthropic.com/engineering/building-effective-agents) [Fuente primaria]; Reglamento (UE) 2024/1689, artículo 14 [Visto solo en buscador]",
+        "sello": "[Fuente primaria] y [Visto solo en buscador]"
+      },
+      "equipos": {
+        "nivel": "aplicado",
+        "evidencia": "t14-aterrizador/radar.md §3 y fichas/human-in-the-loop.md: el loop de contenido para en «listo para publicar» y publica una persona.",
+        "zona": "Fortaleza"
+      },
+      "cierre": {
+        "nivel": "aplicado",
+        "alcance": "La persona decide las reglas y lo que no tiene vuelta atrás; cada versión de la oficina la publica la rutina tras el QA, sin aprobación humana por publicación.",
+        "evidencia": [
+          "oficina-relevo:CONTRATO.md («solo lo cambia Hernán»)",
+          "oficina-relevo:bitacora/huecos.md H-016 (el modo por defecto de la oficina queda abierto: «Lo decide Hernán»)",
+          "oficina-relevo:proceso/ciclo.md (los ciclos de la noche «Hernán los sumó el 20/11»; paso 8 publica la rutina solo si el QA aprobó)"
+        ],
+        "zona": "Fortaleza"
+      }
+    }
+  ]
+}

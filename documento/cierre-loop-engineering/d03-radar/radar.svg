@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 780" width="1280" height="780" font-family="'Plus Jakarta Sans', 'Segoe UI', Arial, sans-serif" role="img" aria-labelledby="t d">
+<title id="t">Plano cartesiano del radar: los equipos frente al proyecto del cierre</title>
+<desc id="d">Nueve conceptos del radar de T14. Eje X: madurez afuera. Eje Y: adopción aquí. Círculo: equipos. Rombo: cierre. Flecha de equipos a cierre. Fuente: radar.json de D03.</desc>
+<defs>
+<pattern id="rayas" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="#FFFFFF"/><line x1="0" y1="0" x2="0" y2="8" stroke="#F8D53C" stroke-width="3"/></pattern>
+<pattern id="puntos" width="10" height="10" patternUnits="userSpaceOnUse"><rect width="10" height="10" fill="#F3F1F4"/><circle cx="5" cy="5" r="1.3" fill="#6B5E6E"/></pattern>
+<pattern id="cuadros" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#EEEDFF"/><path d="M0,7 H14" stroke="#C9C6FF" stroke-width="1"/></pattern>
+<marker id="punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1E0C21"/></marker>
+</defs>
+<rect width="1280" height="780" fill="#FFFFFF"/>
+<text x="110" y="42" font-size="24" font-weight="700" fill="#1E0C21">El plano cartesiano: los equipos frente al proyecto del cierre</text>
+<text x="110" y="68" font-size="14" fill="#6B5E6E">Radar de T14 con dos puntos por concepto. Cada punto tiene su evidencia en radar.json (D03). Corte: 23/11/2026.</text>
+<rect x="330" y="110" width="530" height="140" fill="#FDECEC" stroke="#1E0C21" stroke-width="1.2"/>
+<rect x="334" y="116" width="262" height="40" fill="#FFFFFF" opacity="0.92"/>
+<text x="340" y="132" font-size="15" font-weight="700" fill="#EF2222" letter-spacing="1">FORTALEZA</text>
+<text x="340" y="150" font-size="11" fill="#1E0C21">validado afuera y aplicado aquí</text>
+<rect x="330" y="250" width="530" height="260" fill="url(#cuadros)" stroke="#1E0C21" stroke-width="1.2"/>
+<rect x="334" y="256" width="262" height="40" fill="#FFFFFF" opacity="0.92"/>
+<text x="340" y="272" font-size="15" font-weight="700" fill="#534DFF" letter-spacing="1">BRECHA</text>
+<text x="340" y="290" font-size="11" fill="#1E0C21">validado afuera; aquí se habla o va a medias</text>
+<rect x="330" y="510" width="530" height="150" fill="url(#rayas)" stroke="#1E0C21" stroke-width="1.2"/>
+<rect x="334" y="516" width="262" height="40" fill="#FFFFFF" opacity="0.92"/>
+<text x="340" y="532" font-size="15" font-weight="700" fill="#1E0C21" letter-spacing="1">POR CONFIRMAR</text>
+<text x="340" y="550" font-size="11" fill="#1E0C21">validado afuera; sin evidencia de adopción</text>
+<rect x="110" y="110" width="220" height="550" fill="url(#puntos)" stroke="#1E0C21" stroke-width="1.2"/>
+<rect x="114" y="116" width="212" height="40" fill="#FFFFFF" opacity="0.92"/>
+<text x="120" y="132" font-size="15" font-weight="700" fill="#361133" letter-spacing="1">FUERA</text>
+<text x="120" y="150" font-size="11" fill="#1E0C21">no cumple la vara de T14</text>
+<line x1="330" x2="860" y1="250" y2="250" stroke="#BFB6C2" stroke-dasharray="4 4"/>
+<line x1="330" x2="860" y1="390" y2="390" stroke="#BFB6C2" stroke-dasharray="4 4"/>
+<line x1="110" x2="330" y1="250" y2="250" stroke="#BFB6C2" stroke-dasharray="4 4"/>
+<line x1="110" x2="330" y1="390" y2="390" stroke="#BFB6C2" stroke-dasharray="4 4"/>
+<line x1="110" x2="330" y1="510" y2="510" stroke="#BFB6C2" stroke-dasharray="4 4"/>
+<line x1="520" x2="520" y1="110" y2="660" stroke="#BFB6C2" stroke-dasharray="4 4"/>
+<line x1="110" y1="660" x2="880" y2="660" stroke="#1E0C21" stroke-width="2" marker-end="url(#punta)"/>
+<line x1="110" y1="660" x2="110" y2="90" stroke="#1E0C21" stroke-width="2" marker-end="url(#punta)"/>
+<text x="220" y="682" font-size="13" text-anchor="middle" fill="#1E0C21">Moda o no cumple la vara</text>
+<text x="425" y="682" font-size="13" text-anchor="middle" fill="#1E0C21">Emergente</text>
+<text x="690" y="682" font-size="13" text-anchor="middle" fill="#1E0C21">Consenso</text>
+<text x="485" y="710" font-size="15" font-weight="700" text-anchor="middle" fill="#1E0C21">Madurez afuera (vara fija de T14 §2) →</text>
+<text x="100" y="184" font-size="13" text-anchor="end" fill="#1E0C21">Aplicado</text>
+<text x="100" y="324" font-size="13" text-anchor="end" fill="#1E0C21">A medias</text>
+<text x="100" y="454" font-size="13" text-anchor="end" fill="#1E0C21">Se habla</text>
+<text x="100" y="589" font-size="13" text-anchor="end" fill="#1E0C21">Por confirmar</text>
+<text transform="translate(30 385) rotate(-90)" font-size="15" font-weight="700" text-anchor="middle" fill="#1E0C21">Adopción aquí →</text>
+<rect x="350" y="634" width="150" height="18" fill="#FFFFFF"/>
+<text x="425" y="647" font-size="11" text-anchor="middle" fill="#6B5E6E">Emergente: ningún concepto</text>
+<line x1="330" x2="860" y1="250" y2="250" stroke="#1E0C21" stroke-width="3"/>
+<line x1="330" x2="860" y1="510" y2="510" stroke="#1E0C21" stroke-width="3"/>
+<line x1="330" x2="330" y1="110" y2="660" stroke="#1E0C21" stroke-width="3"/>
+<line x1="544" y1="574" x2="544" y2="195" stroke="#1E0C21" stroke-width="2" marker-end="url(#punta)"/>
+<circle cx="544" cy="585" r="9" fill="#FFFFFF" stroke="#361133" stroke-width="2.5"/>
+<path d="M544,169 L555,180 L544,191 L533,180 Z" fill="#EF2222" stroke="#1E0C21" stroke-width="2"/>
+<rect x="534" y="146" width="20" height="17" rx="3" fill="#1E0C21"/>
+<text x="544" y="159" font-size="12" font-weight="700" text-anchor="middle" fill="#FFFFFF">1</text>
+<line x1="585.7142857142857" y1="574" x2="585.7142857142857" y2="195" stroke="#1E0C21" stroke-width="2" marker-end="url(#punta)"/>
+<circle cx="585.7142857142857" cy="585" r="9" fill="#FFFFFF" stroke="#361133" stroke-width="2.5"/>
+<path d="M585.7142857142857,169 L596.7142857142857,180 L585.7142857142857,191 L574.7142857142857,180 Z" fill="#EF2222" stroke="#1E0C21" stroke-width="2"/>
+<rect x="575.7142857142857" y="146" width="20" height="17" rx="3" fill="#1E0C21"/>
+<text x="585.7142857142857" y="159" font-size="12" font-weight="700" text-anchor="middle" fill="#FFFFFF">2</text>
+<line x1="220" y1="574" x2="220" y2="335" stroke="#1E0C21" stroke-width="2" marker-end="url(#punta)"/>
+<circle cx="220" cy="585" r="9" fill="#FFFFFF" stroke="#361133" stroke-width="2.5"/>
+<path d="M220,309 L231,320 L220,331 L209,320 Z" fill="#EF2222" stroke="#1E0C21" stroke-width="2"/>
+<rect x="210" y="286" width="20" height="17" rx="3" fill="#1E0C21"/>
+<text x="220" y="299" font-size="12" font-weight="700" text-anchor="middle" fill="#FFFFFF">3</text>
+<line x1="627.4285714285714" y1="598" x2="627.4285714285714" y2="574" stroke="#1E0C21" stroke-width="1.5" stroke-dasharray="2 3"/>
+<circle cx="627.4285714285714" cy="607" r="9" fill="#FFFFFF" stroke="#361133" stroke-width="2.5"/>
+<path d="M627.4285714285714,552 L638.4285714285714,563 L627.4285714285714,574 L616.4285714285714,563 Z" fill="#FFFFFF" stroke="#EF2222" stroke-width="2" stroke-dasharray="3 2"/>
+<text x="627.4285714285714" y="567" font-size="11" font-weight="700" text-anchor="middle" fill="#EF2222">?</text>
+<rect x="617.4285714285714" y="529" width="20" height="17" rx="3" fill="#1E0C21"/>
+<text x="627.4285714285714" y="542" font-size="12" font-weight="700" text-anchor="middle" fill="#FFFFFF">4</text>
+<line x1="669.1428571428571" y1="333" x2="669.1428571428571" y2="309" stroke="#1E0C21" stroke-width="1.5" stroke-dasharray="2 3"/>
+<circle cx="669.1428571428571" cy="342" r="9" fill="#FFFFFF" stroke="#361133" stroke-width="2.5"/>
+<path d="M669.1428571428571,287 L680.1428571428571,298 L669.1428571428571,309 L658.1428571428571,298 Z" fill="#EF2222" stroke="#1E0C21" stroke-width="2"/>
+<rect x="659.1428571428571" y="264" width="20" height="17" rx="3" fill="#1E0C21"/>
+<text x="669.1428571428571" y="277" font-size="12" font-weight="700" text-anchor="middle" fill="#FFFFFF">5</text>
+<line x1="710.8571428571429" y1="439" x2="710.8571428571429" y2="195" stroke="#1E0C21" stroke-width="2" marker-end="url(#punta)"/>
+<circle cx="710.8571428571429" cy="450" r="9" fill="#FFFFFF" stroke="#361133" stroke-width="2.5"/>
+<path d="M710.8571428571429,169 L721.8571428571429,180 L710.8571428571429,191 L699.8571428571429,180 Z" fill="#EF2222" stroke="#1E0C21" stroke-width="2"/>
+<rect x="700.8571428571429" y="146" width="20" height="17" rx="3" fill="#1E0C21"/>
+<text x="710.8571428571429" y="159" font-size="12" font-weight="700" text-anchor="middle" fill="#FFFFFF">6</text>
+<line x1="752.5714285714286" y1="439" x2="752.5714285714286" y2="335" stroke="#1E0C21" stroke-width="2" marker-end="url(#punta)"/>
+<circle cx="752.5714285714286" cy="450" r="9" fill="#FFFFFF" stroke="#361133" stroke-width="2.5"/>
+<path d="M752.5714285714286,309 L763.5714285714286,320 L752.5714285714286,331 L741.5714285714286,320 Z" fill="#EF2222" stroke="#1E0C21" stroke-width="2"/>
+<rect x="742.5714285714286" y="286" width="20" height="17" rx="3" fill="#1E0C21"/>
+<text x="752.5714285714286" y="299" font-size="12" font-weight="700" text-anchor="middle" fill="#FFFFFF">7</text>
+<line x1="794.2857142857142" y1="309" x2="794.2857142857142" y2="195" stroke="#1E0C21" stroke-width="2" marker-end="url(#punta)"/>
+<circle cx="794.2857142857142" cy="320" r="9" fill="#FFFFFF" stroke="#361133" stroke-width="2.5"/>
+<path d="M794.2857142857142,169 L805.2857142857142,180 L794.2857142857142,191 L783.2857142857142,180 Z" fill="#EF2222" stroke="#1E0C21" stroke-width="2"/>
+<rect x="784.2857142857142" y="146" width="20" height="17" rx="3" fill="#1E0C21"/>
+<text x="794.2857142857142" y="159" font-size="12" font-weight="700" text-anchor="middle" fill="#FFFFFF">8</text>
+<line x1="836" y1="193" x2="836" y2="169" stroke="#1E0C21" stroke-width="1.5" stroke-dasharray="2 3"/>
+<circle cx="836" cy="202" r="9" fill="#FFFFFF" stroke="#361133" stroke-width="2.5"/>
+<path d="M836,147 L847,158 L836,169 L825,158 Z" fill="#EF2222" stroke="#1E0C21" stroke-width="2"/>
+<rect x="826" y="124" width="20" height="17" rx="3" fill="#1E0C21"/>
+<text x="836" y="137" font-size="12" font-weight="700" text-anchor="middle" fill="#FFFFFF">9</text>
+<rect x="890" y="100" width="370" height="560" fill="#FAF8FA" stroke="#BFB6C2"/>
+<text x="904" y="124" font-size="15" font-weight="700" fill="#1E0C21">Leyenda</text>
+<circle cx="914" cy="148" r="8" fill="#FFFFFF" stroke="#361133" stroke-width="2.5"/><text x="932" y="152" font-size="12" fill="#1E0C21">Equipos (T14 §3)</text>
+<path d="M914,164 L924,174 L914,184 L904,174 Z" fill="#EF2222" stroke="#1E0C21" stroke-width="2"/><text x="932" y="178" font-size="12" fill="#1E0C21">Proyecto del cierre (evidencia D03)</text>
+<path d="M914,190 L924,200 L914,210 L904,200 Z" fill="#FFFFFF" stroke="#EF2222" stroke-width="2" stroke-dasharray="3 2"/><text x="932" y="204" font-size="12" fill="#1E0C21">Cierre sin evidencia: por confirmar</text>
+<line x1="904" y1="226" x2="924" y2="226" stroke="#1E0C21" stroke-width="2" marker-end="url(#punta)"/><text x="932" y="230" font-size="12" fill="#1E0C21">Desplazamiento equipos → cierre</text>
+<line x1="904" y1="248" x2="924" y2="248" stroke="#1E0C21" stroke-width="1.5" stroke-dasharray="2 3"/><text x="932" y="252" font-size="12" fill="#1E0C21">Mismo nivel (sin desplazamiento)</text>
+<text x="904" y="282" font-size="13" font-weight="700" fill="#1E0C21">Conceptos · equipos → cierre</text>
+<rect x="904" y="291" width="20" height="17" rx="3" fill="#1E0C21"/><text x="914" y="304" font-size="12" font-weight="700" text-anchor="middle" fill="#FFFFFF">1</text>
+<text x="932" y="304" font-size="12" font-weight="700" fill="#1E0C21">Observabilidad</text>
+<text x="932" y="320" font-size="11" fill="#6B5E6E">por confirmar → aplicado</text>
+<rect x="904" y="331" width="20" height="17" rx="3" fill="#1E0C21"/><text x="914" y="344" font-size="12" font-weight="700" text-anchor="middle" fill="#FFFFFF">2</text>
+<text x="932" y="344" font-size="12" font-weight="700" fill="#1E0C21">Guardrails</text>
+<text x="932" y="360" font-size="11" fill="#6B5E6E">por confirmar → aplicado</text>
+<rect x="904" y="371" width="20" height="17" rx="3" fill="#1E0C21"/><text x="914" y="384" font-size="12" font-weight="700" text-anchor="middle" fill="#FFFFFF">3</text>
+<text x="932" y="384" font-size="12" font-weight="700" fill="#1E0C21">Versionado prompts/skills</text>
+<text x="932" y="400" font-size="11" fill="#6B5E6E">por confirmar → a medias</text>
+<rect x="904" y="411" width="20" height="17" rx="3" fill="#1E0C21"/><text x="914" y="424" font-size="12" font-weight="700" text-anchor="middle" fill="#FFFFFF">4</text>
+<text x="932" y="424" font-size="12" font-weight="700" fill="#1E0C21">Costo de tokens</text>
+<text x="932" y="440" font-size="11" fill="#6B5E6E">por confirmar → por confirmar</text>
+<rect x="904" y="451" width="20" height="17" rx="3" fill="#1E0C21"/><text x="914" y="464" font-size="12" font-weight="700" text-anchor="middle" fill="#FFFFFF">5</text>
+<text x="932" y="464" font-size="12" font-weight="700" fill="#1E0C21">Evals</text>
+<text x="932" y="480" font-size="11" fill="#6B5E6E">a medias → a medias</text>
+<rect x="904" y="491" width="20" height="17" rx="3" fill="#1E0C21"/><text x="914" y="504" font-size="12" font-weight="700" text-anchor="middle" fill="#FFFFFF">6</text>
+<text x="932" y="504" font-size="12" font-weight="700" fill="#1E0C21">Harness</text>
+<text x="932" y="520" font-size="11" fill="#6B5E6E">se habla → aplicado</text>
+<rect x="904" y="531" width="20" height="17" rx="3" fill="#1E0C21"/><text x="914" y="544" font-size="12" font-weight="700" text-anchor="middle" fill="#FFFFFF">7</text>
+<text x="932" y="544" font-size="12" font-weight="700" fill="#1E0C21">Gobernanza de IA</text>
+<text x="932" y="560" font-size="11" fill="#6B5E6E">se habla → a medias</text>
+<rect x="904" y="571" width="20" height="17" rx="3" fill="#1E0C21"/><text x="914" y="584" font-size="12" font-weight="700" text-anchor="middle" fill="#FFFFFF">8</text>
+<text x="932" y="584" font-size="12" font-weight="700" fill="#1E0C21">Context engineering</text>
+<text x="932" y="600" font-size="11" fill="#6B5E6E">a medias → aplicado</text>
+<rect x="904" y="611" width="20" height="17" rx="3" fill="#1E0C21"/><text x="914" y="624" font-size="12" font-weight="700" text-anchor="middle" fill="#FFFFFF">9</text>
+<text x="932" y="624" font-size="12" font-weight="700" fill="#1E0C21">Human-in-the-loop</text>
+<text x="932" y="640" font-size="11" fill="#6B5E6E">aplicado → aplicado</text>
+<text x="110" y="766" font-size="11" fill="#6B5E6E">Fuentes: investigacion/cierre-loop-engineering/t14-aterrizador/radar.md (628300d) para madurez y equipos · Herandres/oficina-relevo, rama claude/taller (d24488d) para el cierre · detalle en d03-radar/radar.json.</text>
+</svg>
