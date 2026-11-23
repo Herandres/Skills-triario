@@ -81,10 +81,18 @@ sup.ref{font:700 7.5pt var(--mono);color:var(--red);margin-left:1px}
   const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   const PREG={P1:'¿Qué es y por qué importa?',P2:'¿Cómo estamos frente a la industria?',P3:'¿Qué ya produce valor?',P4:'¿Hasta dónde puede llegar?',P5:'¿Con qué evidencia se sostiene?'};
   const PLANO=[3,5];
+  const FIG={escalera:['escalera.svg','La escalera de madurez de Loop Engineering en Triario.'],
+    anatomia:['anatomia.svg','Anatomía de un loop: el contrato envuelve el ciclo, el auditor ciego decide y lo que falla vuelve a su capa.'],
+    tuberia:['tuberia-medallon.svg','Un loop como tubería medallón: capas, agentes, controles y la persona en la puerta. Diagrama en Archify.'],
+    estados:['estados-del-ciclo.svg','Estados de un ciclo frente al tronco de trabajo. Diagrama en Archify.'],
+    plano:['plano-cartesiano.svg','El plano cartesiano: madurez en la industria frente a adopción en Triario.']};
+  let nfig=0;
   function render(md,s){
     const notas=[],idx={};
     md=md.replace(/^\[\^([^\]]+)\]:\s*(.+)$/gm,(m,k,t)=>{idx[k]=notas.push(t);return '';});
     md=md.replace(/^Responde:.*$/m,'');
+    md=md.replace(/<!--\s*figura:\s*([\w-]+)\s*-->/g,(m,k)=>{const f=FIG[k];if(!f)return '';nfig++;
+      return '\n<figure><img src="figuras/'+f[0]+'" alt="'+esc(f[1])+'"><figcaption><b>Figura '+nfig+'.</b> '+esc(f[1])+'</figcaption></figure>\n';});
     md=md.replace(/^##\s+(\d+)\.\s+(.+)$/m,(m,n,t)=>'<h2><span class="n">'+String(n).padStart(2,'0')+'</span>'+esc(t)+'</h2><div class="responde">Responde · '+s.responde.map(p=>p+' '+(PREG[p]||'')).join(' · ')+'</div>');
     md=md.replace(/\[\^([^\]]+)\]/g,(m,k)=>'<sup class="ref">'+(idx[k]||k)+'</sup>');
     let html=window.marked?marked.parse(md):'<pre>'+esc(md)+'</pre>';
@@ -108,6 +116,7 @@ sup.ref{font:700 7.5pt var(--mono);color:var(--red);margin-left:1px}
     partes.forEach(p=>{if(p.startsWith('<section')){if(hoja){out+='<section class="page">'+hoja+'</section>';hoja='';}out+=p;}else hoja+=p;});
     if(hoja) out+='<section class="page">'+hoja+'</section>';
     $('doc').innerHTML=out;
+    document.querySelectorAll('figcaption b').forEach((b,i)=>b.textContent='Figura '+(i+1)+'.');
   }).catch(()=>{$('doc').innerHTML='<section class="page"><p>No se pudo cargar el índice del documento. Recarga la página.</p></section>';});
 })();
 </script>

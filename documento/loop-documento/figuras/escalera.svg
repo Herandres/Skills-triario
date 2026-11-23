@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" font-family="Plus Jakarta Sans, Segoe UI, sans-serif">
+  <rect width="900" height="400" fill="#FFFFFF"/>
+  <line x1="30" y1="360" x2="870" y2="360" stroke="#1E0C21" stroke-width="2"/>
+  <!-- peldaños -->
+  <rect x="40" y="250" width="260" height="110" fill="#FFF8F8" stroke="#361133" stroke-width="2"/>
+  <rect x="320" y="160" width="260" height="200" fill="#FFE9E9" stroke="#361133" stroke-width="2"/>
+  <rect x="600" y="60" width="260" height="300" fill="#EF2222" stroke="#EF2222" stroke-width="2"/>
+  <g font-weight="700">
+    <text x="60" y="282" font-size="13" fill="#EF2222">NIVEL 1</text>
+    <text x="60" y="308" font-size="21" fill="#1E0C21">El concepto</text>
+    <text x="60" y="332" font-size="13" font-weight="500" fill="#5E4A5C">Reglas, piezas y paralelo</text>
+    <text x="60" y="349" font-size="13" font-weight="500" fill="#5E4A5C">con la ingeniería de datos</text>
+    <text x="340" y="192" font-size="13" fill="#EF2222">NIVEL 2</text>
+    <text x="340" y="218" font-size="21" fill="#1E0C21">Los equipos</text>
+    <text x="340" y="242" font-size="13" font-weight="500" fill="#5E4A5C">Loops en el trabajo real:</text>
+    <text x="340" y="259" font-size="13" font-weight="500" fill="#5E4A5C">GDO e Implementaciones</text>
+    <text x="620" y="92" font-size="13" fill="#F8D53C">NIVEL 3</text>
+    <text x="620" y="118" font-size="21" fill="#FFFFFF">El sistema de agentes</text>
+    <text x="620" y="142" font-size="13" font-weight="500" fill="#FFFFFF">Relevo de especialistas, auditor</text>
+    <text x="620" y="159" font-size="13" font-weight="500" fill="#FFFFFF">ciego, supervisor, memoria en git</text>
+    <text x="620" y="176" font-size="13" font-weight="500" fill="#FFFFFF">y tablero que mejora por ciclos</text>
+  </g>
+  <path d="M170,240 Q300,120 440,150" fill="none" stroke="#534DFF" stroke-width="2" stroke-dasharray="6 5"/>
+  <path d="M450,150 Q590,40 720,50" fill="none" stroke="#534DFF" stroke-width="2" stroke-dasharray="6 5"/>
+  <text x="450" y="390" font-size="12.5" text-anchor="middle" fill="#5E4A5C">Cada nivel supera al anterior: más autonomía, más control y más evidencia</text>
+</svg>

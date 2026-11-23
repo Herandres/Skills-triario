@@ -1,5 +1,5 @@
 {
-  "actualizado": "2026-11-23T22:57:31.999Z",
+  "actualizado": "2026-11-23T23:07:53.800Z",
   "fase": "Compuerta 1",
   "compuerta": {
     "texto": "Contrato e índice escritos. Esperan la aprobación de Hernán para arrancar el primer ciclo.",
@@ -7,7 +7,7 @@
   },
   "documento": null,
   "subagentes": {
-    "usados": 10,
+    "usados": 13,
     "presupuesto": "17 a 22"
   },
   "preguntas": [
@@ -64,7 +64,7 @@
         "contenido": "hecho",
         "guardian": "hecho",
         "auditor": "hecho",
-        "visual": "pendiente"
+        "visual": "hecho"
       },
       "vueltas": 1,
       "palabras": 782,
@@ -82,7 +82,7 @@
         "contenido": "hecho",
         "guardian": "hecho",
         "auditor": "hecho",
-        "visual": "pendiente"
+        "visual": "hecho"
       },
       "vueltas": 1,
       "palabras": 786,
@@ -100,11 +100,11 @@
         "estructura": "hecho",
         "contenido": "hecho",
         "guardian": "hecho",
-        "auditor": "curso",
-        "visual": "pendiente"
+        "auditor": "hecho",
+        "visual": "hecho"
       },
-      "vueltas": 0,
-      "palabras": 691,
+      "vueltas": 1,
+      "palabras": 698,
       "tope": 700
     },
     {
@@ -121,7 +121,7 @@
         "contenido": "hecho",
         "guardian": "hecho",
         "auditor": "hecho",
-        "visual": "pendiente"
+        "visual": "hecho"
       },
       "vueltas": 1,
       "palabras": 384,
@@ -138,14 +138,14 @@
       ],
       "figura": "Ninguna",
       "capas": {
-        "estructura": "pendiente",
-        "contenido": "pendiente",
-        "guardian": "pendiente",
-        "auditor": "pendiente",
-        "visual": "pendiente"
+        "estructura": "hecho",
+        "contenido": "hecho",
+        "guardian": "hecho",
+        "auditor": "hecho",
+        "visual": "hecho"
       },
-      "vueltas": 0,
-      "palabras": null,
+      "vueltas": 1,
+      "palabras": 182,
       "tope": 200
     },
     {
@@ -160,14 +160,14 @@
       ],
       "figura": "Escalera de madurez",
       "capas": {
-        "estructura": "pendiente",
-        "contenido": "pendiente",
-        "guardian": "pendiente",
-        "auditor": "pendiente",
-        "visual": "pendiente"
+        "estructura": "hecho",
+        "contenido": "hecho",
+        "guardian": "hecho",
+        "auditor": "hecho",
+        "visual": "hecho"
       },
-      "vueltas": 0,
-      "palabras": null,
+      "vueltas": 1,
+      "palabras": 285,
       "tope": 300
     },
     {
@@ -178,11 +178,11 @@
       ],
       "figura": "Ninguna",
       "capas": {
-        "estructura": "pendiente",
-        "contenido": "pendiente",
-        "guardian": "pendiente",
-        "auditor": "pendiente",
-        "visual": "pendiente"
+        "estructura": "hecho",
+        "contenido": "hecho",
+        "guardian": "hecho",
+        "auditor": "hecho",
+        "visual": "hecho"
       },
       "vueltas": 0,
       "palabras": null,
@@ -242,6 +242,12 @@
       "texto": "No sobreafirmar: «no se halló» no es «no existe»; «consenso» exige más de una fuente.",
       "origen": "Auditor de la sección 4",
       "nueva": true
+    },
+    {
+      "id": "G11",
+      "texto": "Los resúmenes no traen datos nuevos y conservan el sello que el dato tenía en su sección.",
+      "origen": "Escritor y auditor de las secciones 1 y 7",
+      "nueva": true
     }
   ],
   "bitacora": [
@@ -276,6 +282,18 @@
     {
       "hora": "2026-11-23 17:57",
       "evento": "Sección 4 aprobada con cambios: 17 de 20 citas fieles. «No hay documentación sólida afuera» queda como Hipótesis."
+    },
+    {
+      "hora": "2026-11-23 18:01",
+      "evento": "Sección 5 aprobada con cambios: 14 de 15 citas fieles; resultados de los equipos marcados como no medidos. 4 preguntas para Hernán."
+    },
+    {
+      "hora": "2026-11-23 18:07",
+      "evento": "Secciones 1 y 7 aprobadas con cambios: un dato de la sección 4 iba como hecho siendo Hipótesis; corregido. La tesis de Hernán se mantiene por contrato."
+    },
+    {
+      "hora": "2026-11-23 18:07",
+      "evento": "Referencias generadas por script desde las notas: 43 fuentes externas por nivel de evidencia y 20 archivos internos. Figuras: 2 de Archify y 3 SVG con paleta Triario."
     }
   ]
 }

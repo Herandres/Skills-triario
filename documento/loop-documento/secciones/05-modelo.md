@@ -1,7 +1,7 @@
 ## 5. El modelo de Triario: la escalera de madurez
 Responde: P3, P4
 
-Triario aplica Loop Engineering en tres niveles, y cada uno supone el anterior: primero las reglas, luego los equipos y, en la cima, un sistema de agentes que se aplica las reglas a sí mismo.
+Triario aplica Loop Engineering en tres niveles, y cada uno supera al anterior: primero las reglas, luego los equipos y, en la cima, un sistema de agentes que se aplica las reglas a sí mismo.
 
 <!-- figura: escalera -->
 
@@ -20,10 +20,10 @@ Hay cinco loops descritos en ese trabajo: generador con auditor ciego y contrato
 | Nivel | Qué es | Evidencia |
 |---|---|---|
 | Concepto | Cinco piezas y un catálogo de patrones con par humano | Tesis del proyecto y 20 patrones auditados[^1][^4] |
-| Equipos | Megaagentes con loops en el trabajo real | Cinco loops descritos; asignación por equipo sin confirmar[^7] |
+| Equipos | Megaagentes con loops en el trabajo real | Cinco loops descritos; resultados no medidos, equipo sin confirmar[^7] |
 | Sistema en relevo | Agentes con tarea propia, auditor ciego, supervisor, memoria en git y oficina | Bitácora de 22 ciclos y contrato sin cambios[^11] |
 
-La cima tiene límites declarados. Los 22 ciclos aprobaron en la primera ronda, lo que no prueba que el auditor acierte[^12]. No hay registro del costo en tokens[^13]. Una persona fija las reglas, pero cada versión se publica cuando el control aprueba[^14]. Lo distintivo es que el sistema se construyó con su propia técnica: sus fortalezas descansan en archivos que produjo para mejorarse[^15].
+Hasta dónde llega: la cima tiene límites declarados. Los 22 ciclos aprobaron en la primera ronda, lo que no prueba que el auditor acierte[^12]. No hay registro del costo en tokens (unidades de texto)[^13]. Una persona fija las reglas, pero cada versión se publica cuando el control aprueba[^14]. Lo distintivo es que el sistema se construyó con su propia técnica: sus fortalezas descansan en archivos que produjo para mejorarse[^15].
 
 [^1]: investigacion/cierre-loop-engineering/t15-patrones/patrones.md §1 (definición de una línea de la tesis del proyecto, t01-tesis/tesis.md) · [Fuente primaria]
 [^2]: investigacion/cierre-loop-engineering/t15-patrones/patrones.md §4 A1 (Anthropic, Building effective agents; Claude Code, subagents) · [Fuente primaria]

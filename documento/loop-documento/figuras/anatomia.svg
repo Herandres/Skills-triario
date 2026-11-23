@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 470" font-family="Plus Jakarta Sans, Segoe UI, sans-serif">
+  <defs>
+    <marker id="f" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#361133"/></marker>
+    <marker id="fr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#EF2222"/></marker>
+  </defs>
+  <rect width="900" height="470" fill="#FFFFFF"/>
+  <!-- contrato: marco fijo que envuelve el ciclo -->
+  <rect x="20" y="20" width="860" height="330" rx="14" fill="#FFF8F8" stroke="#361133" stroke-width="2" stroke-dasharray="7 5"/>
+  <text x="40" y="48" font-size="15" font-weight="700" fill="#361133">CONTRATO · no cambia mientras corre el ciclo</text>
+  <!-- piezas -->
+  <g font-size="17" font-weight="700" text-anchor="middle">
+    <rect x="60" y="120" width="180" height="78" rx="10" fill="#FFFFFF" stroke="#1E0C21" stroke-width="2"/>
+    <text x="150" y="156" fill="#1E0C21">Ejecutor</text><text x="150" y="180" font-size="12.5" font-weight="500" fill="#5E4A5C">hace el trabajo</text>
+    <rect x="360" y="120" width="180" height="78" rx="10" fill="#FFE9E9" stroke="#EF2222" stroke-width="2.5"/>
+    <text x="450" y="156" fill="#1E0C21">Auditor ciego</text><text x="450" y="180" font-size="12.5" font-weight="500" fill="#5E4A5C">solo ve la salida</text>
+    <rect x="660" y="120" width="180" height="78" rx="10" fill="#1E0C21" stroke="#1E0C21" stroke-width="2"/>
+    <text x="750" y="156" fill="#FFFFFF">Criterio de parada</text><text x="750" y="180" font-size="12.5" font-weight="500" fill="#F8D53C">aprobado o tope</text>
+  </g>
+  <line x1="242" y1="159" x2="356" y2="159" stroke="#361133" stroke-width="2.5" marker-end="url(#f)"/>
+  <text x="299" y="148" font-size="12.5" text-anchor="middle" fill="#361133">salida</text>
+  <line x1="542" y1="159" x2="656" y2="159" stroke="#361133" stroke-width="2.5" marker-end="url(#f)"/>
+  <text x="599" y="148" font-size="12.5" text-anchor="middle" fill="#361133">aprueba</text>
+  <!-- retorno a la capa que falló -->
+  <path d="M450,200 C450,290 150,290 150,202" fill="none" stroke="#EF2222" stroke-width="2.5" stroke-dasharray="8 5" marker-end="url(#fr)"/>
+  <rect x="236" y="262" width="228" height="28" rx="14" fill="#FFFFFF" stroke="#EF2222" stroke-width="1.5"/>
+  <text x="350" y="281" font-size="13" font-weight="700" text-anchor="middle" fill="#EF2222">Retorno a la capa que falló</text>
+  <!-- bitácora -->
+  <rect x="20" y="385" width="860" height="62" rx="10" fill="#E2E2FD" stroke="#534DFF" stroke-width="2"/>
+  <text x="40" y="412" font-size="16" font-weight="700" fill="#1E0C21">Bitácora</text>
+  <text x="40" y="434" font-size="13" fill="#1E0C21">Cada vuelta queda registrada fuera de la memoria del agente: qué entró, qué salió, qué se rechazó y por qué.</text>
+  <g stroke="#534DFF" stroke-width="1.5" stroke-dasharray="3 4"><line x1="150" y1="200" x2="150" y2="383"/><line x1="450" y1="292" x2="450" y2="383"/><line x1="750" y1="200" x2="750" y2="383"/></g>
+</svg>

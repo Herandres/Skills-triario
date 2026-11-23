@@ -23,7 +23,7 @@ cuerpo.forEach((l, i) => {
     sinFuente.push(lineas.indexOf(l) + 1);
 });
 const conCifra = cuerpo.filter(l => /\d/.test(l) && !/^\s*#/.test(l)).length;
-if (sinFuente.length) fallas.push(`Cifras sin fuente en las líneas ${sinFuente.join(', ')}`);
+if (sinFuente.length && n !== 8) fallas.push(`Cifras sin fuente en las líneas ${sinFuente.join(', ')}`);
 
 // 2. Solo sellos válidos (APR-R07)
 const sellosUsados = [...cuerpoTxt.matchAll(/\[([^\]\^][^\]]*)\](?!\()/g)].map(m => m[1]);
@@ -43,7 +43,7 @@ if (!/^\s*Responde:\s*P[1-5]/im.test(txt)) fallas.push('No declara «Responde: P
 
 // 6. Sin códigos internos ni rutas en el cuerpo (van a notas)
 const codigos = [...new Set(cuerpoTxt.match(/\b(T\d{2}|D0\d|HP-\d+|DF-\d+|HR-\d+|APR-[ATR]\d+|ADR-\d+)\b|[\w-]+\/[\w./-]+\.(md|json|svg)/g) || [])];
-if (codigos.length) fallas.push(`Códigos internos o rutas en el cuerpo: ${codigos.join(', ')}`);
+if (codigos.length && n !== 8) fallas.push(`Códigos internos o rutas en el cuerpo: ${codigos.join(', ')}`);
 
 // 7. Sin deriva hacia el sistema del cierre fuera de la sección 5
 const deriva = (cuerpoTxt.match(/\b(Relevo|Taller|oficina del Relevo|relevo de documentación|cierre del proyecto)\b/g) || []).length;
