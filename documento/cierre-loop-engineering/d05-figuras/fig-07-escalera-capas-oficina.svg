@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 720" width="1500" height="720" font-family="'Plus Jakarta Sans', 'Segoe UI', Arial, sans-serif" role="img" aria-labelledby="t d">
+<title id="t">Escalera de madurez de la oficina: las 7 capas de ADR-004</title>
+<desc id="d">Siete escalones, uno por capa de la migración isométrica de ADR-004, con el ciclo, la versión y el commit de integración en que se completó cada uno. Después, ideas de prioridad alta y pulido.</desc>
+<rect width="1500" height="720" fill="#FFFFFF"/>
+<text x="60" y="44" font-size="22" font-weight="700" fill="#1E0C21" text-anchor="start" >Modelo de madurez · La oficina sube por las 7 capas de ADR-004</text>
+<text x="60" y="70" font-size="13" font-weight="400" fill="#6B5E6E" text-anchor="start" >Un escalón por capa, en el orden de oficina-relevo:decisiones/ADR-004-isometrico-por-capas.md. Cada escalón: ciclo, versión y commit con que se completó.</text>
+<text x="60" y="90" font-size="13" font-weight="400" fill="#6B5E6E" text-anchor="start" >Las capas 1 a 4 entraron en cuatro ciclos seguidos; la 5 y la 6 tomaron dos ciclos cada una. CICLO-005 (v5): repetición de la corrida real, fuera de la escalera (bitácora).</text>
+<rect x="60" y="504" width="142" height="46" fill="#F1E9F0" stroke="#1E0C21" stroke-width="0.8"/>
+<rect x="60" y="504" width="142" height="5" fill="#EF2222"/>
+<text x="68" y="528" font-size="13" font-weight="700" fill="#1E0C21" text-anchor="start" >Capa 1</text>
+<text x="68" y="544" font-size="13" font-weight="600" fill="#1E0C21" text-anchor="start" >Proyección y piso</text>
+<text x="68" y="570" font-size="13" font-weight="700" fill="#1E0C21" text-anchor="start" >CICLO-001</text>
+<text x="68" y="586" font-size="13" font-weight="400" fill="#1E0C21" text-anchor="start" >v1</text>
+<text x="68" y="602" font-size="13" font-weight="700" fill="#534DFF" text-anchor="start" font-family="ui-monospace, Menlo, Consolas, monospace">b9fd780</text>
+<rect x="206" y="458" width="142" height="92" fill="#E2D2E0" stroke="#1E0C21" stroke-width="0.8"/>
+<rect x="206" y="458" width="142" height="5" fill="#EF2222"/>
+<text x="214" y="482" font-size="13" font-weight="700" fill="#1E0C21" text-anchor="start" >Capa 2</text>
+<text x="214" y="498" font-size="13" font-weight="600" fill="#1E0C21" text-anchor="start" >Muros</text>
+<text x="214" y="570" font-size="13" font-weight="700" fill="#1E0C21" text-anchor="start" >CICLO-002</text>
+<text x="214" y="586" font-size="13" font-weight="400" fill="#1E0C21" text-anchor="start" >v2</text>
+<text x="214" y="602" font-size="13" font-weight="700" fill="#534DFF" text-anchor="start" font-family="ui-monospace, Menlo, Consolas, monospace">b7e3ec4</text>
+<rect x="352" y="412" width="142" height="138" fill="#C9B3C7" stroke="#1E0C21" stroke-width="0.8"/>
+<rect x="352" y="412" width="142" height="5" fill="#EF2222"/>
+<text x="360" y="436" font-size="13" font-weight="700" fill="#1E0C21" text-anchor="start" >Capa 3</text>
+<text x="360" y="452" font-size="13" font-weight="600" fill="#1E0C21" text-anchor="start" >Muebles</text>
+<text x="360" y="570" font-size="13" font-weight="700" fill="#1E0C21" text-anchor="start" >CICLO-003</text>
+<text x="360" y="586" font-size="13" font-weight="400" fill="#1E0C21" text-anchor="start" >v3</text>
+<text x="360" y="602" font-size="13" font-weight="700" fill="#534DFF" text-anchor="start" font-family="ui-monospace, Menlo, Consolas, monospace">5fa72ca</text>
+<rect x="498" y="366" width="142" height="184" fill="#B28FAE" stroke="#1E0C21" stroke-width="0.8"/>
+<rect x="498" y="366" width="142" height="5" fill="#EF2222"/>
+<text x="506" y="390" font-size="13" font-weight="700" fill="#1E0C21" text-anchor="start" >Capa 4</text>
+<text x="506" y="406" font-size="13" font-weight="600" fill="#1E0C21" text-anchor="start" >Orden por prof.</text>
+<text x="506" y="570" font-size="13" font-weight="700" fill="#1E0C21" text-anchor="start" >CICLO-004</text>
+<text x="506" y="586" font-size="13" font-weight="400" fill="#1E0C21" text-anchor="start" >v4</text>
+<text x="506" y="602" font-size="13" font-weight="700" fill="#534DFF" text-anchor="start" font-family="ui-monospace, Menlo, Consolas, monospace">4ab9e3e</text>
+<rect x="644" y="320" width="142" height="230" fill="#8E6489" stroke="#1E0C21" stroke-width="0.8"/>
+<rect x="644" y="320" width="142" height="5" fill="#EF2222"/>
+<text x="652" y="344" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="start" >Capa 5</text>
+<text x="652" y="360" font-size="13" font-weight="600" fill="#FFFFFF" text-anchor="start" >Personajes</text>
+<text x="652" y="570" font-size="13" font-weight="700" fill="#1E0C21" text-anchor="start" >CICLO-006 · 007</text>
+<text x="652" y="586" font-size="13" font-weight="400" fill="#1E0C21" text-anchor="start" >v6 · v7</text>
+<text x="652" y="602" font-size="13" font-weight="700" fill="#534DFF" text-anchor="start" font-family="ui-monospace, Menlo, Consolas, monospace">4f3e62a</text>
+<rect x="790" y="274" width="142" height="276" fill="#6A3D66" stroke="#1E0C21" stroke-width="0.8"/>
+<rect x="790" y="274" width="142" height="5" fill="#EF2222"/>
+<text x="798" y="298" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="start" >Capa 6</text>
+<text x="798" y="314" font-size="13" font-weight="600" fill="#FFFFFF" text-anchor="start" >Capas vivas</text>
+<text x="798" y="570" font-size="13" font-weight="700" fill="#1E0C21" text-anchor="start" >CICLO-008 · 009</text>
+<text x="798" y="586" font-size="13" font-weight="400" fill="#1E0C21" text-anchor="start" >v8 · v9</text>
+<text x="798" y="602" font-size="13" font-weight="700" fill="#534DFF" text-anchor="start" font-family="ui-monospace, Menlo, Consolas, monospace">9c59509</text>
+<rect x="936" y="228" width="142" height="322" fill="#361133" stroke="#1E0C21" stroke-width="0.8"/>
+<rect x="936" y="228" width="142" height="5" fill="#EF2222"/>
+<text x="944" y="252" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="start" >Capa 7</text>
+<text x="944" y="268" font-size="13" font-weight="600" fill="#FFFFFF" text-anchor="start" >Luces</text>
+<text x="944" y="570" font-size="13" font-weight="700" fill="#1E0C21" text-anchor="start" >CICLO-010</text>
+<text x="944" y="586" font-size="13" font-weight="400" fill="#1E0C21" text-anchor="start" >v10</text>
+<text x="944" y="602" font-size="13" font-weight="700" fill="#534DFF" text-anchor="start" font-family="ui-monospace, Menlo, Consolas, monospace">3a6f601</text>
+<line x1="80" x2="80" y1="498" y2="482" stroke="#F8D53C" stroke-width="3"/>
+<rect x="68" y="462" width="62.199999999999996" height="20" rx="10" fill="#F8D53C" stroke="#1E0C21" stroke-width="0.6"/>
+<text x="76" y="476" font-size="13" font-weight="700" fill="#1E0C21" text-anchor="start" >Etapa 1</text>
+<line x1="518" x2="518" y1="360" y2="344" stroke="#F8D53C" stroke-width="3"/>
+<rect x="506" y="324" width="62.199999999999996" height="20" rx="10" fill="#F8D53C" stroke="#1E0C21" stroke-width="0.6"/>
+<text x="514" y="338" font-size="13" font-weight="700" fill="#1E0C21" text-anchor="start" >Etapa 2</text>
+<line x1="664" x2="664" y1="314" y2="298" stroke="#F8D53C" stroke-width="3"/>
+<rect x="652" y="278" width="62.199999999999996" height="20" rx="10" fill="#F8D53C" stroke="#1E0C21" stroke-width="0.6"/>
+<text x="660" y="292" font-size="13" font-weight="700" fill="#1E0C21" text-anchor="start" >Etapa 3</text>
+<rect x="1082" y="228" width="182" height="322" fill="#FFFFFF" stroke="#361133" stroke-width="1.5" stroke-dasharray="5 4"/>
+<text x="1090" y="252" font-size="13" font-weight="700" fill="#361133" text-anchor="start" >Orden de la Retro y alta</text>
+<text x="1090" y="570" font-size="13" font-weight="700" fill="#1E0C21" text-anchor="start" >CICLO-011 a 015</text>
+<text x="1090" y="586" font-size="13" font-weight="400" fill="#1E0C21" text-anchor="start" >v11 a v15</text>
+<text x="1090" y="602" font-size="13" font-weight="700" fill="#534DFF" text-anchor="start" font-family="ui-monospace, Menlo, Consolas, monospace">3be0c3d</text>
+<rect x="1268" y="228" width="182" height="322" fill="#FFFFFF" stroke="#361133" stroke-width="1.5" stroke-dasharray="5 4"/>
+<text x="1276" y="252" font-size="13" font-weight="700" fill="#361133" text-anchor="start" >Pulido, un arreglo por ciclo</text>
+<text x="1276" y="570" font-size="13" font-weight="700" fill="#1E0C21" text-anchor="start" >CICLO-016 a 022</text>
+<text x="1276" y="586" font-size="13" font-weight="400" fill="#1E0C21" text-anchor="start" >v16 a v22</text>
+<text x="1276" y="602" font-size="13" font-weight="700" fill="#534DFF" text-anchor="start" font-family="ui-monospace, Menlo, Consolas, monospace">5d7276c</text>
+<line x1="1155.0" x2="1155.0" y1="268" y2="318" stroke="#F8D53C" stroke-width="3"/>
+<rect x="1090" y="320" width="139.39999999999998" height="18" rx="9" fill="#F8D53C"/>
+<text x="1097" y="333" font-size="13" font-weight="700" fill="#1E0C21" text-anchor="start" >Etapa 4 (CICLO-014)</text>
+<line x1="60" x2="1454" y1="550" y2="550" stroke="#1E0C21" stroke-width="1.2"/>
+<text x="60" y="650" font-size="13" font-weight="400" fill="#6B5E6E" text-anchor="start" >Etapas (insumos/evolucion-oficina/README.md): 1 marco plano, 2 canicas en 3D, 3 personas, 4 «ahora» = captura de CICLO-014, la última de esa tira.</text>
+<text x="60" y="674" font-size="13" font-weight="400" fill="#6B5E6E" text-anchor="start" >Al corte, el modo por defecto sigue en plano y el isométrico se abre con #iso (H-016, estado.json «modo_visual»); el cambio de modo es decisión de Hernán [confirmar con Hernán].</text>
+<text x="60" y="698" font-size="13" font-weight="400" fill="#6B5E6E" text-anchor="start" >Fuentes: ADR-004; bitacora/ciclos.md (CICLO-001 a 022); insumos/evolucion-oficina/README.md para las 4 etapas; git log origin/claude/taller. [Fuente primaria]</text>
+</svg>

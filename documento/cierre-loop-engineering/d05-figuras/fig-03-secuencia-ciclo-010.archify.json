@@ -1,0 +1,307 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Un ciclo real · CICLO-010, luces de noche",
+    "animation": "none",
+    "quality_profile": "showcase",
+    "legend": {
+      "mode": "auto",
+      "entries": {
+        "backend": {
+          "label": "Sesión coordinadora"
+        },
+        "frontend": {
+          "label": "Subagentes nuevos"
+        },
+        "security": {
+          "label": "Controles"
+        },
+        "database": {
+          "label": "Tronco en git"
+        }
+      }
+    },
+    "views": [
+      {
+        "id": "retorno",
+        "label": "Retorno a la capa que falló",
+        "focus": [
+          "dev1",
+          "guardian",
+          "dev2",
+          "guardian2"
+        ],
+        "note": "La primera versión pasaba qa.mjs pero medía 1,3× a 1,44× de v9 (límite 1,3×). Volvió a un Desarrollador nuevo, no al principio del ciclo."
+      },
+      {
+        "id": "ciego",
+        "label": "Auditor ciego",
+        "focus": [
+          "guardian2",
+          "qa",
+          "publicador"
+        ],
+        "note": "El QA ciego recibe solo contrato, criterios, salida de qa.mjs, resumen del diff y capturas. Aprobó 9 de 9 en la primera ronda."
+      },
+      {
+        "id": "git",
+        "label": "Del tronco al tronco",
+        "focus": [
+          "tronco",
+          "supervisor",
+          "publicador",
+          "v10"
+        ],
+        "note": "Sale de v9 (9c59509) y entra como v10 (3a6f601) con merge --no-ff."
+      }
+    ]
+  },
+  "lanes": [
+    {
+      "id": "mem",
+      "label": "Tronco · git"
+    },
+    {
+      "id": "coord",
+      "label": "Sesión coordinadora"
+    },
+    {
+      "id": "sub",
+      "label": "Subagentes nuevos"
+    },
+    {
+      "id": "ctrl",
+      "label": "Controles",
+      "variant": "exception"
+    }
+  ],
+  "phases": [
+    {
+      "id": "f1",
+      "label": "Reconciliar y planear",
+      "fromCol": 0,
+      "toCol": 1
+    },
+    {
+      "id": "f2",
+      "label": "Construir y volver",
+      "fromCol": 2,
+      "toCol": 3,
+      "variant": "emphasis"
+    },
+    {
+      "id": "f3",
+      "label": "Verificar e integrar",
+      "fromCol": 4,
+      "toCol": 5,
+      "variant": "dashed"
+    }
+  ],
+  "mainPath": [
+    "tronco",
+    "supervisor",
+    "investigador",
+    "arquitecto",
+    "dev1",
+    "guardian",
+    "dev2",
+    "guardian2",
+    "qa",
+    "publicador",
+    "v10"
+  ],
+  "nodes": [
+    {
+      "id": "tronco",
+      "lane": "mem",
+      "col": 0,
+      "type": "database",
+      "label": "Tronco v9",
+      "sublabel": "9c59509",
+      "width": 140
+    },
+    {
+      "id": "v10",
+      "lane": "mem",
+      "col": 5,
+      "type": "database",
+      "label": "Tronco v10",
+      "sublabel": "3a6f601",
+      "width": 140
+    },
+    {
+      "id": "supervisor",
+      "lane": "coord",
+      "col": 0,
+      "type": "backend",
+      "label": "Supervisor",
+      "sublabel": "sin huecos",
+      "width": 140
+    },
+    {
+      "id": "arquitecto",
+      "lane": "coord",
+      "col": 1,
+      "type": "backend",
+      "label": "Arquitecto",
+      "sublabel": "IDEA-006 · capa 7",
+      "width": 140
+    },
+    {
+      "id": "publicador",
+      "lane": "coord",
+      "col": 5,
+      "type": "backend",
+      "label": "Publicador",
+      "sublabel": "integra y publica",
+      "width": 140
+    },
+    {
+      "id": "investigador",
+      "lane": "sub",
+      "col": 1,
+      "type": "frontend",
+      "label": "Investigador",
+      "sublabel": "TEC-034 a 036",
+      "width": 140
+    },
+    {
+      "id": "dev1",
+      "lane": "sub",
+      "col": 2,
+      "type": "frontend",
+      "label": "Desarrollador 1",
+      "sublabel": "1,3× a 1,44× de v9",
+      "width": 140
+    },
+    {
+      "id": "dev2",
+      "lane": "sub",
+      "col": 3,
+      "type": "frontend",
+      "label": "Desarrollador 2",
+      "sublabel": "velo precalculado",
+      "width": 140
+    },
+    {
+      "id": "qa",
+      "lane": "sub",
+      "col": 4,
+      "type": "frontend",
+      "label": "QA ciego",
+      "sublabel": "9 de 9",
+      "tag": "no ve el proceso",
+      "width": 140
+    },
+    {
+      "id": "guardian",
+      "lane": "ctrl",
+      "col": 2,
+      "type": "security",
+      "label": "Guardián",
+      "sublabel": "1,44× > 1,3×",
+      "width": 140
+    },
+    {
+      "id": "guardian2",
+      "lane": "ctrl",
+      "col": 3,
+      "type": "security",
+      "label": "Guardián",
+      "sublabel": "16 criterios pasan",
+      "width": 140
+    }
+  ],
+  "edges": [
+    {
+      "id": "e-lee",
+      "from": "tronco",
+      "to": "supervisor",
+      "label": "memoria",
+      "variant": "default"
+    },
+    {
+      "id": "e-inv",
+      "from": "supervisor",
+      "to": "investigador",
+      "variant": "default"
+    },
+    {
+      "id": "e-tec",
+      "from": "investigador",
+      "to": "arquitecto",
+      "label": "técnicas",
+      "variant": "default"
+    },
+    {
+      "id": "e-plan",
+      "from": "arquitecto",
+      "to": "dev1",
+      "label": "plan",
+      "variant": "emphasis"
+    },
+    {
+      "id": "e-build",
+      "from": "dev1",
+      "to": "guardian",
+      "label": "build",
+      "variant": "default"
+    },
+    {
+      "id": "e-falla",
+      "from": "guardian",
+      "to": "dev2",
+      "label": "falla: vuelve",
+      "variant": "dashed",
+      "role": "return"
+    },
+    {
+      "id": "e-aprobado",
+      "from": "qa",
+      "to": "publicador",
+      "label": "aprobado",
+      "variant": "emphasis"
+    },
+    {
+      "id": "e-integra",
+      "from": "publicador",
+      "to": "v10",
+      "label": "merge",
+      "variant": "default"
+    },
+    {
+      "id": "e-build2",
+      "from": "dev2",
+      "to": "guardian2",
+      "label": "build",
+      "variant": "default"
+    },
+    {
+      "id": "e-capturas",
+      "from": "guardian2",
+      "to": "qa",
+      "label": "capturas",
+      "variant": "emphasis"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "rose",
+      "title": "Lo que pasó",
+      "items": [
+        "Único retorno al Desarrollador en 22 ciclos",
+        "qa.mjs terminó con 16 criterios",
+        "Rechazo del QA: máximo 2 rondas; no ocurrió en 22 ciclos"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "Fuentes",
+      "items": [
+        "oficina-relevo:bitacora/ciclos.md, CICLO-010",
+        "oficina-relevo:proceso/ciclo.md pasos 2 a 8"
+      ]
+    }
+  ]
+}

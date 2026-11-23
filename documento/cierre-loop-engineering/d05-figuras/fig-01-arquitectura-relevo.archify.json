@@ -1,0 +1,302 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "El Relevo de investigación · Arquitectura",
+    "animation": "none",
+    "quality_profile": "showcase",
+    "legend": {
+      "mode": "auto",
+      "entries": {
+        "backend": {
+          "label": "Rutinas en la nube"
+        },
+        "frontend": {
+          "label": "Subagentes"
+        },
+        "security": {
+          "label": "Controles"
+        },
+        "database": {
+          "label": "Memoria en git"
+        },
+        "cloud": {
+          "label": "Entregado"
+        }
+      }
+    },
+    "views": [
+      {
+        "id": "pizarra",
+        "label": "Pizarra en git",
+        "focus": [
+          "pizarra",
+          "investigaciones",
+          "supervisor",
+          "unificada"
+        ],
+        "note": "Las tareas no se hablan: leen las ramas de las anteriores y escriben solo en la suya (t15-patrones/patrones.md C1)."
+      },
+      {
+        "id": "ciego",
+        "label": "Revisión ciega",
+        "focus": [
+          "investigaciones",
+          "especialistas",
+          "auditor",
+          "archivo"
+        ],
+        "note": "T7 a T12 reciben solo el archivo. T14 y T15 pasan sus fichas por un auditor en 2 vueltas; la C3 de T15 queda archivada."
+      },
+      {
+        "id": "reconciliacion",
+        "label": "Canario y supervisor",
+        "focus": [
+          "canario",
+          "investigaciones",
+          "explorador",
+          "supervisor"
+        ],
+        "note": "El canario prueba el entorno 19 minutos antes de T1. T16 compara estado deseado con real: 16 de 16, 0 rescates."
+      }
+    ]
+  },
+  "lanes": [
+    {
+      "id": "mem",
+      "label": "Memoria · git"
+    },
+    {
+      "id": "rut",
+      "label": "Rutinas en la nube"
+    },
+    {
+      "id": "sub",
+      "label": "Subagentes"
+    },
+    {
+      "id": "ctrl",
+      "label": "Controles",
+      "variant": "exception"
+    }
+  ],
+  "phases": [
+    {
+      "id": "f1",
+      "label": "Probar el entorno",
+      "fromCol": 0,
+      "toCol": 0
+    },
+    {
+      "id": "f2",
+      "label": "Investigar y revisar en ciego",
+      "fromCol": 1,
+      "toCol": 3,
+      "variant": "emphasis"
+    },
+    {
+      "id": "f3",
+      "label": "Reconciliar y consolidar",
+      "fromCol": 4,
+      "toCol": 5,
+      "variant": "dashed"
+    }
+  ],
+  "mainPath": [
+    "canario",
+    "investigaciones",
+    "auditor",
+    "supervisor",
+    "unificada",
+    "documentacion"
+  ],
+  "nodes": [
+    {
+      "id": "pizarra",
+      "lane": "mem",
+      "col": 1,
+      "type": "database",
+      "label": "Pizarra",
+      "sublabel": "ramas claude/cierre-le-*",
+      "width": 140
+    },
+    {
+      "id": "archivo",
+      "lane": "ctrl",
+      "col": 3,
+      "type": "database",
+      "label": "Archivo",
+      "sublabel": "t15 archivo.md · C3",
+      "width": 140
+    },
+    {
+      "id": "unificada",
+      "lane": "mem",
+      "col": 4,
+      "type": "database",
+      "label": "Unificación",
+      "sublabel": "Hernán · 22/11",
+      "width": 140
+    },
+    {
+      "id": "canario",
+      "lane": "rut",
+      "col": 0,
+      "type": "backend",
+      "label": "Canario",
+      "sublabel": "cierre-le-prueba",
+      "tag": "6e87ea4",
+      "width": 140
+    },
+    {
+      "id": "investigaciones",
+      "lane": "rut",
+      "col": 1,
+      "type": "backend",
+      "label": "8 investigaciones",
+      "sublabel": "T1 a T6 · T14 · T15",
+      "width": 140
+    },
+    {
+      "id": "explorador",
+      "lane": "rut",
+      "col": 2,
+      "type": "backend",
+      "label": "Explorador T13",
+      "sublabel": "7 paradas cada 4 h",
+      "width": 140
+    },
+    {
+      "id": "supervisor",
+      "lane": "rut",
+      "col": 4,
+      "type": "backend",
+      "label": "Supervisor T16",
+      "sublabel": "reconciliación",
+      "tag": "0 rescates",
+      "width": 140
+    },
+    {
+      "id": "documentacion",
+      "lane": "rut",
+      "col": 5,
+      "type": "cloud",
+      "label": "Documentación",
+      "sublabel": "relevo D01 a D07",
+      "width": 140
+    },
+    {
+      "id": "especialistas",
+      "lane": "sub",
+      "col": 2,
+      "type": "frontend",
+      "label": "6 especialistas",
+      "sublabel": "T7 a T12",
+      "tag": "solo ven el archivo",
+      "width": 140
+    },
+    {
+      "id": "auditor",
+      "lane": "ctrl",
+      "col": 2,
+      "type": "security",
+      "label": "Auditor ciego",
+      "sublabel": "T14 y T15 · 2 vueltas",
+      "tag": "criterio fijo",
+      "width": 140
+    }
+  ],
+  "edges": [
+    {
+      "id": "e-canario",
+      "from": "canario",
+      "to": "investigaciones",
+      "label": "entorno probado",
+      "variant": "default"
+    },
+    {
+      "id": "e-lee",
+      "from": "pizarra",
+      "to": "investigaciones",
+      "label": "lee y escribe",
+      "variant": "dashed"
+    },
+    {
+      "id": "e-espec",
+      "from": "investigaciones",
+      "to": "especialistas",
+      "label": "solo el archivo",
+      "variant": "default"
+    },
+    {
+      "id": "e-fichas",
+      "from": "investigaciones",
+      "to": "auditor",
+      "label": "fichas",
+      "variant": "emphasis"
+    },
+    {
+      "id": "e-archiva",
+      "from": "auditor",
+      "to": "archivo",
+      "label": "rechazada 2 veces",
+      "variant": "security",
+      "role": "error"
+    },
+    {
+      "id": "e-aprueba",
+      "from": "auditor",
+      "to": "supervisor",
+      "label": "aprobadas",
+      "variant": "emphasis"
+    },
+    {
+      "id": "e-diario",
+      "from": "explorador",
+      "to": "supervisor",
+      "label": "diario 7/7",
+      "variant": "default"
+    },
+    {
+      "id": "e-une",
+      "from": "supervisor",
+      "to": "unificada",
+      "label": "16 de 16",
+      "variant": "default"
+    },
+    {
+      "id": "e-base",
+      "from": "unificada",
+      "to": "documentacion",
+      "label": "doc-le-base",
+      "variant": "dashed"
+    },
+    {
+      "id": "e-ideas",
+      "from": "especialistas",
+      "to": "pizarra",
+      "label": "ideas-*.md",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "rose",
+      "title": "Cifras con fuente",
+      "items": [
+        "T14: 6 de 9 fichas en la vuelta 1, 3 de 3 en la vuelta 2",
+        "T15: 21 fichas, 20 aprobadas, C3 archivada",
+        "Del canario al estado final: 27 h 1 min"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "Fuentes",
+      "items": [
+        "t16-supervisor/estado-final.md (59c639a)",
+        "t14-aterrizador/fichas/archivo.md · t15-patrones/patrones.md §2",
+        "d04-sistema/linea-de-tiempo.md"
+      ]
+    }
+  ]
+}

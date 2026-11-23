@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 740" width="1100" height="740" font-family="'Plus Jakarta Sans', 'Segoe UI', Arial, sans-serif" role="img" aria-labelledby="t d">
+<title id="t">Mapa de calor: adopción de 9 conceptos en los equipos y en el proyecto del cierre</title>
+<desc id="d">Filas: los 9 conceptos del radar de T14. Columnas: madurez afuera, adopción en los equipos y adopción en el cierre. Datos de radar.json y radar.md de D03.</desc>
+<rect width="1100" height="740" fill="#FFFFFF"/>
+<defs><pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="#FFFFFF"/><line x1="0" y1="0" x2="0" y2="8" stroke="#F8D53C" stroke-width="3"/></pattern></defs>
+<text x="40" y="44" font-size="22" font-weight="700" fill="#1E0C21" text-anchor="start" >Mapa de calor · Los equipos frente al proyecto del cierre</text>
+<text x="40" y="70" font-size="13" font-weight="400" fill="#6B5E6E" text-anchor="start" >Nueve conceptos del radar de T14. Más oscuro = más adoptado. Rayado amarillo = por confirmar (sin evidencia).</text>
+<text x="40" y="90" font-size="13" font-weight="400" fill="#6B5E6E" text-anchor="start" >Corte: 23/11/2026. Cada celda tiene su evidencia en d03-radar/radar.json; esta figura no agrega datos.</text>
+<text x="40" y="148" font-size="13" font-weight="700" fill="#1E0C21" text-anchor="start" >Concepto</text>
+<text x="540.0" y="148" font-size="13" font-weight="700" fill="#1E0C21" text-anchor="middle" >Madurez afuera (T14)</text>
+<text x="740.0" y="148" font-size="13" font-weight="700" fill="#1E0C21" text-anchor="middle" >Equipos</text>
+<text x="940.0" y="148" font-size="13" font-weight="700" fill="#1E0C21" text-anchor="middle" >Cierre</text>
+<line x1="40" x2="1040" y1="158" y2="158" stroke="#1E0C21"/>
+<text x="40" y="193" font-size="13" font-weight="600" fill="#1E0C21" text-anchor="start" >1. Observabilidad y trazas</text>
+<rect x="446" y="170" width="188" height="38" rx="4" fill="#DCDBFF" stroke="#534DFF" stroke-width="1.5" />
+<text x="540.0" y="193" font-size="12" font-weight="600" fill="#1E0C21" text-anchor="middle" >consenso</text>
+<rect x="646" y="170" width="188" height="38" rx="4" fill="url(#hatch)" stroke="#1E0C21" stroke-width="0.8"/>
+<rect x="685.6" y="180" width="108.8" height="18" rx="3" fill="#FFFFFF" opacity="0.85"/>
+<text x="740.0" y="193" font-size="11.5" font-weight="600" fill="#1E0C21" text-anchor="middle" >por confirmar  ?</text>
+<rect x="846" y="170" width="188" height="38" rx="4" fill="#361133" stroke="#1E0C21" stroke-width="0.8"/>
+<rect x="865.2" y="180" width="149.6" height="18" rx="3" fill="#FFFFFF" opacity="0"/>
+<text x="940.0" y="193" font-size="11.5" font-weight="700" fill="#FFFFFF" text-anchor="middle" >aplicado · por corrida</text>
+<text x="40" y="239" font-size="13" font-weight="600" fill="#1E0C21" text-anchor="start" >2. Guardrails (barandas)</text>
+<rect x="446" y="216" width="188" height="38" rx="4" fill="#DCDBFF" stroke="#534DFF" stroke-width="1.5" />
+<text x="540.0" y="239" font-size="12" font-weight="600" fill="#1E0C21" text-anchor="middle" >consenso</text>
+<rect x="646" y="216" width="188" height="38" rx="4" fill="url(#hatch)" stroke="#1E0C21" stroke-width="0.8"/>
+<rect x="685.6" y="226" width="108.8" height="18" rx="3" fill="#FFFFFF" opacity="0.85"/>
+<text x="740.0" y="239" font-size="11.5" font-weight="600" fill="#1E0C21" text-anchor="middle" >por confirmar  ?</text>
+<rect x="846" y="216" width="188" height="38" rx="4" fill="#361133" stroke="#1E0C21" stroke-width="0.8"/>
+<rect x="858.4" y="226" width="163.2" height="18" rx="3" fill="#FFFFFF" opacity="0"/>
+<text x="940.0" y="239" font-size="11.5" font-weight="700" fill="#FFFFFF" text-anchor="middle" >aplicado · deterministas</text>
+<text x="40" y="285" font-size="13" font-weight="600" fill="#1E0C21" text-anchor="start" >3. Versionado de prompts y skills</text>
+<rect x="446" y="262" width="188" height="38" rx="4" fill="#FFFFFF" stroke="#534DFF" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="540.0" y="285" font-size="12" font-weight="600" fill="#1E0C21" text-anchor="middle" >no cumple la vara</text>
+<rect x="646" y="262" width="188" height="38" rx="4" fill="url(#hatch)" stroke="#1E0C21" stroke-width="0.8"/>
+<rect x="685.6" y="272" width="108.8" height="18" rx="3" fill="#FFFFFF" opacity="0.85"/>
+<text x="740.0" y="285" font-size="11.5" font-weight="600" fill="#1E0C21" text-anchor="middle" >por confirmar  ?</text>
+<rect x="846" y="262" width="188" height="38" rx="4" fill="#B28FAE" stroke="#1E0C21" stroke-width="0.8"/>
+<rect x="912.8" y="272" width="54.4" height="18" rx="3" fill="#FFFFFF" opacity="0"/>
+<text x="940.0" y="285" font-size="11.5" font-weight="600" fill="#1E0C21" text-anchor="middle" >a medias</text>
+<text x="40" y="331" font-size="13" font-weight="600" fill="#1E0C21" text-anchor="start" >4. Presupuesto de tokens y costo</text>
+<rect x="446" y="308" width="188" height="38" rx="4" fill="#DCDBFF" stroke="#534DFF" stroke-width="1.5" />
+<text x="540.0" y="331" font-size="12" font-weight="600" fill="#1E0C21" text-anchor="middle" >consenso</text>
+<rect x="646" y="308" width="188" height="38" rx="4" fill="url(#hatch)" stroke="#1E0C21" stroke-width="0.8"/>
+<rect x="685.6" y="318" width="108.8" height="18" rx="3" fill="#FFFFFF" opacity="0.85"/>
+<text x="740.0" y="331" font-size="11.5" font-weight="600" fill="#1E0C21" text-anchor="middle" >por confirmar  ?</text>
+<rect x="846" y="308" width="188" height="38" rx="4" fill="url(#hatch)" stroke="#1E0C21" stroke-width="0.8"/>
+<rect x="844.8" y="318" width="190.4" height="18" rx="3" fill="#FFFFFF" opacity="0.85"/>
+<text x="940.0" y="331" font-size="11.5" font-weight="600" fill="#1E0C21" text-anchor="middle" >por confirmar · sin registro</text>
+<text x="40" y="377" font-size="13" font-weight="600" fill="#1E0C21" text-anchor="start" >5. Evals (evaluaciones)</text>
+<rect x="446" y="354" width="188" height="38" rx="4" fill="#DCDBFF" stroke="#534DFF" stroke-width="1.5" />
+<text x="540.0" y="377" font-size="12" font-weight="600" fill="#1E0C21" text-anchor="middle" >consenso</text>
+<rect x="646" y="354" width="188" height="38" rx="4" fill="#B28FAE" stroke="#1E0C21" stroke-width="0.8"/>
+<rect x="712.8" y="364" width="54.4" height="18" rx="3" fill="#FFFFFF" opacity="0"/>
+<text x="740.0" y="377" font-size="11.5" font-weight="600" fill="#1E0C21" text-anchor="middle" >a medias</text>
+<rect x="846" y="354" width="188" height="38" rx="4" fill="#B28FAE" stroke="#1E0C21" stroke-width="0.8"/>
+<rect x="912.8" y="364" width="54.4" height="18" rx="3" fill="#FFFFFF" opacity="0"/>
+<text x="940.0" y="377" font-size="11.5" font-weight="600" fill="#1E0C21" text-anchor="middle" >a medias</text>
+<text x="40" y="423" font-size="13" font-weight="600" fill="#1E0C21" text-anchor="start" >6. Harness (arnés del agente)</text>
+<rect x="446" y="400" width="188" height="38" rx="4" fill="#DCDBFF" stroke="#534DFF" stroke-width="1.5" />
+<text x="540.0" y="423" font-size="12" font-weight="600" fill="#1E0C21" text-anchor="middle" >consenso</text>
+<rect x="646" y="400" width="188" height="38" rx="4" fill="#EFE6EE" stroke="#1E0C21" stroke-width="0.8"/>
+<rect x="712.8" y="410" width="54.4" height="18" rx="3" fill="#FFFFFF" opacity="0"/>
+<text x="740.0" y="423" font-size="11.5" font-weight="600" fill="#1E0C21" text-anchor="middle" >se habla</text>
+<rect x="846" y="400" width="188" height="38" rx="4" fill="#361133" stroke="#1E0C21" stroke-width="0.8"/>
+<rect x="912.8" y="410" width="54.4" height="18" rx="3" fill="#FFFFFF" opacity="0"/>
+<text x="940.0" y="423" font-size="11.5" font-weight="700" fill="#FFFFFF" text-anchor="middle" >aplicado</text>
+<text x="40" y="469" font-size="13" font-weight="600" fill="#1E0C21" text-anchor="start" >7. Gobernanza de IA</text>
+<rect x="446" y="446" width="188" height="38" rx="4" fill="#DCDBFF" stroke="#534DFF" stroke-width="1.5" />
+<text x="540.0" y="469" font-size="12" font-weight="600" fill="#1E0C21" text-anchor="middle" >consenso</text>
+<rect x="646" y="446" width="188" height="38" rx="4" fill="#EFE6EE" stroke="#1E0C21" stroke-width="0.8"/>
+<rect x="712.8" y="456" width="54.4" height="18" rx="3" fill="#FFFFFF" opacity="0"/>
+<text x="740.0" y="469" font-size="11.5" font-weight="600" fill="#1E0C21" text-anchor="middle" >se habla</text>
+<rect x="846" y="446" width="188" height="38" rx="4" fill="#B28FAE" stroke="#1E0C21" stroke-width="0.8"/>
+<rect x="912.8" y="456" width="54.4" height="18" rx="3" fill="#FFFFFF" opacity="0"/>
+<text x="940.0" y="469" font-size="11.5" font-weight="600" fill="#1E0C21" text-anchor="middle" >a medias</text>
+<text x="40" y="515" font-size="13" font-weight="600" fill="#1E0C21" text-anchor="start" >8. Context engineering (ingeniería de contexto)</text>
+<rect x="446" y="492" width="188" height="38" rx="4" fill="#DCDBFF" stroke="#534DFF" stroke-width="1.5" />
+<text x="540.0" y="515" font-size="12" font-weight="600" fill="#1E0C21" text-anchor="middle" >consenso</text>
+<rect x="646" y="492" width="188" height="38" rx="4" fill="#B28FAE" stroke="#1E0C21" stroke-width="0.8"/>
+<rect x="712.8" y="502" width="54.4" height="18" rx="3" fill="#FFFFFF" opacity="0"/>
+<text x="740.0" y="515" font-size="11.5" font-weight="600" fill="#1E0C21" text-anchor="middle" >a medias</text>
+<rect x="846" y="492" width="188" height="38" rx="4" fill="#361133" stroke="#1E0C21" stroke-width="0.8"/>
+<rect x="848.2" y="502" width="183.6" height="18" rx="3" fill="#FFFFFF" opacity="0"/>
+<text x="940.0" y="515" font-size="11.5" font-weight="700" fill="#FFFFFF" text-anchor="middle" >aplicado · sin medir tokens</text>
+<text x="40" y="561" font-size="13" font-weight="600" fill="#1E0C21" text-anchor="start" >9. Human-in-the-loop (persona en el circuito)</text>
+<rect x="446" y="538" width="188" height="38" rx="4" fill="#DCDBFF" stroke="#534DFF" stroke-width="1.5" />
+<text x="540.0" y="561" font-size="12" font-weight="600" fill="#1E0C21" text-anchor="middle" >consenso</text>
+<rect x="646" y="538" width="188" height="38" rx="4" fill="#361133" stroke="#1E0C21" stroke-width="0.8"/>
+<rect x="712.8" y="548" width="54.4" height="18" rx="3" fill="#FFFFFF" opacity="0"/>
+<text x="740.0" y="561" font-size="11.5" font-weight="700" fill="#FFFFFF" text-anchor="middle" >aplicado</text>
+<rect x="846" y="538" width="188" height="38" rx="4" fill="#361133" stroke="#1E0C21" stroke-width="0.8"/>
+<rect x="912.8" y="548" width="54.4" height="18" rx="3" fill="#FFFFFF" opacity="0"/>
+<text x="940.0" y="561" font-size="11.5" font-weight="700" fill="#FFFFFF" text-anchor="middle" >aplicado</text>
+<rect x="40" y="594" width="28" height="16" rx="3" fill="url(#hatch)" stroke="#1E0C21" stroke-width="0.8"/>
+<text x="76" y="607" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >por confirmar</text>
+<rect x="190" y="594" width="28" height="16" rx="3" fill="#EFE6EE" stroke="#1E0C21" stroke-width="0.8"/>
+<text x="226" y="607" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >se habla</text>
+<rect x="340" y="594" width="28" height="16" rx="3" fill="#B28FAE" stroke="#1E0C21" stroke-width="0.8"/>
+<text x="376" y="607" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >a medias</text>
+<rect x="490" y="594" width="28" height="16" rx="3" fill="#361133" stroke="#1E0C21" stroke-width="0.8"/>
+<text x="526" y="607" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >aplicado</text>
+<rect x="680" y="594" width="28" height="16" rx="3" fill="#DCDBFF" stroke="#534DFF" stroke-width="1.5" />
+<text x="716" y="607" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >madurez: consenso</text>
+<rect x="870" y="594" width="28" height="16" rx="3" fill="#FFFFFF" stroke="#534DFF" stroke-width="1.5" stroke-dasharray="4 3"/>
+<text x="906" y="607" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >madurez: no cumple la vara</text>
+<text x="40" y="638" font-size="12" font-weight="400" fill="#6B5E6E" text-anchor="start" >Equipos: columna «Adopción aquí» de t14-aterrizador/radar.md §3; «No sé: preguntar a Hernán» se muestra como por confirmar [confirmar con Hernán].</text>
+<text x="40" y="658" font-size="12" font-weight="400" fill="#6B5E6E" text-anchor="start" >Cierre: evidencia leída por D03 en oficina-relevo (CONTRATO.md, tools/qa.mjs, bitacora/ciclos.md, ADR-006, ADR-008). El nivel es [Hipótesis] (juicio de D03).</text>
+<text x="40" y="678" font-size="12" font-weight="400" fill="#6B5E6E" text-anchor="start" >Madurez afuera: vara fija de T14 §2; gobernanza de IA descansa en fuentes [Visto solo en buscador]. El radar 2x2 está en d03-radar/radar.svg.</text>
+</svg>

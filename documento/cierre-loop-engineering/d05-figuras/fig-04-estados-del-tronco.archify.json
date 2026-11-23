@@ -1,0 +1,279 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "El Taller · Estados de un ciclo frente al tronco",
+    "animation": "none",
+    "quality_profile": "showcase",
+    "legend": {
+      "mode": "auto",
+      "entries": {
+        "backend": {
+          "label": "Modo del ciclo"
+        },
+        "frontend": {
+          "label": "QA ciego"
+        },
+        "security": {
+          "label": "Excepciones"
+        },
+        "database": {
+          "label": "Resultado en git"
+        }
+      }
+    },
+    "views": [
+      {
+        "id": "normal",
+        "label": "Camino normal",
+        "focus": [
+          "memoria",
+          "mejora",
+          "qa",
+          "aprobado",
+          "cronista"
+        ],
+        "note": "Los 22 ciclos de CICLO-001 a CICLO-022 siguieron este camino y aprobaron en la primera ronda."
+      },
+      {
+        "id": "excepciones",
+        "label": "Reparación y diagnóstico",
+        "focus": [
+          "memoria",
+          "reparacion",
+          "diagnostico",
+          "cronista"
+        ],
+        "note": "Tronco roto: se restaura solo el código desde commit_ultima_buena; la memoria no se revierte. Con 3 fallidos, solo diagnóstico."
+      },
+      {
+        "id": "rechazo",
+        "label": "Rechazo",
+        "focus": [
+          "qa",
+          "rechazado",
+          "cronista"
+        ],
+        "note": "Tras 2 rondas de corrección el código queda solo en claude/ciclo-NNN; lo aprendido sí entra al tronco."
+      }
+    ]
+  },
+  "lanes": [
+    {
+      "id": "modo",
+      "label": "Modo del ciclo"
+    },
+    {
+      "id": "qa",
+      "label": "QA ciego"
+    },
+    {
+      "id": "git",
+      "label": "Resultado en git"
+    },
+    {
+      "id": "ctrl",
+      "label": "Excepciones",
+      "variant": "exception"
+    }
+  ],
+  "phases": [
+    {
+      "id": "f1",
+      "label": "Paso 2 · Supervisor",
+      "fromCol": 0,
+      "toCol": 1
+    },
+    {
+      "id": "f2",
+      "label": "Paso 7 · QA",
+      "fromCol": 2,
+      "toCol": 3,
+      "variant": "emphasis"
+    },
+    {
+      "id": "f3",
+      "label": "Pasos 8 y 9",
+      "fromCol": 4,
+      "toCol": 5,
+      "variant": "dashed"
+    }
+  ],
+  "mainPath": [
+    "memoria",
+    "mejora",
+    "qa",
+    "aprobado",
+    "cronista"
+  ],
+  "nodes": [
+    {
+      "id": "memoria",
+      "lane": "modo",
+      "col": 0,
+      "type": "backend",
+      "label": "Inicio",
+      "sublabel": "lee estado.json",
+      "width": 140
+    },
+    {
+      "id": "mejora",
+      "lane": "modo",
+      "col": 1,
+      "type": "backend",
+      "label": "Mejora",
+      "sublabel": "una sola mejora",
+      "width": 140
+    },
+    {
+      "id": "qa",
+      "lane": "qa",
+      "col": 2,
+      "type": "frontend",
+      "label": "En revisión",
+      "sublabel": "QA ciego",
+      "width": 140
+    },
+    {
+      "id": "aprobado",
+      "lane": "git",
+      "col": 4,
+      "type": "database",
+      "label": "Aprobado",
+      "sublabel": "integrado · vN",
+      "width": 140
+    },
+    {
+      "id": "cronista",
+      "lane": "git",
+      "col": 5,
+      "type": "database",
+      "label": "Memoria escrita",
+      "sublabel": "Cronista, siempre",
+      "width": 140
+    },
+    {
+      "id": "reparacion",
+      "lane": "ctrl",
+      "col": 1,
+      "type": "security",
+      "label": "Reparación",
+      "sublabel": "qa.mjs falla",
+      "width": 140
+    },
+    {
+      "id": "diagnostico",
+      "lane": "ctrl",
+      "col": 2,
+      "type": "security",
+      "label": "Diagnóstico",
+      "sublabel": "fallidos ≥ 3",
+      "width": 140,
+      "tag": "escribe el hueco"
+    },
+    {
+      "id": "rechazado",
+      "lane": "ctrl",
+      "col": 4,
+      "type": "security",
+      "label": "Rechazado",
+      "sublabel": "solo ciclo-NNN",
+      "width": 140
+    }
+  ],
+  "edges": [
+    {
+      "id": "e-pasa",
+      "from": "memoria",
+      "to": "mejora",
+      "label": "tronco pasa",
+      "variant": "default"
+    },
+    {
+      "id": "e-roto",
+      "from": "memoria",
+      "to": "reparacion",
+      "label": "tronco roto",
+      "variant": "security",
+      "role": "error"
+    },
+    {
+      "id": "e-plan",
+      "from": "mejora",
+      "to": "qa",
+      "label": "capturas",
+      "variant": "emphasis"
+    },
+    {
+      "id": "e-ok",
+      "from": "qa",
+      "to": "aprobado",
+      "label": "aprobado",
+      "variant": "emphasis"
+    },
+    {
+      "id": "e-no",
+      "from": "qa",
+      "to": "rechazado",
+      "label": "tras 2 rondas",
+      "variant": "security",
+      "role": "error"
+    },
+    {
+      "id": "e-registra",
+      "from": "aprobado",
+      "to": "cronista",
+      "label": "fallidos = 0",
+      "variant": "default"
+    },
+    {
+      "id": "e-aprende",
+      "from": "rechazado",
+      "to": "cronista",
+      "label": "fallidos + 1",
+      "variant": "dashed"
+    },
+    {
+      "id": "e-tres",
+      "from": "memoria",
+      "to": "diagnostico",
+      "label": "fallidos ≥ 3",
+      "variant": "security",
+      "role": "error"
+    },
+    {
+      "id": "e-corrige",
+      "from": "qa",
+      "to": "mejora",
+      "label": "corrige (máx. 2)",
+      "variant": "dashed",
+      "role": "return"
+    },
+    {
+      "id": "e-rep-mem",
+      "from": "reparacion",
+      "to": "cronista",
+      "label": "código restaurado",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "rose",
+      "title": "Al corte (d24488d)",
+      "items": [
+        "22 ciclos aprobados en la primera ronda",
+        "0 rechazados · 0 reparaciones · fallidos seguidos 0",
+        "Diagnóstico escribe su hueco en bitacora/huecos.md (paso 2)"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "Fuentes",
+      "items": [
+        "oficina-relevo:proceso/ciclo.md pasos 2, 7, 8 y 9",
+        "oficina-relevo:estado.json · bitacora/ciclos.md"
+      ]
+    }
+  ]
+}

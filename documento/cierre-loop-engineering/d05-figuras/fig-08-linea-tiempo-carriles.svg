@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 600" width="1440" height="600" font-family="'Plus Jakarta Sans', 'Segoe UI', Arial, sans-serif" role="img" aria-labelledby="t d">
+<title id="t">Línea de tiempo en carriles: los tres sistemas de agentes del cierre</title>
+<desc id="d">Del 19/11/2026 18:00 UTC al 23/11/2026 14:00 UTC. Un carril por sistema; cada marca es un commit de git. Datos de d04-sistema/linea-de-tiempo.md.</desc>
+<rect width="1440" height="600" fill="#FFFFFF"/>
+<text x="40" y="44" font-size="22" font-weight="700" fill="#1E0C21" text-anchor="start" >Línea de tiempo · Tres sistemas de agentes, un registro: git</text>
+<text x="40" y="70" font-size="13" font-weight="400" fill="#6B5E6E" text-anchor="start" >Cada marca es un commit. Horas en UTC (Bogotá = UTC − 5). Del 19/11 18:00 al 23/11 14:00 UTC.</text>
+<line x1="315.0" x2="315.0" y1="110" y2="450" stroke="#E9E4EA" stroke-width="1.4" />
+<text x="315.0" y="470" font-size="13" font-weight="600" fill="#6B5E6E" text-anchor="middle" >20/11 00h</text>
+<line x1="465.0" x2="465.0" y1="110" y2="450" stroke="#E9E4EA" stroke-width="0.8" stroke-dasharray="3 4"/>
+<text x="465.0" y="470" font-size="13" font-weight="400" fill="#6B5E6E" text-anchor="middle" >20/11 12h</text>
+<line x1="615.0" x2="615.0" y1="110" y2="450" stroke="#E9E4EA" stroke-width="1.4" />
+<text x="615.0" y="470" font-size="13" font-weight="600" fill="#6B5E6E" text-anchor="middle" >21/11 00h</text>
+<line x1="765.0" x2="765.0" y1="110" y2="450" stroke="#E9E4EA" stroke-width="0.8" stroke-dasharray="3 4"/>
+<text x="765.0" y="470" font-size="13" font-weight="400" fill="#6B5E6E" text-anchor="middle" >21/11 12h</text>
+<line x1="915.0" x2="915.0" y1="110" y2="450" stroke="#E9E4EA" stroke-width="1.4" />
+<text x="915.0000000000001" y="470" font-size="13" font-weight="600" fill="#6B5E6E" text-anchor="middle" >22/11 00h</text>
+<line x1="1065.0" x2="1065.0" y1="110" y2="450" stroke="#E9E4EA" stroke-width="0.8" stroke-dasharray="3 4"/>
+<text x="1065.0" y="470" font-size="13" font-weight="400" fill="#6B5E6E" text-anchor="middle" >22/11 12h</text>
+<line x1="1215.0" x2="1215.0" y1="110" y2="450" stroke="#E9E4EA" stroke-width="1.4" />
+<text x="1215.0" y="470" font-size="13" font-weight="600" fill="#6B5E6E" text-anchor="middle" >23/11 00h</text>
+<line x1="1365.0" x2="1365.0" y1="110" y2="450" stroke="#E9E4EA" stroke-width="0.8" stroke-dasharray="3 4"/>
+<text x="1365.0" y="470" font-size="13" font-weight="400" fill="#6B5E6E" text-anchor="middle" >23/11 12h</text>
+<rect x="240" y="116" width="1150" height="68" fill="#EF2222" opacity="0.05"/>
+<text x="40" y="146" font-size="13" font-weight="700" fill="#1E0C21" text-anchor="start" >Relevo de investigación</text>
+<line x1="240" x2="1390" y1="150" y2="150" stroke="#EF2222" stroke-width="1"/>
+<rect x="240" y="236" width="1150" height="68" fill="#361133" opacity="0.05"/>
+<text x="40" y="266" font-size="13" font-weight="700" fill="#1E0C21" text-anchor="start" >El Taller</text>
+<line x1="240" x2="1390" y1="270" y2="270" stroke="#361133" stroke-width="1"/>
+<rect x="240" y="356" width="1150" height="68" fill="#534DFF" opacity="0.05"/>
+<text x="40" y="386" font-size="13" font-weight="700" fill="#1E0C21" text-anchor="start" >Relevo de documentación</text>
+<line x1="240" x2="1390" y1="390" y2="390" stroke="#534DFF" stroke-width="1"/>
+<text x="40" y="164" font-size="13" font-weight="400" fill="#6B5E6E" text-anchor="start" >16 tareas · 27 h 1 min</text>
+<text x="247.08333333333334" y="190" font-size="13" font-weight="400" fill="#6B5E6E" text-anchor="start" >T1 a T6, T14, T15 y especialistas: 15 commits de 18:34 a 23:13</text>
+<rect x="239.1" y="146" width="8" height="8" fill="#F8D53C" stroke="#1E0C21" stroke-width="0.8" transform="rotate(45 243.1 150)"/>
+<circle cx="247.1" cy="150" r="4" fill="#EF2222"/>
+<circle cx="247.5" cy="150" r="4" fill="#EF2222"/>
+<circle cx="256.5" cy="150" r="4" fill="#EF2222"/>
+<circle cx="263.1" cy="150" r="4" fill="#EF2222"/>
+<circle cx="263.3" cy="150" r="4" fill="#EF2222"/>
+<circle cx="272.5" cy="150" r="4" fill="#EF2222"/>
+<circle cx="272.7" cy="150" r="4" fill="#EF2222"/>
+<circle cx="280.2" cy="150" r="4" fill="#EF2222"/>
+<circle cx="280.4" cy="150" r="4" fill="#EF2222"/>
+<circle cx="288.1" cy="150" r="4" fill="#EF2222"/>
+<circle cx="288.5" cy="150" r="4" fill="#EF2222"/>
+<circle cx="296.7" cy="150" r="4" fill="#EF2222"/>
+<circle cx="297.1" cy="150" r="4" fill="#EF2222"/>
+<circle cx="305.0" cy="150" r="4" fill="#EF2222"/>
+<circle cx="305.2" cy="150" r="4" fill="#EF2222"/>
+<path d="M266.5,134 l5,9 h-10 z" fill="#EF2222" stroke="#1E0C21" stroke-width="0.6"/>
+<path d="M315.4,134 l5,9 h-10 z" fill="#EF2222" stroke="#1E0C21" stroke-width="0.6"/>
+<path d="M365.4,134 l5,9 h-10 z" fill="#EF2222" stroke="#1E0C21" stroke-width="0.6"/>
+<path d="M415.4,134 l5,9 h-10 z" fill="#EF2222" stroke="#1E0C21" stroke-width="0.6"/>
+<path d="M465.4,134 l5,9 h-10 z" fill="#EF2222" stroke="#1E0C21" stroke-width="0.6"/>
+<path d="M515.4,134 l5,9 h-10 z" fill="#EF2222" stroke="#1E0C21" stroke-width="0.6"/>
+<path d="M565.4,134 l5,9 h-10 z" fill="#EF2222" stroke="#1E0C21" stroke-width="0.6"/>
+<circle cx="321.5" cy="150" r="6" fill="#FFFFFF" stroke="#EF2222" stroke-width="2"/>
+<circle cx="572.5" cy="150" r="4" fill="#EF2222"/>
+<circle cx="580.8" cy="150" r="6" fill="#FFFFFF" stroke="#EF2222" stroke-width="2"/>
+<text x="590.8333333333333" y="154" font-size="13" font-weight="600" fill="#1E0C21" text-anchor="start" >T16 estado final · 16 de 16 · 59c639a</text>
+<rect x="1194.2" y="145" width="10" height="10" fill="#1E0C21"/>
+<text x="1199.1666666666665" y="174" font-size="13" font-weight="600" fill="#1E0C21" text-anchor="middle" >Hernán unifica</text>
+<text x="243.125" y="174" font-size="13" font-weight="600" fill="#1E0C21" text-anchor="start" >canario</text>
+<text x="365.4166666666667" y="128" font-size="13" font-weight="400" fill="#6B5E6E" text-anchor="middle" >paradas del explorador (7)</text>
+<text x="40" y="284" font-size="13" font-weight="400" fill="#6B5E6E" text-anchor="start" >22 ciclos · 153 commits</text>
+<rect x="250.2" y="265" width="10" height="10" fill="#1E0C21"/>
+<text x="265.20833333333337" y="260" font-size="13" font-weight="600" fill="#1E0C21" text-anchor="start" >línea base</text>
+<rect x="252.5" y="282" width="8" height="8" fill="#F8D53C" stroke="#1E0C21" stroke-width="0.8" transform="rotate(45 256.5 286)"/>
+<circle cx="360.6" cy="270" r="5" fill="#361133"/>
+<circle cx="398.5" cy="270" r="5" fill="#361133"/>
+<circle cx="437.5" cy="270" r="5" fill="#361133"/>
+<circle cx="664.0" cy="270" r="5" fill="#361133"/>
+<circle cx="698.3" cy="270" r="5" fill="#361133"/>
+<circle cx="738.3" cy="270" r="5" fill="#361133"/>
+<circle cx="794.2" cy="270" r="5" fill="#361133"/>
+<circle cx="845.6" cy="270" r="5" fill="#361133"/>
+<circle cx="894.0" cy="270" r="5" fill="#361133"/>
+<circle cx="973.8" cy="270" r="5" fill="#361133"/>
+<circle cx="999.2" cy="270" r="5" fill="#361133"/>
+<circle cx="1037.1" cy="270" r="5" fill="#361133"/>
+<circle cx="1094.2" cy="270" r="5" fill="#361133"/>
+<circle cx="1144.4" cy="270" r="5" fill="#361133"/>
+<circle cx="1194.2" cy="270" r="5" fill="#361133"/>
+<circle cx="1249.4" cy="270" r="5" fill="#361133"/>
+<circle cx="1269.8" cy="270" r="5" fill="#361133"/>
+<circle cx="1288.5" cy="270" r="5" fill="#361133"/>
+<circle cx="1307.7" cy="270" r="5" fill="#361133"/>
+<circle cx="1326.0" cy="270" r="5" fill="#361133"/>
+<circle cx="1344.8" cy="270" r="5" fill="#361133"/>
+<circle cx="1376.9" cy="270" r="5" fill="#361133"/>
+<rect x="467.7" y="280" width="8" height="8" fill="#534DFF"/>
+<rect x="936.6" y="280" width="8" height="8" fill="#534DFF"/>
+<path d="M766.2,280 l5,9 h-10 z" fill="#F8D53C" stroke="#1E0C21" stroke-width="0.6"/>
+<path d="M1067.9,280 l5,9 h-10 z" fill="#F8D53C" stroke="#1E0C21" stroke-width="0.6"/>
+<path d="M1360.2,280 l5,9 h-10 z" fill="#F8D53C" stroke="#1E0C21" stroke-width="0.6"/>
+<line x1="1231.9" x2="1231.9" y1="240" y2="300" stroke="#1E0C21" stroke-width="1.5" stroke-dasharray="4 3"/>
+<text x="1235.875" y="232" font-size="13" font-weight="600" fill="#1E0C21" text-anchor="start" >mudanza ADR-008</text>
+<line x1="360.6" x2="360.6" y1="262" y2="248" stroke="#F8D53C" stroke-width="3"/>
+<text x="360.625" y="244" font-size="13" font-weight="700" fill="#1E0C21" text-anchor="middle" >etapa 1</text>
+<line x1="664.0" x2="664.0" y1="262" y2="248" stroke="#F8D53C" stroke-width="3"/>
+<text x="663.9583333333334" y="244" font-size="13" font-weight="700" fill="#1E0C21" text-anchor="middle" >etapa 2</text>
+<line x1="738.3" x2="738.3" y1="262" y2="248" stroke="#F8D53C" stroke-width="3"/>
+<text x="738.3333333333334" y="244" font-size="13" font-weight="700" fill="#1E0C21" text-anchor="middle" >etapa 3</text>
+<line x1="1144.4" x2="1144.4" y1="262" y2="248" stroke="#F8D53C" stroke-width="3"/>
+<text x="1144.375" y="244" font-size="13" font-weight="700" fill="#1E0C21" text-anchor="middle" >etapa 4</text>
+<text x="398.54166666666663" y="312" font-size="13" font-weight="400" fill="#6B5E6E" text-anchor="middle" >CICLO-001 a 003</text>
+<text x="1307.7083333333333" y="312" font-size="13" font-weight="400" fill="#6B5E6E" text-anchor="middle" >CICLO-016 a 022 (pulido)</text>
+<text x="40" y="404" font-size="13" font-weight="400" fill="#6B5E6E" text-anchor="start" >D01 a D04 al corte</text>
+<rect x="1230.2" y="385" width="10" height="10" fill="#1E0C21"/>
+<text x="1227.2083333333335" y="394" font-size="13" font-weight="600" fill="#1E0C21" text-anchor="end" >BRIEF</text>
+<circle cx="1243.5" cy="390" r="5" fill="#534DFF"/>
+<text x="1243.5416666666667" y="378" font-size="13" font-weight="700" fill="#1E0C21" text-anchor="middle" >D01</text>
+<circle cx="1257.9" cy="390" r="5" fill="#534DFF"/>
+<text x="1257.9166666666665" y="412" font-size="13" font-weight="700" fill="#1E0C21" text-anchor="middle" >D02</text>
+<circle cx="1379.4" cy="390" r="5" fill="#534DFF"/>
+<text x="1371.375" y="378" font-size="13" font-weight="700" fill="#1E0C21" text-anchor="end" >D04</text>
+<circle cx="1385.4" cy="390" r="5" fill="#534DFF"/>
+<text x="1393.4166666666667" y="412" font-size="13" font-weight="700" fill="#1E0C21" text-anchor="start" >D03</text>
+<circle cx="46" cy="500" r="5" fill="#EF2222"/>
+<text x="56" y="504" font-size="13" font-weight="400" fill="#1E0C21" text-anchor="start" >tarea del Relevo</text>
+<path d="M202.4,494 l5,10 h-10 z" fill="#EF2222" stroke="#1E0C21" stroke-width="0.6"/>
+<text x="212.4" y="504" font-size="13" font-weight="400" fill="#1E0C21" text-anchor="start" >parada del explorador</text>
+<circle cx="395.8" cy="500" r="5" fill="#FFFFFF" stroke="#EF2222" stroke-width="2"/>
+<text x="405.8" y="504" font-size="13" font-weight="400" fill="#1E0C21" text-anchor="start" >corte del supervisor T16</text>
+<rect x="607.4000000000001" y="496" width="8" height="8" fill="#F8D53C" stroke="#1E0C21" stroke-width="0.8" transform="rotate(45 611.4000000000001 500)"/>
+<text x="621.4000000000001" y="504" font-size="13" font-weight="400" fill="#1E0C21" text-anchor="start" >canario</text>
+<circle cx="701.2" cy="500" r="5" fill="#361133"/>
+<text x="711.2" y="504" font-size="13" font-weight="400" fill="#1E0C21" text-anchor="start" >ciclo integrado</text>
+<rect x="845.2" y="495" width="10" height="10" fill="#534DFF"/>
+<text x="860.2" y="504" font-size="13" font-weight="400" fill="#1E0C21" text-anchor="start" >retro</text>
+<path d="M925.2,494 l5,10 h-10 z" fill="#F8D53C" stroke="#1E0C21" stroke-width="0.6"/>
+<text x="935.2" y="504" font-size="13" font-weight="400" fill="#1E0C21" text-anchor="start" >Code Janitor</text>
+<rect x="1047.0" y="495" width="10" height="10" fill="#1E0C21"/>
+<text x="1062.0" y="504" font-size="13" font-weight="400" fill="#1E0C21" text-anchor="start" >sesión de Hernán</text>
+<circle cx="1208.4" cy="500" r="5" fill="#534DFF"/>
+<text x="1218.4" y="504" font-size="13" font-weight="400" fill="#1E0C21" text-anchor="start" >especialista D</text>
+<text x="40" y="560" font-size="13" font-weight="400" fill="#6B5E6E" text-anchor="start" >Retros, Code Janitor, canario y 153 commits: oficina-relevo git log (1894166, 6d8b8a2; df766b5, da845dc, bba36a9; b8b8742; rev-list --count), según d04-sistema.</text>
+<text x="40" y="580" font-size="13" font-weight="400" fill="#6B5E6E" text-anchor="start" >Fuentes: d04-sistema/linea-de-tiempo.md (git log de los dos repositorios, corte 23/11 13:00 UTC); t16-supervisor/estado-final.md «Horas reales»; git log de las ramas claude/doc-le-d*. [Fuente primaria]</text>
+</svg>

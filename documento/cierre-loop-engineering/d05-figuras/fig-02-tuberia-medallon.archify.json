@@ -1,0 +1,282 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "La tesis · Un loop como tubería medallón",
+    "animation": "none",
+    "quality_profile": "showcase",
+    "legend": {
+      "mode": "auto",
+      "entries": {
+        "database": {
+          "label": "Capas de datos"
+        },
+        "backend": {
+          "label": "Trabajo de agentes"
+        },
+        "security": {
+          "label": "Controles"
+        },
+        "external": {
+          "label": "Persona"
+        }
+      }
+    },
+    "views": [
+      {
+        "id": "capas",
+        "label": "Bronce, plata y oro",
+        "focus": [
+          "bronce",
+          "etapas",
+          "auditor",
+          "plata",
+          "oro"
+        ],
+        "note": "Cada capa se construye leyendo la anterior: insumo crudo, borrador aprobado por el auditor, listo para publicar (T01 fila 9)."
+      },
+      {
+        "id": "retorno",
+        "label": "Retorno a la capa que falló",
+        "focus": [
+          "auditor",
+          "reintento",
+          "etapas",
+          "archivo"
+        ],
+        "note": "El reintento vuelve con la crítica del auditor a la capa que falló; con el tope agotado, se archiva con su contexto (T01 filas 4 y 5)."
+      },
+      {
+        "id": "puerta",
+        "label": "Persona en la puerta",
+        "focus": [
+          "oro",
+          "persona"
+        ],
+        "note": "El loop se detiene en «listo para publicar»; el efecto irreversible queda fuera del loop (T01 filas 8 y 10)."
+      }
+    ]
+  },
+  "lanes": [
+    {
+      "id": "capa",
+      "label": "Capas · medallón"
+    },
+    {
+      "id": "ag",
+      "label": "Agentes"
+    },
+    {
+      "id": "ctrl",
+      "label": "Controles",
+      "variant": "exception"
+    },
+    {
+      "id": "hum",
+      "label": "Persona"
+    }
+  ],
+  "phases": [
+    {
+      "id": "f1",
+      "label": "Bronce",
+      "fromCol": 0,
+      "toCol": 1
+    },
+    {
+      "id": "f2",
+      "label": "Plata",
+      "fromCol": 2,
+      "toCol": 3,
+      "variant": "emphasis"
+    },
+    {
+      "id": "f3",
+      "label": "Oro y puerta",
+      "fromCol": 4,
+      "toCol": 5,
+      "variant": "dashed"
+    }
+  ],
+  "mainPath": [
+    "bronce",
+    "etapas",
+    "auditor",
+    "plata",
+    "oro",
+    "persona"
+  ],
+  "nodes": [
+    {
+      "id": "bronce",
+      "lane": "capa",
+      "col": 0,
+      "type": "database",
+      "label": "Bronce",
+      "sublabel": "insumo crudo",
+      "width": 140
+    },
+    {
+      "id": "plata",
+      "lane": "capa",
+      "col": 3,
+      "type": "database",
+      "label": "Plata",
+      "sublabel": "borrador aprobado",
+      "width": 140
+    },
+    {
+      "id": "oro",
+      "lane": "capa",
+      "col": 4,
+      "type": "database",
+      "label": "Oro",
+      "sublabel": "listo para publicar",
+      "width": 140
+    },
+    {
+      "id": "etapas",
+      "lane": "ag",
+      "col": 1,
+      "type": "backend",
+      "label": "Etapas en orden",
+      "sublabel": "prompt chaining",
+      "width": 140
+    },
+    {
+      "id": "contrato",
+      "lane": "ctrl",
+      "col": 1,
+      "type": "security",
+      "label": "Contrato fijo",
+      "sublabel": "↔ data contract",
+      "width": 140
+    },
+    {
+      "id": "auditor",
+      "lane": "ctrl",
+      "col": 2,
+      "type": "security",
+      "label": "Auditor ciego",
+      "sublabel": "↔ prueba de calidad",
+      "tag": "no hizo el trabajo",
+      "width": 140
+    },
+    {
+      "id": "reintento",
+      "lane": "ctrl",
+      "col": 3,
+      "type": "security",
+      "label": "Reintento",
+      "sublabel": "↔ bounded retries",
+      "width": 140
+    },
+    {
+      "id": "archivo",
+      "lane": "ctrl",
+      "col": 4,
+      "type": "security",
+      "label": "Archivada",
+      "sublabel": "↔ dead-letter queue",
+      "width": 140
+    },
+    {
+      "id": "persona",
+      "lane": "hum",
+      "col": 5,
+      "type": "external",
+      "label": "Persona",
+      "sublabel": "↔ approval gate",
+      "tag": "publica",
+      "width": 140
+    }
+  ],
+  "edges": [
+    {
+      "id": "e-lee",
+      "from": "bronce",
+      "to": "etapas",
+      "label": "lee",
+      "variant": "default"
+    },
+    {
+      "id": "e-criterios",
+      "from": "contrato",
+      "to": "auditor",
+      "label": "criterios",
+      "variant": "default"
+    },
+    {
+      "id": "e-borrador",
+      "from": "etapas",
+      "to": "auditor",
+      "label": "borrador",
+      "variant": "emphasis"
+    },
+    {
+      "id": "e-aprueba",
+      "from": "auditor",
+      "to": "plata",
+      "label": "aprueba",
+      "variant": "emphasis"
+    },
+    {
+      "id": "e-rechaza",
+      "from": "auditor",
+      "to": "reintento",
+      "label": "rechaza",
+      "variant": "security",
+      "role": "error"
+    },
+    {
+      "id": "e-retorno",
+      "from": "reintento",
+      "to": "etapas",
+      "label": "crítica",
+      "variant": "dashed",
+      "role": "return"
+    },
+    {
+      "id": "e-tope",
+      "from": "reintento",
+      "to": "archivo",
+      "label": "tope",
+      "variant": "security",
+      "role": "error"
+    },
+    {
+      "id": "e-promueve",
+      "from": "plata",
+      "to": "oro",
+      "label": "promueve",
+      "variant": "default"
+    },
+    {
+      "id": "e-puerta",
+      "from": "oro",
+      "to": "persona",
+      "label": "espera",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "rose",
+      "title": "Veredictos de T01",
+      "items": [
+        "Medallón: fila 9, nueva [Visto solo en buscador]",
+        "Filas 2 a 5: se sostienen con ajuste",
+        "Fila 6: backfill no es ensanchar la ventana",
+        "Fila 7: 7a observabilidad y 7b linaje"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "Fuente",
+      "items": [
+        "t01-tesis/tesis.md §3 filas 1 a 10 y §5",
+        "BRIEF §2 eje 1"
+      ]
+    }
+  ]
+}

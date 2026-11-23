@@ -1,0 +1,212 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 858" width="980" height="858" font-family="'Plus Jakarta Sans', 'Segoe UI', Arial, sans-serif" role="img" aria-labelledby="t d">
+<title id="t">Matriz de trazabilidad de El Taller: IDEA, ADR, CICLO, commit, versión y técnica</title>
+<desc id="d">Una fila por ciclo, CICLO-001 a CICLO-022. Cada celda sale de oficina-relevo bitacora/ciclos.md y de git log de la rama claude/taller.</desc>
+<rect width="980" height="858" fill="#FFFFFF"/>
+<text x="40" y="44" font-size="22" font-weight="700" fill="#1E0C21" text-anchor="start" >Matriz de trazabilidad · IDEA → ADR → CICLO → commit → vN → técnica</text>
+<text x="40" y="70" font-size="13" font-weight="400" fill="#6B5E6E" text-anchor="start" >El Taller, 22 ciclos. Cada fila se puede abrir en git: el commit es el «[CICLO-NNN] Integra …» del tronco claude/taller.</text>
+<text x="40" y="90" font-size="13" font-weight="400" fill="#6B5E6E" text-anchor="start" >Ciclos 016 a 022: fase de pulido (CLAUDE.md, fc532ae). La cadena sigue la regla «Trazabilidad» de oficina-relevo:CLAUDE.md.</text>
+<rect x="40" y="120" width="90" height="26" fill="#361133"/>
+<text x="48" y="137" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="start" >CICLO</text>
+<rect x="130" y="120" width="150" height="26" fill="#361133"/>
+<text x="138" y="137" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="start" >IDEA</text>
+<rect x="280" y="120" width="150" height="26" fill="#361133"/>
+<text x="288" y="137" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="start" >ADR</text>
+<rect x="430" y="120" width="140" height="26" fill="#361133"/>
+<text x="438" y="137" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="start" >Commit «Integra»</text>
+<rect x="570" y="120" width="80" height="26" fill="#361133"/>
+<text x="578" y="137" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="start" >Versión</text>
+<rect x="650" y="120" width="150" height="26" fill="#361133"/>
+<text x="658" y="137" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="start" >Fichas de técnica</text>
+<rect x="800" y="120" width="140" height="26" fill="#361133"/>
+<text x="808" y="137" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="start" >QA ciego, 1.ª ronda</text>
+<rect x="40" y="146" width="900" height="26" fill="#FFFFFF"/>
+<text x="50" y="163" font-size="12" font-weight="700" fill="#1E0C21" text-anchor="start" >CICLO-001</text>
+<text x="138" y="163" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >IDEA-001</text>
+<text x="288" y="163" font-size="12" font-weight="700" fill="#EF2222" text-anchor="start" >ADR-004 · 007 nueva</text>
+<text x="438" y="163" font-size="12" font-weight="700" fill="#534DFF" text-anchor="start" font-family="ui-monospace, Menlo, Consolas, monospace">b9fd780</text>
+<text x="578" y="163" font-size="12" font-weight="700" fill="#1E0C21" text-anchor="start" >v1</text>
+<text x="658" y="163" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >TEC-007 a 009</text>
+<text x="808" y="163" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >aprobado 8/8</text>
+<rect x="40" y="172" width="900" height="26" fill="#F6F3F6"/>
+<text x="50" y="189" font-size="12" font-weight="700" fill="#1E0C21" text-anchor="start" >CICLO-002</text>
+<text x="138" y="189" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >IDEA-001</text>
+<text x="288" y="189" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >ADR-004 · 007</text>
+<text x="438" y="189" font-size="12" font-weight="700" fill="#534DFF" text-anchor="start" font-family="ui-monospace, Menlo, Consolas, monospace">b7e3ec4</text>
+<text x="578" y="189" font-size="12" font-weight="700" fill="#1E0C21" text-anchor="start" >v2</text>
+<text x="658" y="189" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >TEC-010 a 012</text>
+<text x="808" y="189" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >aprobado 8/8</text>
+<rect x="40" y="198" width="900" height="26" fill="#FFFFFF"/>
+<text x="50" y="215" font-size="12" font-weight="700" fill="#1E0C21" text-anchor="start" >CICLO-003</text>
+<text x="138" y="215" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >IDEA-003</text>
+<text x="288" y="215" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >ADR-004 · 007</text>
+<text x="438" y="215" font-size="12" font-weight="700" fill="#534DFF" text-anchor="start" font-family="ui-monospace, Menlo, Consolas, monospace">5fa72ca</text>
+<text x="578" y="215" font-size="12" font-weight="700" fill="#1E0C21" text-anchor="start" >v3</text>
+<text x="658" y="215" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >TEC-013 a 015</text>
+<text x="808" y="215" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >aprobado 8/8</text>
+<rect x="40" y="224" width="900" height="26" fill="#F6F3F6"/>
+<text x="50" y="241" font-size="12" font-weight="700" fill="#1E0C21" text-anchor="start" >CICLO-004</text>
+<text x="138" y="241" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >IDEA-002</text>
+<text x="288" y="241" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >ADR-004 · 007</text>
+<text x="438" y="241" font-size="12" font-weight="700" fill="#534DFF" text-anchor="start" font-family="ui-monospace, Menlo, Consolas, monospace">4ab9e3e</text>
+<text x="578" y="241" font-size="12" font-weight="700" fill="#1E0C21" text-anchor="start" >v4</text>
+<text x="658" y="241" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >TEC-016 a 018</text>
+<text x="808" y="241" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >aprobado 7/7</text>
+<rect x="40" y="250" width="900" height="26" fill="#FFFFFF"/>
+<text x="50" y="267" font-size="12" font-weight="700" fill="#1E0C21" text-anchor="start" >CICLO-005</text>
+<text x="138" y="267" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >IDEA-011</text>
+<text x="288" y="267" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >ADR-003</text>
+<text x="438" y="267" font-size="12" font-weight="700" fill="#534DFF" text-anchor="start" font-family="ui-monospace, Menlo, Consolas, monospace">e5f03ab</text>
+<text x="578" y="267" font-size="12" font-weight="700" fill="#1E0C21" text-anchor="start" >v5</text>
+<text x="658" y="267" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >TEC-019 a 021</text>
+<text x="808" y="267" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >aprobado 8/8</text>
+<rect x="40" y="276" width="900" height="26" fill="#F6F3F6"/>
+<text x="50" y="293" font-size="12" font-weight="700" fill="#1E0C21" text-anchor="start" >CICLO-006</text>
+<text x="138" y="293" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >IDEA-005 · 022</text>
+<text x="288" y="293" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >ADR-004 · 007</text>
+<text x="438" y="293" font-size="12" font-weight="700" fill="#534DFF" text-anchor="start" font-family="ui-monospace, Menlo, Consolas, monospace">be5790c</text>
+<text x="578" y="293" font-size="12" font-weight="700" fill="#1E0C21" text-anchor="start" >v6</text>
+<text x="658" y="293" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >TEC-022 a 024</text>
+<text x="808" y="293" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >aprobado 9/9</text>
+<rect x="40" y="302" width="900" height="26" fill="#FFFFFF"/>
+<text x="50" y="319" font-size="12" font-weight="700" fill="#1E0C21" text-anchor="start" >CICLO-007</text>
+<text x="138" y="319" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >IDEA-022</text>
+<text x="288" y="319" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >ADR-004 · 007</text>
+<text x="438" y="319" font-size="12" font-weight="700" fill="#534DFF" text-anchor="start" font-family="ui-monospace, Menlo, Consolas, monospace">4f3e62a</text>
+<text x="578" y="319" font-size="12" font-weight="700" fill="#1E0C21" text-anchor="start" >v7</text>
+<text x="658" y="319" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >TEC-025 a 027</text>
+<text x="808" y="319" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >aprobado 10/10</text>
+<rect x="40" y="328" width="900" height="26" fill="#F6F3F6"/>
+<text x="50" y="345" font-size="12" font-weight="700" fill="#1E0C21" text-anchor="start" >CICLO-008</text>
+<text x="138" y="345" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >IDEA-010 (capa 6)</text>
+<text x="288" y="345" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >ADR-004 · 007</text>
+<text x="438" y="345" font-size="12" font-weight="700" fill="#534DFF" text-anchor="start" font-family="ui-monospace, Menlo, Consolas, monospace">35563a8</text>
+<text x="578" y="345" font-size="12" font-weight="700" fill="#1E0C21" text-anchor="start" >v8</text>
+<text x="658" y="345" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >TEC-028 a 030</text>
+<text x="808" y="345" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >aprobado 10/10</text>
+<rect x="40" y="354" width="900" height="26" fill="#FFFFFF"/>
+<text x="50" y="371" font-size="12" font-weight="700" fill="#1E0C21" text-anchor="start" >CICLO-009</text>
+<text x="138" y="371" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >IDEA-024 · 027</text>
+<text x="288" y="371" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >ADR-004 · 007</text>
+<text x="438" y="371" font-size="12" font-weight="700" fill="#534DFF" text-anchor="start" font-family="ui-monospace, Menlo, Consolas, monospace">9c59509</text>
+<text x="578" y="371" font-size="12" font-weight="700" fill="#1E0C21" text-anchor="start" >v9</text>
+<text x="658" y="371" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >TEC-031 a 033</text>
+<text x="808" y="371" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >aprobado 10/10</text>
+<rect x="40" y="380" width="900" height="26" fill="#F6F3F6"/>
+<text x="50" y="397" font-size="12" font-weight="700" fill="#1E0C21" text-anchor="start" >CICLO-010</text>
+<text x="138" y="397" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >IDEA-006</text>
+<text x="288" y="397" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >ADR-004 · 007</text>
+<text x="438" y="397" font-size="12" font-weight="700" fill="#534DFF" text-anchor="start" font-family="ui-monospace, Menlo, Consolas, monospace">3a6f601</text>
+<text x="578" y="397" font-size="12" font-weight="700" fill="#1E0C21" text-anchor="start" >v10</text>
+<text x="658" y="397" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >TEC-034 a 036</text>
+<text x="808" y="397" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >aprobado 9/9</text>
+<rect x="40" y="406" width="900" height="26" fill="#FFFFFF"/>
+<text x="50" y="423" font-size="12" font-weight="700" fill="#1E0C21" text-anchor="start" >CICLO-011</text>
+<text x="138" y="423" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >IDEA-027 · 030</text>
+<text x="288" y="423" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >ADR-004 · 007</text>
+<text x="438" y="423" font-size="12" font-weight="700" fill="#534DFF" text-anchor="start" font-family="ui-monospace, Menlo, Consolas, monospace">bc3597f</text>
+<text x="578" y="423" font-size="12" font-weight="700" fill="#1E0C21" text-anchor="start" >v11</text>
+<text x="658" y="423" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >TEC-037 a 039</text>
+<text x="808" y="423" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >aprobado 8/8</text>
+<rect x="40" y="432" width="900" height="26" fill="#F6F3F6"/>
+<text x="50" y="449" font-size="12" font-weight="700" fill="#1E0C21" text-anchor="start" >CICLO-012</text>
+<text x="138" y="449" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >IDEA-025</text>
+<text x="288" y="449" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >ADR-004 · 007</text>
+<text x="438" y="449" font-size="12" font-weight="700" fill="#534DFF" text-anchor="start" font-family="ui-monospace, Menlo, Consolas, monospace">bed5053</text>
+<text x="578" y="449" font-size="12" font-weight="700" fill="#1E0C21" text-anchor="start" >v12</text>
+<text x="658" y="449" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >TEC-040 a 042</text>
+<text x="808" y="449" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >aprobado 9/9</text>
+<rect x="40" y="458" width="900" height="26" fill="#FFFFFF"/>
+<text x="50" y="475" font-size="12" font-weight="700" fill="#1E0C21" text-anchor="start" >CICLO-013</text>
+<text x="138" y="475" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >IDEA-023</text>
+<text x="288" y="475" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >ADR-004 · 007</text>
+<text x="438" y="475" font-size="12" font-weight="700" fill="#534DFF" text-anchor="start" font-family="ui-monospace, Menlo, Consolas, monospace">141e5a8</text>
+<text x="578" y="475" font-size="12" font-weight="700" fill="#1E0C21" text-anchor="start" >v13</text>
+<text x="658" y="475" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >TEC-043 a 045</text>
+<text x="808" y="475" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >aprobado 9/9</text>
+<rect x="40" y="484" width="900" height="26" fill="#F6F3F6"/>
+<text x="50" y="501" font-size="12" font-weight="700" fill="#1E0C21" text-anchor="start" >CICLO-014</text>
+<text x="138" y="501" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >IDEA-021</text>
+<text x="288" y="501" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >ADR-004 · 007</text>
+<text x="438" y="501" font-size="12" font-weight="700" fill="#534DFF" text-anchor="start" font-family="ui-monospace, Menlo, Consolas, monospace">3ce41b4</text>
+<text x="578" y="501" font-size="12" font-weight="700" fill="#1E0C21" text-anchor="start" >v14</text>
+<text x="658" y="501" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >TEC-046 a 048</text>
+<text x="808" y="501" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >aprobado 8/8</text>
+<rect x="40" y="510" width="900" height="26" fill="#FFFFFF"/>
+<text x="50" y="527" font-size="12" font-weight="700" fill="#1E0C21" text-anchor="start" >CICLO-015</text>
+<text x="138" y="527" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >IDEA-033</text>
+<text x="288" y="527" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >ADR-004 · 007</text>
+<text x="438" y="527" font-size="12" font-weight="700" fill="#534DFF" text-anchor="start" font-family="ui-monospace, Menlo, Consolas, monospace">3be0c3d</text>
+<text x="578" y="527" font-size="12" font-weight="700" fill="#1E0C21" text-anchor="start" >v15</text>
+<text x="658" y="527" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >TEC-049 a 051</text>
+<text x="808" y="527" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >aprobado 7/7</text>
+<rect x="40" y="536" width="900" height="26" fill="#F6F3F6"/>
+<rect x="40" y="536" width="4" height="26" fill="#F8D53C"/>
+<text x="50" y="553" font-size="12" font-weight="700" fill="#1E0C21" text-anchor="start" >CICLO-016</text>
+<text x="138" y="553" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >IDEA-043</text>
+<text x="288" y="553" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >ADR-004 · 007</text>
+<text x="438" y="553" font-size="12" font-weight="700" fill="#534DFF" text-anchor="start" font-family="ui-monospace, Menlo, Consolas, monospace">a405c0c</text>
+<text x="578" y="553" font-size="12" font-weight="700" fill="#1E0C21" text-anchor="start" >v16</text>
+<text x="658" y="553" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >TEC-052 a 053</text>
+<text x="808" y="553" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >aprobado 6/6</text>
+<rect x="40" y="562" width="900" height="26" fill="#FFFFFF"/>
+<rect x="40" y="562" width="4" height="26" fill="#F8D53C"/>
+<text x="50" y="579" font-size="12" font-weight="700" fill="#1E0C21" text-anchor="start" >CICLO-017</text>
+<text x="138" y="579" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >IDEA-046</text>
+<text x="288" y="579" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >ADR-004 · 007</text>
+<text x="438" y="579" font-size="12" font-weight="700" fill="#534DFF" text-anchor="start" font-family="ui-monospace, Menlo, Consolas, monospace">aca7fb8</text>
+<text x="578" y="579" font-size="12" font-weight="700" fill="#1E0C21" text-anchor="start" >v17</text>
+<text x="658" y="579" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >TEC-054</text>
+<text x="808" y="579" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >aprobado 6/6</text>
+<rect x="40" y="588" width="900" height="26" fill="#F6F3F6"/>
+<rect x="40" y="588" width="4" height="26" fill="#F8D53C"/>
+<text x="50" y="605" font-size="12" font-weight="700" fill="#1E0C21" text-anchor="start" >CICLO-018</text>
+<text x="138" y="605" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >IDEA-049</text>
+<text x="288" y="605" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >ADR-004 · 007</text>
+<text x="438" y="605" font-size="12" font-weight="700" fill="#534DFF" text-anchor="start" font-family="ui-monospace, Menlo, Consolas, monospace">92414db</text>
+<text x="578" y="605" font-size="12" font-weight="700" fill="#1E0C21" text-anchor="start" >v18</text>
+<text x="658" y="605" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >TEC-055</text>
+<text x="808" y="605" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >aprobado 7/7</text>
+<rect x="40" y="614" width="900" height="26" fill="#FFFFFF"/>
+<rect x="40" y="614" width="4" height="26" fill="#F8D53C"/>
+<text x="50" y="631" font-size="12" font-weight="700" fill="#1E0C21" text-anchor="start" >CICLO-019</text>
+<text x="138" y="631" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >IDEA-051</text>
+<text x="288" y="631" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >ADR-004 · 007</text>
+<text x="438" y="631" font-size="12" font-weight="700" fill="#534DFF" text-anchor="start" font-family="ui-monospace, Menlo, Consolas, monospace">0aa5a95</text>
+<text x="578" y="631" font-size="12" font-weight="700" fill="#1E0C21" text-anchor="start" >v19</text>
+<text x="658" y="631" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >TEC-056</text>
+<text x="808" y="631" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >aprobado 7/7</text>
+<rect x="40" y="640" width="900" height="26" fill="#F6F3F6"/>
+<rect x="40" y="640" width="4" height="26" fill="#F8D53C"/>
+<text x="50" y="657" font-size="12" font-weight="700" fill="#1E0C21" text-anchor="start" >CICLO-020</text>
+<text x="138" y="657" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >IDEA-054</text>
+<text x="288" y="657" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >ADR-004 · 007</text>
+<text x="438" y="657" font-size="12" font-weight="700" fill="#534DFF" text-anchor="start" font-family="ui-monospace, Menlo, Consolas, monospace">db4a6b1</text>
+<text x="578" y="657" font-size="12" font-weight="700" fill="#1E0C21" text-anchor="start" >v20</text>
+<text x="658" y="657" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >TEC-057</text>
+<text x="808" y="657" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >aprobado 7/7</text>
+<rect x="40" y="666" width="900" height="26" fill="#FFFFFF"/>
+<rect x="40" y="666" width="4" height="26" fill="#F8D53C"/>
+<text x="50" y="683" font-size="12" font-weight="700" fill="#1E0C21" text-anchor="start" >CICLO-021</text>
+<text x="138" y="683" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >IDEA-055</text>
+<text x="288" y="683" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >ADR-004 · 007</text>
+<text x="438" y="683" font-size="12" font-weight="700" fill="#534DFF" text-anchor="start" font-family="ui-monospace, Menlo, Consolas, monospace">3e1ec72</text>
+<text x="578" y="683" font-size="12" font-weight="700" fill="#1E0C21" text-anchor="start" >v21</text>
+<text x="658" y="683" font-size="12" font-weight="400" fill="#6B5E6E" text-anchor="start" font-style="italic">sin técnica nueva</text>
+<text x="808" y="683" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >aprobado 7/7</text>
+<rect x="40" y="692" width="900" height="26" fill="#F6F3F6"/>
+<rect x="40" y="692" width="4" height="26" fill="#F8D53C"/>
+<text x="50" y="709" font-size="12" font-weight="700" fill="#1E0C21" text-anchor="start" >CICLO-022</text>
+<text x="138" y="709" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >IDEA-056</text>
+<text x="288" y="709" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >ADR-004 · 007</text>
+<text x="438" y="709" font-size="12" font-weight="700" fill="#534DFF" text-anchor="start" font-family="ui-monospace, Menlo, Consolas, monospace">5d7276c</text>
+<text x="578" y="709" font-size="12" font-weight="700" fill="#1E0C21" text-anchor="start" >v22</text>
+<text x="658" y="709" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >TEC-058</text>
+<text x="808" y="709" font-size="12" font-weight="400" fill="#1E0C21" text-anchor="start" >aprobado 6/6</text>
+<line x1="40" x2="940" y1="718" y2="718" stroke="#1E0C21" stroke-width="1"/>
+<rect x="40" y="734" width="4" height="14" fill="#F8D53C"/>
+<text x="52" y="746" font-size="12" font-weight="400" fill="#6B5E6E" text-anchor="start" >Fase de pulido (CICLO-016 a 022).  «007 nueva»: ADR-007 es la única ADR creada dentro de un ciclo.</text>
+<text x="40" y="834" font-size="12" font-weight="400" fill="#6B5E6E" text-anchor="start" >ADR-008 (mudanza a Data-IA, 424f350) la escribió Hernán fuera de ciclo.</text>
+<text x="40" y="768" font-size="12" font-weight="400" fill="#6B5E6E" text-anchor="start" >Fichas de técnica: las que el Investigador propuso en ese ciclo (línea «Investigación»). CICLO-021 extendió TEC-057 sin ficha nueva.</text>
+<text x="40" y="790" font-size="12" font-weight="400" fill="#6B5E6E" text-anchor="start" >Fuente: oficina-relevo:bitacora/ciclos.md (corte d24488d, 23/11/2026 12:59 UTC) y git log origin/claude/taller --grep "Integra". [Fuente primaria]</text>
+<text x="40" y="812" font-size="12" font-weight="400" fill="#6B5E6E" text-anchor="start" >CICLO-008 y 009 trabajan la capa 6 de ADR-004; IDEA-010, 024 y 027 se tocan «en su forma mínima» según la bitácora.</text>
+</svg>
