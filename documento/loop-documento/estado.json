@@ -1,5 +1,5 @@
 {
-  "actualizado": "2026-11-23T22:45:55.590Z",
+  "actualizado": "2026-11-23T22:57:31.999Z",
   "fase": "Compuerta 1",
   "compuerta": {
     "texto": "Contrato e índice escritos. Esperan la aprobación de Hernán para arrancar el primer ciclo.",
@@ -7,7 +7,7 @@
   },
   "documento": null,
   "subagentes": {
-    "usados": 3,
+    "usados": 10,
     "presupuesto": "17 a 22"
   },
   "preguntas": [
@@ -60,14 +60,14 @@
       ],
       "figura": "Anatomía de un loop · tubería medallón",
       "capas": {
-        "estructura": "pendiente",
-        "contenido": "pendiente",
-        "guardian": "pendiente",
-        "auditor": "pendiente",
+        "estructura": "hecho",
+        "contenido": "hecho",
+        "guardian": "hecho",
+        "auditor": "hecho",
         "visual": "pendiente"
       },
-      "vueltas": 0,
-      "palabras": null,
+      "vueltas": 1,
+      "palabras": 782,
       "tope": 800
     },
     {
@@ -78,14 +78,14 @@
       ],
       "figura": "Radar de conceptos de la industria",
       "capas": {
-        "estructura": "pendiente",
-        "contenido": "pendiente",
-        "guardian": "pendiente",
-        "auditor": "pendiente",
+        "estructura": "hecho",
+        "contenido": "hecho",
+        "guardian": "hecho",
+        "auditor": "hecho",
         "visual": "pendiente"
       },
-      "vueltas": 0,
-      "palabras": null,
+      "vueltas": 1,
+      "palabras": 786,
       "tope": 800
     },
     {
@@ -97,14 +97,14 @@
       ],
       "figura": "Escalera de madurez · estados del ciclo",
       "capas": {
-        "estructura": "pendiente",
-        "contenido": "pendiente",
-        "guardian": "pendiente",
-        "auditor": "pendiente",
+        "estructura": "hecho",
+        "contenido": "hecho",
+        "guardian": "hecho",
+        "auditor": "curso",
         "visual": "pendiente"
       },
       "vueltas": 0,
-      "palabras": null,
+      "palabras": 691,
       "tope": 700
     },
     {
@@ -117,14 +117,14 @@
       ],
       "figura": "Plano cartesiano",
       "capas": {
-        "estructura": "pendiente",
-        "contenido": "pendiente",
-        "guardian": "pendiente",
-        "auditor": "pendiente",
+        "estructura": "hecho",
+        "contenido": "hecho",
+        "guardian": "hecho",
+        "auditor": "hecho",
         "visual": "pendiente"
       },
-      "vueltas": 0,
-      "palabras": null,
+      "vueltas": 1,
+      "palabras": 384,
       "tope": 400
     },
     {
@@ -230,6 +230,18 @@
       "texto": "Atribuir cada afirmación a su autor real; una sola fuente no es «la industria». Definir el concepto de forma explícita, no implícita.",
       "origen": "Auditor de la sección 2",
       "nueva": true
+    },
+    {
+      "id": "G9",
+      "texto": "Traducir cada término en inglés la primera vez que aparece en el cuerpo, no solo en una tabla.",
+      "origen": "Escritor y auditor de la sección 3",
+      "nueva": true
+    },
+    {
+      "id": "G10",
+      "texto": "No sobreafirmar: «no se halló» no es «no existe»; «consenso» exige más de una fuente.",
+      "origen": "Auditor de la sección 4",
+      "nueva": true
     }
   ],
   "bitacora": [
@@ -252,6 +264,18 @@
     {
       "hora": "2026-11-23 17:45",
       "evento": "Auditor ciego (Sonnet): aprobada con cambios. 6 de 8 citas fieles; 2 generalizaban una sola fuente a «la industria». Se aplicaron 4 cambios y se recortó a 299. Regla nueva G8."
+    },
+    {
+      "hora": "2026-11-23 17:56",
+      "evento": "Sección 6 aprobada con cambios: 3 de 5 citas fieles; 2 atribuían al radar lo que se decía de OpenAI y Anthropic. Cifra nueva verificada contra el radar: 5 de 9 conceptos aplicados."
+    },
+    {
+      "hora": "2026-11-23 17:57",
+      "evento": "Sección 3 aprobada con cambios: 11 de 15 citas fieles, veredictos de la tesis con sus palabras exactas. Corregidos dbt frente a Great Expectations y medallón."
+    },
+    {
+      "hora": "2026-11-23 17:57",
+      "evento": "Sección 4 aprobada con cambios: 17 de 20 citas fieles. «No hay documentación sólida afuera» queda como Hipótesis."
     }
   ]
 }
