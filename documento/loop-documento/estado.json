@@ -1,0 +1,37 @@
+{
+  "actualizado": "2026-11-23T17:28:00-05:00",
+  "fase": "Compuerta 1",
+  "compuerta": { "texto": "Contrato e índice escritos. Esperan la aprobación de Hernán para arrancar el primer ciclo.", "estado": "espera" },
+  "documento": null,
+  "subagentes": { "usados": 0, "presupuesto": "17 a 22" },
+  "preguntas": [
+    { "id": "P1", "texto": "¿Qué es Loop Engineering y por qué importa?" },
+    { "id": "P2", "texto": "¿Cómo estamos frente a la industria?" },
+    { "id": "P3", "texto": "¿Qué ya produce valor?" },
+    { "id": "P4", "texto": "¿Hasta dónde puede llegar?" },
+    { "id": "P5", "texto": "¿Con qué evidencia se sostiene?" }
+  ],
+  "secciones": [
+    { "n": 2, "titulo": "El problema", "responde": ["P1"], "figura": "Ninguna", "capas": { "estructura": "pendiente", "contenido": "pendiente", "guardian": "pendiente", "auditor": "pendiente", "visual": "pendiente" }, "vueltas": 0, "palabras": null, "tope": 300 },
+    { "n": 3, "titulo": "Marco conceptual: la anatomía de un loop", "responde": ["P1", "P5"], "figura": "Anatomía de un loop · tubería medallón", "capas": { "estructura": "pendiente", "contenido": "pendiente", "guardian": "pendiente", "auditor": "pendiente", "visual": "pendiente" }, "vueltas": 0, "palabras": null, "tope": 800 },
+    { "n": 4, "titulo": "Estado del arte de la industria", "responde": ["P2"], "figura": "Radar de conceptos de la industria", "capas": { "estructura": "pendiente", "contenido": "pendiente", "guardian": "pendiente", "auditor": "pendiente", "visual": "pendiente" }, "vueltas": 0, "palabras": null, "tope": 800 },
+    { "n": 5, "titulo": "El modelo de Triario: la escalera de madurez", "responde": ["P3", "P4"], "figura": "Escalera de madurez · estados del ciclo", "capas": { "estructura": "pendiente", "contenido": "pendiente", "guardian": "pendiente", "auditor": "pendiente", "visual": "pendiente" }, "vueltas": 0, "palabras": null, "tope": 700 },
+    { "n": 6, "titulo": "Discusión: innovación y límites", "responde": ["P2", "P4", "P5"], "figura": "Plano cartesiano", "capas": { "estructura": "pendiente", "contenido": "pendiente", "guardian": "pendiente", "auditor": "pendiente", "visual": "pendiente" }, "vueltas": 0, "palabras": null, "tope": 400 },
+    { "n": 7, "titulo": "Conclusiones", "responde": ["P1", "P2", "P3", "P4"], "figura": "Ninguna", "capas": { "estructura": "pendiente", "contenido": "pendiente", "guardian": "pendiente", "auditor": "pendiente", "visual": "pendiente" }, "vueltas": 0, "palabras": null, "tope": 200 },
+    { "n": 1, "titulo": "Resumen", "responde": ["P1", "P2", "P3", "P4", "P5"], "figura": "Escalera de madurez", "capas": { "estructura": "pendiente", "contenido": "pendiente", "guardian": "pendiente", "auditor": "pendiente", "visual": "pendiente" }, "vueltas": 0, "palabras": null, "tope": 300 },
+    { "n": 8, "titulo": "Referencias", "responde": ["P5"], "figura": "Ninguna", "capas": { "estructura": "pendiente", "contenido": "pendiente", "guardian": "pendiente", "auditor": "pendiente", "visual": "pendiente" }, "vueltas": 0, "palabras": null, "tope": null }
+  ],
+  "reglas": [
+    { "id": "G1", "texto": "Toda línea con una cifra lleva sello o fuente", "origen": "APR-R10 · APR-R05" },
+    { "id": "G2", "texto": "Solo sellos válidos", "origen": "APR-R07" },
+    { "id": "G3", "texto": "Extensión dentro del tope de la sección", "origen": "HP-013" },
+    { "id": "G4", "texto": "Cada sección declara la pregunta que responde", "origen": "Contrato §2" },
+    { "id": "G5", "texto": "Sin códigos internos ni rutas en el cuerpo", "origen": "D09 · decisión 8" },
+    { "id": "G6", "texto": "Sin deriva hacia el sistema del cierre fuera de la sección 5", "origen": "Rechazo del 23/11" },
+    { "id": "G7", "texto": "Sin próximos pasos ni guiones largos", "origen": "BRIEF §3 y §5" }
+  ],
+  "bitacora": [
+    { "hora": "2026-11-23 17:28", "evento": "Rama claude/doc-le-concepto creada desde la base de la investigación." },
+    { "hora": "2026-11-23 17:28", "evento": "Contrato, Guardián y tablero listos. Esperando la compuerta 1." }
+  ]
+}
