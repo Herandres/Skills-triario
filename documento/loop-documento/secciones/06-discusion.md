@@ -5,13 +5,13 @@ El eje horizontal del plano mide la madurez afuera con una vara fija: consenso s
 
 <!-- figura: plano -->
 
-**Dónde va adelante.** Human-in-the-loop (persona en el circuito) es el único concepto que los equipos ya aplican[^1]. En el nivel más alto suben a aplicado el harness (arnés del agente), el context engineering (ingeniería de contexto), la observabilidad y los guardrails (barandas)[^2].
+**Dónde va adelante.** Human-in-the-loop (persona en el circuito) es el único concepto que los equipos ya aplican[^2]. En el nivel más alto suben a aplicado el harness (arnés del agente), el context engineering (ingeniería de contexto), la observabilidad y los guardrails (barandas)[^2].
 
-**Dónde va a la par o atrás.** Del harness y la gobernanza los equipos todavía solo hablan[^1]. En evals (evaluaciones automáticas) ambos puntos quedan a medias: hay un revisor ciego, pero ningún conjunto fijo de casos que mida si acierta; aprobó 22 de 22 ciclos en la primera ronda[^2]. Anthropic describe que personas calibran a esos calificadores[^3]. La gobernanza de IA sube solo a medias: hay dueño humano de las reglas, pero no inventario de loops ni un marco como NIST AI RMF o ISO/IEC 42001[^2].
+**Dónde va a la par o atrás.** Del harness y la gobernanza los equipos todavía solo hablan[^2]. En evals (evaluaciones automáticas) ambos puntos quedan a medias: hay un revisor ciego, pero ningún conjunto fijo de casos que mida si acierta; aprobó 22 de 22 ciclos en la primera ronda[^2]. Anthropic describe que personas calibran a esos calificadores[^3]. La gobernanza de IA sube solo a medias: hay dueño humano de las reglas, pero no inventario de loops ni un marco como NIST AI RMF o ISO/IEC 42001[^2].
 
 **Límites de la evidencia.**
 
-- La columna de los equipos se armó con el contexto de un encargo, no con registros de los equipos[^2]. Que los equipos no llegaron a observabilidad, guardrails, versionado y costo de tokens viene de lo dicho por Hernán y queda por confirmar [confirmar con Hernán].
+- La columna de los equipos se armó con el contexto de un encargo, no con registros de los equipos[^2]. Que los equipos no llegaron a observabilidad, guardrails, versionado y costo de tokens está pendiente de confirmar [confirmar con Hernán].
 - El costo de tokens no tiene registro en ningún nivel; el único indicio es que las rutinas agotaban el uso de una cuenta, una consecuencia y no una medición[^2].
 - La observabilidad del nivel más alto es por corrida, no por llamada al modelo ni con tokens, que es como lo define el radar; sus guardrails son chequeos deterministas, no hooks (ganchos) sobre las herramientas[^2].
 - «Consenso» casi siempre significa documentación de Anthropic y OpenAI, no un estándar formal; solo gobernanza y human-in-the-loop tienen detrás un organismo o una ley[^1]. El consenso en gobernanza descansa en fuentes vistas solo en el buscador, y el versionado de prompts y skills queda fuera porque no apareció un caso publicado en producción[^4].

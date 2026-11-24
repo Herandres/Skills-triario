@@ -1,5 +1,5 @@
 {
-  "actualizado": "2026-11-23T23:07:53.800Z",
+  "actualizado": "2026-11-24T01:03:17.642Z",
   "fase": "Compuerta 1",
   "compuerta": {
     "texto": "Contrato e índice escritos. Esperan la aprobación de Hernán para arrancar el primer ciclo.",
@@ -248,6 +248,18 @@
       "texto": "Los resúmenes no traen datos nuevos y conservan el sello que el dato tenía en su sección.",
       "origen": "Escritor y auditor de las secciones 1 y 7",
       "nueva": true
+    },
+    {
+      "id": "G12",
+      "texto": "El cuerpo lleva el mismo sello que su nota: si la nota dice [Hipótesis], la afirmación va marcada como Hipótesis en la línea, no como hecho.",
+      "origen": "Auditor ciego del documento completo, mejora continua 1 (secciones 3, 5, 6 y 7)",
+      "nueva": true
+    },
+    {
+      "id": "G13",
+      "texto": "Sin nombres de personas ni códigos de equipos en el cuerpo, salvo el sello válido «[confirmar con Hernán]»; lo pendiente se marca con el sello, no con una frase que nombre a quién confirma.",
+      "origen": "Auditor ciego del documento completo, mejora continua 1 (secciones 5 y 6)",
+      "nueva": true
     }
   ],
   "bitacora": [
@@ -294,6 +306,10 @@
     {
       "hora": "2026-11-23 18:07",
       "evento": "Referencias generadas por script desde las notas: 43 fuentes externas por nivel de evidencia y 20 archivos internos. Figuras: 2 de Archify y 3 SVG con paleta Triario."
+    },
+    {
+      "hora": "2026-11-23 20:03",
+      "evento": "Mejora continua 1. Guardián antes 7/8 (sección 5 en 703 de 700 palabras), después 8/8. Auditor ciego del documento completo: 65 de 73 citas fieles; hallazgos: sello que cambia entre cuerpo y nota (secciones 3, 5, 6 y 7), códigos y nombre de persona en el cuerpo (5 y 6), notas de adopción de los equipos apuntando al radar de la industria (6), Osmani como autor de la disciplina y «la industria» con una sola fuente (2). Aplicados 7 de 8 cambios: maker-checker como Hipótesis, quitados MKT1, MKT2 y GDO del cuerpo, nombre de persona fuera de la sección 6, notas corregidas, 5 de 9 con sello Hipótesis en la 7, atribución a IBM en la 2. Descartado: redacción redundante sobre consenso en la 4. Pendientes sin aplicar por falta de cambio exacto: piezas 6 frente a 5 entre secciones 3 y 5, niveles de adopción del plano sin definir, DLQ sin definir, skill sin traducir en la 4."
     }
   ]
 }
